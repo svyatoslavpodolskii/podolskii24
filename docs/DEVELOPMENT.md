@@ -53,6 +53,8 @@ python tools/verify_apk.py dist/Podolskii24-debug.apk
 
 Готовые APK находятся в `dist/`. Они не хранятся в Git — публичные сборки
 публикуются в GitHub Releases. CI также собирает проверочный debug-артефакт.
+CI использует Ubuntu 24.04 и актуальную подготовку SDK: устаревший пакет
+Android `tools` не запрашивается, нужны `platform-tools`, API 36 и Build Tools.
 
 **Подпись:** существующие публичные APK подписаны локальным ключом автора.
 Release сейчас использует тот же локальный Android debug key, чтобы сохранить
