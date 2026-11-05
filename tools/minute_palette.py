@@ -18,7 +18,7 @@ def apply(root, strings):
               if n.get(a, '').startswith('#')}
     assert actual <= set(COLORS), actual - set(COLORS)
     cfg = E.SubElement(root.find('UserConfigurations'), 'ListConfiguration',
-        id='MinuteColor', displayName='minute_color', screenReaderText='minute_color', defaultValue='original')
+        id='MinuteColor', displayName='minute_color', screenReaderText='minute_color', defaultValue='neutral')
     for key, colors in PALETTES.items():
         E.SubElement(cfg, 'ListOption', id=key, displayName='minute_color_'+key,
                      screenReaderText='minute_color_'+key)

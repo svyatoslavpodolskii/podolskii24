@@ -9,7 +9,7 @@ class MinutePaletteTest(unittest.TestCase):
     def test_runtime_palette(self):
         root=E.parse(RES/'raw/watchface.xml').getroot()
         cfg=root.find('UserConfigurations/ListConfiguration[@id="MinuteColor"]')
-        self.assertEqual(cfg.get('defaultValue'),'original')
+        self.assertEqual(cfg.get('defaultValue'),'neutral')
         self.assertEqual([n.get('id') for n in cfg],list(PALETTES))
         track=root.find('.//Group[@name="shared_minute_tracks"]')
         transforms=track.findall('.//Transform')

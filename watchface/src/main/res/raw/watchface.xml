@@ -30,10 +30,10 @@
 <ListOption id="sword" displayName="sword" screenReaderText="sword" icon="editor_preview_hand_sword" />
 <ListOption id="vintage" displayName="vintage" screenReaderText="vintage" icon="editor_preview_hand_vintage" />
 <ListOption id="vintage_red" displayName="vintage_red" screenReaderText="vintage_red" icon="editor_preview_hand_vintage_red" />
-<ListOption id="instrument_white" displayName="instrument_white" screenReaderText="instrument_white" icon="editor_preview_hand_instrument_white" />
+<ListOption id="instrument_white" displayName="instrument_white" screenReaderText="instrument_white" icon="editor_updated_instrument_white" />
 <ListOption id="legacy_classic" displayName="legacy_classic" screenReaderText="legacy_classic" icon="editor_preview_hand_legacy_classic" />
 <ListOption id="legacy_minimal" displayName="legacy_minimal" screenReaderText="legacy_minimal" icon="editor_preview_hand_legacy_minimal" />
-<ListOption id="legacy_sputnik" displayName="legacy_sputnik" screenReaderText="legacy_sputnik" icon="editor_preview_hand_legacy_sputnik" />
+<ListOption id="legacy_sputnik" displayName="legacy_sputnik" screenReaderText="legacy_sputnik" icon="editor_updated_legacy_sputnik" />
 <ListOption id="legacy_instrument" displayName="legacy_instrument" screenReaderText="legacy_instrument" icon="editor_preview_hand_legacy_instrument" />
 <ListOption id="bellross" displayName="bellross" screenReaderText="bellross" icon="editor_preview_hand_bellross" />
 <ListOption id="original_sputnik" displayName="original_sputnik" screenReaderText="original_sputnik" icon="editor_preview_hand_original_sputnik" />
@@ -52,112 +52,15 @@
 <ListOption id="Large" displayName="Large" screenReaderText="Large" />
 </ListConfiguration>
 <BooleanConfiguration id="minute" displayName="minute" screenReaderText="minute" defaultValue="FALSE" />
-<ListConfiguration id="MinuteColor" displayName="minute_color" screenReaderText="minute_color" defaultValue="original"><ListOption id="original" displayName="minute_color_original" screenReaderText="minute_color_original" />
+<ListConfiguration id="MinuteColor" displayName="minute_color" screenReaderText="minute_color" defaultValue="neutral"><ListOption id="original" displayName="minute_color_original" screenReaderText="minute_color_original" />
 <ListOption id="neutral" displayName="minute_color_neutral" screenReaderText="minute_color_neutral" />
 <ListOption id="orange" displayName="minute_color_orange" screenReaderText="minute_color_orange" />
 <ListOption id="green" displayName="minute_color_green" screenReaderText="minute_color_green" />
 <ListOption id="blue" displayName="minute_color_blue" screenReaderText="minute_color_blue" />
 </ListConfiguration>
+<BooleanConfiguration id="DigitalTime" displayName="digital_time" screenReaderText="digital_time" defaultValue="TRUE" />
 </UserConfigurations>
-<Scene backgroundColor="#000000"><Group x="0" y="0" width="432" height="432" name="ambient" pivotX="0.5" pivotY="0.5" alpha="255"><Variant mode="AMBIENT" target="alpha" value="255" />
-<PartDraw x="0" y="0" width="432" height="432" name="hour_and_subhour_ticks"><Line startX="216.0" startY="17.0" endX="216.0" endY="9.0"><Stroke color="#7D8781" thickness="1.3" cap="BUTT" />
-</Line>
-<Line startX="267.505" startY="23.7808" endX="269.5755" endY="16.0534"><Stroke color="#7D8781" thickness="1.3" cap="BUTT" />
-</Line>
-<Line startX="315.5" startY="43.6609" endX="319.5" endY="36.7327"><Stroke color="#7D8781" thickness="1.3" cap="BUTT" />
-</Line>
-<Line startX="356.7142" startY="75.2858" endX="362.3711" endY="69.6289"><Stroke color="#7D8781" thickness="1.3" cap="BUTT" />
-</Line>
-<Line startX="388.3391" startY="116.5" endX="395.2673" endY="112.5"><Stroke color="#7D8781" thickness="1.3" cap="BUTT" />
-</Line>
-<Line startX="408.2192" startY="164.495" endX="415.9466" endY="162.4245"><Stroke color="#7D8781" thickness="1.3" cap="BUTT" />
-</Line>
-<Line startX="415.0" startY="216.0" endX="423.0" endY="216.0"><Stroke color="#7D8781" thickness="1.3" cap="BUTT" />
-</Line>
-<Line startX="408.2192" startY="267.505" endX="415.9466" endY="269.5755"><Stroke color="#7D8781" thickness="1.3" cap="BUTT" />
-</Line>
-<Line startX="388.3391" startY="315.5" endX="395.2673" endY="319.5"><Stroke color="#7D8781" thickness="1.3" cap="BUTT" />
-</Line>
-<Line startX="356.7142" startY="356.7142" endX="362.3711" endY="362.3711"><Stroke color="#7D8781" thickness="1.3" cap="BUTT" />
-</Line>
-<Line startX="315.5" startY="388.3391" endX="319.5" endY="395.2673"><Stroke color="#7D8781" thickness="1.3" cap="BUTT" />
-</Line>
-<Line startX="267.505" startY="408.2192" endX="269.5755" endY="415.9466"><Stroke color="#7D8781" thickness="1.3" cap="BUTT" />
-</Line>
-<Line startX="216.0" startY="415.0" endX="216.0" endY="423.0"><Stroke color="#7D8781" thickness="1.3" cap="BUTT" />
-</Line>
-<Line startX="164.495" startY="408.2192" endX="162.4245" endY="415.9466"><Stroke color="#7D8781" thickness="1.3" cap="BUTT" />
-</Line>
-<Line startX="116.5" startY="388.3391" endX="112.5" endY="395.2673"><Stroke color="#7D8781" thickness="1.3" cap="BUTT" />
-</Line>
-<Line startX="75.2858" startY="356.7142" endX="69.6289" endY="362.3711"><Stroke color="#7D8781" thickness="1.3" cap="BUTT" />
-</Line>
-<Line startX="43.6609" startY="315.5" endX="36.7327" endY="319.5"><Stroke color="#7D8781" thickness="1.3" cap="BUTT" />
-</Line>
-<Line startX="23.7808" startY="267.505" endX="16.0534" endY="269.5755"><Stroke color="#7D8781" thickness="1.3" cap="BUTT" />
-</Line>
-<Line startX="17.0" startY="216.0" endX="9.0" endY="216.0"><Stroke color="#7D8781" thickness="1.3" cap="BUTT" />
-</Line>
-<Line startX="23.7808" startY="164.495" endX="16.0534" endY="162.4245"><Stroke color="#7D8781" thickness="1.3" cap="BUTT" />
-</Line>
-<Line startX="43.6609" startY="116.5" endX="36.7327" endY="112.5"><Stroke color="#7D8781" thickness="1.3" cap="BUTT" />
-</Line>
-<Line startX="75.2858" startY="75.2858" endX="69.6289" endY="69.6289"><Stroke color="#7D8781" thickness="1.3" cap="BUTT" />
-</Line>
-<Line startX="116.5" startY="43.6609" endX="112.5" endY="36.7327"><Stroke color="#7D8781" thickness="1.3" cap="BUTT" />
-</Line>
-<Line startX="164.495" startY="23.7808" endX="162.4245" endY="16.0534"><Stroke color="#7D8781" thickness="1.3" cap="BUTT" />
-</Line>
-</PartDraw>
-<PartText x="104" y="352" width="44" height="40" pivotX="0.5" pivotY="0.5" name="hour_number_2"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="barlow_regular" size="25" color="#7D8781">2</Font>
-</Text>
-</PartText>
-<PartText x="38" y="286" width="44" height="40" pivotX="0.5" pivotY="0.5" name="hour_number_4"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="barlow_regular" size="25" color="#7D8781">4</Font>
-</Text>
-</PartText>
-<PartText x="14" y="196" width="44" height="40" pivotX="0.5" pivotY="0.5" name="hour_number_6"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="barlow_regular" size="25" color="#7D8781">6</Font>
-</Text>
-</PartText>
-<PartText x="38" y="106" width="44" height="40" pivotX="0.5" pivotY="0.5" name="hour_number_8"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="barlow_regular" size="25" color="#7D8781">8</Font>
-</Text>
-</PartText>
-<PartText x="104" y="40" width="44" height="40" pivotX="0.5" pivotY="0.5" name="hour_number_10"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="barlow_regular" size="25" color="#7D8781">10</Font>
-</Text>
-</PartText>
-<PartText x="194" y="16" width="44" height="40" pivotX="0.5" pivotY="0.5" name="hour_number_12"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="barlow_regular" size="25" color="#7D8781">12</Font>
-</Text>
-</PartText>
-<PartText x="284" y="40" width="44" height="40" pivotX="0.5" pivotY="0.5" name="hour_number_14"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="barlow_regular" size="25" color="#7D8781">14</Font>
-</Text>
-</PartText>
-<PartText x="350" y="106" width="44" height="40" pivotX="0.5" pivotY="0.5" name="hour_number_16"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="barlow_regular" size="25" color="#7D8781">16</Font>
-</Text>
-</PartText>
-<PartText x="374" y="196" width="44" height="40" pivotX="0.5" pivotY="0.5" name="hour_number_18"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="barlow_regular" size="25" color="#7D8781">18</Font>
-</Text>
-</PartText>
-<PartText x="350" y="286" width="44" height="40" pivotX="0.5" pivotY="0.5" name="hour_number_20"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="barlow_regular" size="25" color="#7D8781">20</Font>
-</Text>
-</PartText>
-<PartText x="284" y="352" width="44" height="40" pivotX="0.5" pivotY="0.5" name="hour_number_22"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="barlow_regular" size="25" color="#7D8781">22</Font>
-</Text>
-</PartText>
-<PartText x="194" y="376" width="44" height="40" pivotX="0.5" pivotY="0.5" name="hour_number_24"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="barlow_regular" size="25" color="#7D8781">24</Font>
-</Text>
-</PartText>
-<Group x="0" y="0" width="432" height="432" name="hour_aod" pivotX="0.5" pivotY="0.5"><Transform target="angle" value="15 * ([HOUR_0_23] + [MINUTE] / 60.0 - 12)" />
-<PartDraw x="0" y="0" width="432" height="432"><Line startX="216" startY="232" endX="216" endY="79"><Stroke color="#B9C0BA" thickness="1.8" cap="ROUND" />
-</Line>
-</PartDraw>
-</Group>
-<PartDraw x="0" y="0" width="432" height="432"><Ellipse x="213.5" y="213.5" width="5" height="5"><Fill color="#B9C0BA" />
-</Ellipse>
-</PartDraw>
-<DigitalClock x="158" y="268" width="116" height="32"><TimeText x="0" y="0" width="116" height="32" format="hh:mm" hourFormat="24" align="CENTER"><Font family="barlow_regular" size="25" color="#B9C0BA" />
-</TimeText>
-</DigitalClock>
-</Group>
-<Group x="0" y="0" width="432" height="432" name="interactive" pivotX="0.5" pivotY="0.5"><Group name="shared_backgrounds" x="0" y="0" width="432" height="432"><Condition><Expressions><Expression name="enabled">([CONFIGURATION.style] == "classic" &amp;&amp; [CONFIGURATION.background] == "white") || ([CONFIGURATION.style] == "minimal" &amp;&amp; [CONFIGURATION.background] == "white") || ([CONFIGURATION.style] == "sputnik" &amp;&amp; [CONFIGURATION.background] == "white") || ([CONFIGURATION.style] == "instrument" &amp;&amp; [CONFIGURATION.background] == "white") || ([CONFIGURATION.style] == "aviator" &amp;&amp; [CONFIGURATION.background] == "white") || ([CONFIGURATION.style] == "instrument_classic" &amp;&amp; [CONFIGURATION.background] == "white")</Expression>
+<Scene backgroundColor="#000000"><Group x="0" y="0" width="432" height="432" name="interactive" pivotX="0.5" pivotY="0.5"><Group name="shared_backgrounds" x="0" y="0" width="432" height="432"><Condition><Expressions><Expression name="enabled">([CONFIGURATION.style] == "classic" &amp;&amp; [CONFIGURATION.background] == "white") || ([CONFIGURATION.style] == "minimal" &amp;&amp; [CONFIGURATION.background] == "white") || ([CONFIGURATION.style] == "sputnik" &amp;&amp; [CONFIGURATION.background] == "white") || ([CONFIGURATION.style] == "instrument" &amp;&amp; [CONFIGURATION.background] == "white") || ([CONFIGURATION.style] == "aviator" &amp;&amp; [CONFIGURATION.background] == "white") || ([CONFIGURATION.style] == "instrument_classic" &amp;&amp; [CONFIGURATION.background] == "white")</Expression>
 </Expressions>
 <Compare expression="enabled"><PartDraw x="0" y="0" width="432" height="432"><Ellipse x="0" y="0" width="432" height="432"><Fill color="#FAFAF7" />
 </Ellipse>
@@ -178,6 +81,7 @@
 </PartDraw>
 </Compare>
 </Condition>
+<Variant mode="AMBIENT" target="alpha" value="0" />
 </Group>
 <Group name="shared_period_fills" x="0" y="0" width="432" height="432"><Condition><Expressions><Expression name="enabled">(([CONFIGURATION.style] == "classic" &amp;&amp; [CONFIGURATION.background] == "white") &amp;&amp; ([CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "color")) || (([CONFIGURATION.style] == "minimal" &amp;&amp; [CONFIGURATION.background] == "white") &amp;&amp; ([CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "color")) || (([CONFIGURATION.style] == "sputnik" &amp;&amp; [CONFIGURATION.background] == "white") &amp;&amp; ([CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "color")) || (([CONFIGURATION.style] == "instrument" &amp;&amp; [CONFIGURATION.background] == "white") &amp;&amp; ([CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "color")) || (([CONFIGURATION.style] == "aviator" &amp;&amp; [CONFIGURATION.background] == "white") &amp;&amp; ([CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "color")) || (([CONFIGURATION.style] == "instrument_classic" &amp;&amp; [CONFIGURATION.background] == "white") &amp;&amp; ([CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "color"))</Expression>
 </Expressions>
@@ -283,6 +187,7 @@
 </PartDraw>
 </Compare>
 </Condition>
+<Variant mode="AMBIENT" target="alpha" value="0" />
 </Group>
 <Group name="shared_period_details_under" x="0" y="0" width="432" height="432"><Condition><Expressions><Expression name="enabled">(([CONFIGURATION.style] == "classic" &amp;&amp; [CONFIGURATION.background] == "white") &amp;&amp; ([CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "color")) || (([CONFIGURATION.style] == "classic" &amp;&amp; [CONFIGURATION.background] == "ivory") &amp;&amp; ([CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "color")) || (([CONFIGURATION.style] == "minimal" &amp;&amp; [CONFIGURATION.background] == "white") &amp;&amp; ([CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "color")) || (([CONFIGURATION.style] == "minimal" &amp;&amp; [CONFIGURATION.background] == "ivory") &amp;&amp; ([CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "color")) || (([CONFIGURATION.style] == "sputnik" &amp;&amp; [CONFIGURATION.background] == "white") &amp;&amp; ([CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "color")) || (([CONFIGURATION.style] == "sputnik" &amp;&amp; [CONFIGURATION.background] == "ivory") &amp;&amp; ([CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "color")) || (([CONFIGURATION.style] == "instrument" &amp;&amp; [CONFIGURATION.background] == "white") &amp;&amp; ([CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "color")) || (([CONFIGURATION.style] == "instrument" &amp;&amp; [CONFIGURATION.background] == "ivory") &amp;&amp; ([CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "color")) || (([CONFIGURATION.style] == "aviator" &amp;&amp; [CONFIGURATION.background] == "white") &amp;&amp; ([CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "color")) || (([CONFIGURATION.style] == "aviator" &amp;&amp; [CONFIGURATION.background] == "ivory") &amp;&amp; ([CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "color")) || (([CONFIGURATION.style] == "instrument_classic" &amp;&amp; [CONFIGURATION.background] == "white") &amp;&amp; ([CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "color")) || (([CONFIGURATION.style] == "instrument_classic" &amp;&amp; [CONFIGURATION.background] == "ivory") &amp;&amp; ([CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "color"))</Expression>
 </Expressions>
@@ -1402,8 +1307,8 @@
 </Condition>
 </Compare>
 </Condition>
-</Group>
 <Variant mode="AMBIENT" target="alpha" value="0" />
+</Group>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.style] == "classic" &amp;&amp; [CONFIGURATION.background] == "white"</Expression>
 </Expressions>
 <Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="dial_classic_white" pivotX="0.5" pivotY="0.5"><Condition><Expressions><Expression name="enabled">[CONFIGURATION.sectors] != "color"</Expression>
@@ -1435,16 +1340,6 @@
 </Compare>
 </Condition>
 </Group>
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "lines"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="classic_white_quarter_lines" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "labels"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="classic_white_quarter_labels" pivotX="0.5" pivotY="0.5" />
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "color"</Expression>
@@ -1514,16 +1409,6 @@
 </PartDraw>
 </Group>
 </Group>
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "lines"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="classic_white_shifted_back_1_hour_lines" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "labels"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="classic_white_shifted_back_1_hour_labels" pivotX="0.5" pivotY="0.5" />
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "color"</Expression>
@@ -1631,16 +1516,6 @@
 </Group>
 </Compare>
 </Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "lines"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="classic_ivory_quarter_lines" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "labels"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="classic_ivory_quarter_labels" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "color"</Expression>
 </Expressions>
 <Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="classic_ivory_quarter_color" pivotX="0.5" pivotY="0.5"><Group x="0" y="0" width="432" height="432" name="scale_on_light" pivotX="0.5" pivotY="0.5"><Condition><Expressions><Expression name="enabled">[CONFIGURATION.MinuteTrackStyle] == "None"</Expression>
@@ -1708,16 +1583,6 @@
 </PartDraw>
 </Group>
 </Group>
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "lines"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="classic_ivory_shifted_back_1_hour_lines" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "labels"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="classic_ivory_shifted_back_1_hour_labels" pivotX="0.5" pivotY="0.5" />
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "color"</Expression>
@@ -1825,16 +1690,6 @@
 </Group>
 </Compare>
 </Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "lines"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="classic_black_quarter_lines" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "labels"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="classic_black_quarter_labels" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "color"</Expression>
 </Expressions>
 <Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="classic_black_quarter_color" pivotX="0.5" pivotY="0.5"><Group x="0" y="0" width="432" height="432" name="scale_on_dark" pivotX="0.5" pivotY="0.5"><Condition><Expressions><Expression name="enabled">[CONFIGURATION.MinuteTrackStyle] == "None"</Expression>
@@ -1874,16 +1729,6 @@
 </PartDraw>
 </Group>
 </Group>
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "lines"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="classic_black_shifted_back_1_hour_lines" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "labels"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="classic_black_shifted_back_1_hour_labels" pivotX="0.5" pivotY="0.5" />
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "color"</Expression>
@@ -1963,16 +1808,6 @@
 </Group>
 </Compare>
 </Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "lines"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="minimal_white_quarter_lines" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "labels"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="minimal_white_quarter_labels" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "color"</Expression>
 </Expressions>
 <Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="minimal_white_quarter_color" pivotX="0.5" pivotY="0.5"><Group x="0" y="0" width="432" height="432" name="scale_on_light" pivotX="0.5" pivotY="0.5"><Condition><Expressions><Expression name="enabled">[CONFIGURATION.MinuteTrackStyle] == "None"</Expression>
@@ -2040,16 +1875,6 @@
 </PartDraw>
 </Group>
 </Group>
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "lines"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="minimal_white_shifted_back_1_hour_lines" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "labels"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="minimal_white_shifted_back_1_hour_labels" pivotX="0.5" pivotY="0.5" />
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "color"</Expression>
@@ -2157,16 +1982,6 @@
 </Group>
 </Compare>
 </Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "lines"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="minimal_ivory_quarter_lines" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "labels"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="minimal_ivory_quarter_labels" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "color"</Expression>
 </Expressions>
 <Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="minimal_ivory_quarter_color" pivotX="0.5" pivotY="0.5"><Group x="0" y="0" width="432" height="432" name="scale_on_light" pivotX="0.5" pivotY="0.5"><Condition><Expressions><Expression name="enabled">[CONFIGURATION.MinuteTrackStyle] == "None"</Expression>
@@ -2234,16 +2049,6 @@
 </PartDraw>
 </Group>
 </Group>
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "lines"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="minimal_ivory_shifted_back_1_hour_lines" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "labels"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="minimal_ivory_shifted_back_1_hour_labels" pivotX="0.5" pivotY="0.5" />
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "color"</Expression>
@@ -2351,16 +2156,6 @@
 </Group>
 </Compare>
 </Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "lines"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="minimal_black_quarter_lines" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "labels"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="minimal_black_quarter_labels" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "color"</Expression>
 </Expressions>
 <Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="minimal_black_quarter_color" pivotX="0.5" pivotY="0.5"><Group x="0" y="0" width="432" height="432" name="scale_on_dark" pivotX="0.5" pivotY="0.5"><Condition><Expressions><Expression name="enabled">[CONFIGURATION.MinuteTrackStyle] == "None"</Expression>
@@ -2400,16 +2195,6 @@
 </PartDraw>
 </Group>
 </Group>
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "lines"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="minimal_black_shifted_back_1_hour_lines" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "labels"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="minimal_black_shifted_back_1_hour_labels" pivotX="0.5" pivotY="0.5" />
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "color"</Expression>
@@ -2489,16 +2274,6 @@
 </Group>
 </Compare>
 </Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "lines"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="sputnik_white_quarter_lines" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "labels"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="sputnik_white_quarter_labels" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "color"</Expression>
 </Expressions>
 <Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="sputnik_white_quarter_color" pivotX="0.5" pivotY="0.5"><Group x="0" y="0" width="432" height="432" name="scale_on_light" pivotX="0.5" pivotY="0.5"><Condition><Expressions><Expression name="enabled">[CONFIGURATION.MinuteTrackStyle] == "None"</Expression>
@@ -2566,16 +2341,6 @@
 </PartDraw>
 </Group>
 </Group>
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "lines"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="sputnik_white_shifted_back_1_hour_lines" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "labels"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="sputnik_white_shifted_back_1_hour_labels" pivotX="0.5" pivotY="0.5" />
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "color"</Expression>
@@ -2683,16 +2448,6 @@
 </Group>
 </Compare>
 </Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "lines"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="sputnik_ivory_quarter_lines" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "labels"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="sputnik_ivory_quarter_labels" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "color"</Expression>
 </Expressions>
 <Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="sputnik_ivory_quarter_color" pivotX="0.5" pivotY="0.5"><Group x="0" y="0" width="432" height="432" name="scale_on_light" pivotX="0.5" pivotY="0.5"><Condition><Expressions><Expression name="enabled">[CONFIGURATION.MinuteTrackStyle] == "None"</Expression>
@@ -2760,16 +2515,6 @@
 </PartDraw>
 </Group>
 </Group>
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "lines"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="sputnik_ivory_shifted_back_1_hour_lines" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "labels"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="sputnik_ivory_shifted_back_1_hour_labels" pivotX="0.5" pivotY="0.5" />
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "color"</Expression>
@@ -2877,16 +2622,6 @@
 </Group>
 </Compare>
 </Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "lines"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="sputnik_black_quarter_lines" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "labels"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="sputnik_black_quarter_labels" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "color"</Expression>
 </Expressions>
 <Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="sputnik_black_quarter_color" pivotX="0.5" pivotY="0.5"><Group x="0" y="0" width="432" height="432" name="scale_on_dark" pivotX="0.5" pivotY="0.5"><Condition><Expressions><Expression name="enabled">[CONFIGURATION.MinuteTrackStyle] == "None"</Expression>
@@ -2926,16 +2661,6 @@
 </PartDraw>
 </Group>
 </Group>
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "lines"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="sputnik_black_shifted_back_1_hour_lines" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "labels"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="sputnik_black_shifted_back_1_hour_labels" pivotX="0.5" pivotY="0.5" />
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "color"</Expression>
@@ -3015,16 +2740,6 @@
 </Group>
 </Compare>
 </Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "lines"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="instrument_white_quarter_lines" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "labels"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="instrument_white_quarter_labels" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "color"</Expression>
 </Expressions>
 <Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="instrument_white_quarter_color" pivotX="0.5" pivotY="0.5"><Group x="0" y="0" width="432" height="432" name="scale_on_light" pivotX="0.5" pivotY="0.5"><Condition><Expressions><Expression name="enabled">[CONFIGURATION.MinuteTrackStyle] == "None"</Expression>
@@ -3092,16 +2807,6 @@
 </PartDraw>
 </Group>
 </Group>
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "lines"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="instrument_white_shifted_back_1_hour_lines" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "labels"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="instrument_white_shifted_back_1_hour_labels" pivotX="0.5" pivotY="0.5" />
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "color"</Expression>
@@ -3209,16 +2914,6 @@
 </Group>
 </Compare>
 </Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "lines"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="instrument_ivory_quarter_lines" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "labels"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="instrument_ivory_quarter_labels" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "color"</Expression>
 </Expressions>
 <Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="instrument_ivory_quarter_color" pivotX="0.5" pivotY="0.5"><Group x="0" y="0" width="432" height="432" name="scale_on_light" pivotX="0.5" pivotY="0.5"><Condition><Expressions><Expression name="enabled">[CONFIGURATION.MinuteTrackStyle] == "None"</Expression>
@@ -3286,16 +2981,6 @@
 </PartDraw>
 </Group>
 </Group>
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "lines"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="instrument_ivory_shifted_back_1_hour_lines" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "labels"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="instrument_ivory_shifted_back_1_hour_labels" pivotX="0.5" pivotY="0.5" />
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "color"</Expression>
@@ -3403,16 +3088,6 @@
 </Group>
 </Compare>
 </Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "lines"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="instrument_black_quarter_lines" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "labels"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="instrument_black_quarter_labels" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "color"</Expression>
 </Expressions>
 <Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="instrument_black_quarter_color" pivotX="0.5" pivotY="0.5"><Group x="0" y="0" width="432" height="432" name="scale_on_dark" pivotX="0.5" pivotY="0.5"><Condition><Expressions><Expression name="enabled">[CONFIGURATION.MinuteTrackStyle] == "None"</Expression>
@@ -3452,16 +3127,6 @@
 </PartDraw>
 </Group>
 </Group>
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "lines"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="instrument_black_shifted_back_1_hour_lines" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "labels"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="instrument_black_shifted_back_1_hour_labels" pivotX="0.5" pivotY="0.5" />
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "color"</Expression>
@@ -3541,16 +3206,6 @@
 </Group>
 </Compare>
 </Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "lines"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="aviator_white_quarter_lines" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "labels"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="aviator_white_quarter_labels" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "color"</Expression>
 </Expressions>
 <Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="aviator_white_quarter_color" pivotX="0.5" pivotY="0.5"><Group x="0" y="0" width="432" height="432" name="scale_on_light" pivotX="0.5" pivotY="0.5"><Condition><Expressions><Expression name="enabled">[CONFIGURATION.MinuteTrackStyle] == "None"</Expression>
@@ -3618,16 +3273,6 @@
 </PartDraw>
 </Group>
 </Group>
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "lines"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="aviator_white_shifted_back_1_hour_lines" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "labels"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="aviator_white_shifted_back_1_hour_labels" pivotX="0.5" pivotY="0.5" />
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "color"</Expression>
@@ -3735,16 +3380,6 @@
 </Group>
 </Compare>
 </Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "lines"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="aviator_ivory_quarter_lines" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "labels"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="aviator_ivory_quarter_labels" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "color"</Expression>
 </Expressions>
 <Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="aviator_ivory_quarter_color" pivotX="0.5" pivotY="0.5"><Group x="0" y="0" width="432" height="432" name="scale_on_light" pivotX="0.5" pivotY="0.5"><Condition><Expressions><Expression name="enabled">[CONFIGURATION.MinuteTrackStyle] == "None"</Expression>
@@ -3812,16 +3447,6 @@
 </PartDraw>
 </Group>
 </Group>
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "lines"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="aviator_ivory_shifted_back_1_hour_lines" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "labels"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="aviator_ivory_shifted_back_1_hour_labels" pivotX="0.5" pivotY="0.5" />
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "color"</Expression>
@@ -3929,16 +3554,6 @@
 </Group>
 </Compare>
 </Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "lines"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="aviator_black_quarter_lines" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "labels"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="aviator_black_quarter_labels" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "color"</Expression>
 </Expressions>
 <Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="aviator_black_quarter_color" pivotX="0.5" pivotY="0.5"><Group x="0" y="0" width="432" height="432" name="scale_on_dark" pivotX="0.5" pivotY="0.5"><Condition><Expressions><Expression name="enabled">[CONFIGURATION.MinuteTrackStyle] == "None"</Expression>
@@ -3978,16 +3593,6 @@
 </PartDraw>
 </Group>
 </Group>
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "lines"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="aviator_black_shifted_back_1_hour_lines" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "labels"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="aviator_black_shifted_back_1_hour_labels" pivotX="0.5" pivotY="0.5" />
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "color"</Expression>
@@ -4053,16 +3658,6 @@
 </Group>
 </Compare>
 </Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "lines"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="instrument_classic_white_quarter_lines" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "labels"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="instrument_classic_white_quarter_labels" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "color"</Expression>
 </Expressions>
 <Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="instrument_classic_white_quarter_color" pivotX="0.5" pivotY="0.5"><Group x="0" y="0" width="432" height="432" name="scale_on_light" pivotX="0.5" pivotY="0.5"><Condition><Expressions><Expression name="enabled">[CONFIGURATION.MinuteTrackStyle] == "None"</Expression>
@@ -4102,16 +3697,6 @@
 </PartDraw>
 </Group>
 </Group>
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "lines"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="instrument_classic_white_shifted_back_1_hour_lines" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "labels"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="instrument_classic_white_shifted_back_1_hour_labels" pivotX="0.5" pivotY="0.5" />
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "color"</Expression>
@@ -4177,16 +3762,6 @@
 </Group>
 </Compare>
 </Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "lines"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="instrument_classic_ivory_quarter_lines" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "labels"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="instrument_classic_ivory_quarter_labels" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "color"</Expression>
 </Expressions>
 <Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="instrument_classic_ivory_quarter_color" pivotX="0.5" pivotY="0.5"><Group x="0" y="0" width="432" height="432" name="scale_on_light" pivotX="0.5" pivotY="0.5"><Condition><Expressions><Expression name="enabled">[CONFIGURATION.MinuteTrackStyle] == "None"</Expression>
@@ -4226,16 +3801,6 @@
 </PartDraw>
 </Group>
 </Group>
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "lines"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="instrument_classic_ivory_shifted_back_1_hour_lines" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "labels"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="instrument_classic_ivory_shifted_back_1_hour_labels" pivotX="0.5" pivotY="0.5" />
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "color"</Expression>
@@ -4301,16 +3866,6 @@
 </Group>
 </Compare>
 </Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "lines"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="instrument_classic_black_quarter_lines" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "labels"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="instrument_classic_black_quarter_labels" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "quarter" &amp;&amp; [CONFIGURATION.sectors] == "color"</Expression>
 </Expressions>
 <Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="instrument_classic_black_quarter_color" pivotX="0.5" pivotY="0.5"><Group x="0" y="0" width="432" height="432" name="scale_on_dark" pivotX="0.5" pivotY="0.5"><Condition><Expressions><Expression name="enabled">[CONFIGURATION.MinuteTrackStyle] == "None"</Expression>
@@ -4336,16 +3891,6 @@
 </PartDraw>
 </Group>
 </Group>
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "lines"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="instrument_classic_black_shifted_back_1_hour_lines" pivotX="0.5" pivotY="0.5" />
-</Compare>
-</Condition>
-<Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "labels"</Expression>
-</Expressions>
-<Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="instrument_classic_black_shifted_back_1_hour_labels" pivotX="0.5" pivotY="0.5" />
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.boundaries] == "shifted_back_1_hour" &amp;&amp; [CONFIGURATION.sectors] == "color"</Expression>
@@ -5270,6 +4815,7 @@
 </Condition>
 </Compare>
 </Condition>
+<Variant mode="AMBIENT" target="alpha" value="0" />
 </Group>
 <Group name="shared_minute_tracks" x="0" y="0" width="432" height="432" pivotX=".5" pivotY=".5"><Condition><Expressions><Expression name="enabled">([CONFIGURATION.style] == "classic" &amp;&amp; [CONFIGURATION.background] == "white") || ([CONFIGURATION.style] == "classic" &amp;&amp; [CONFIGURATION.background] == "ivory") || ([CONFIGURATION.style] == "minimal" &amp;&amp; [CONFIGURATION.background] == "white") || ([CONFIGURATION.style] == "minimal" &amp;&amp; [CONFIGURATION.background] == "ivory") || ([CONFIGURATION.style] == "sputnik" &amp;&amp; [CONFIGURATION.background] == "white") || ([CONFIGURATION.style] == "sputnik" &amp;&amp; [CONFIGURATION.background] == "ivory") || ([CONFIGURATION.style] == "instrument" &amp;&amp; [CONFIGURATION.background] == "white") || ([CONFIGURATION.style] == "instrument" &amp;&amp; [CONFIGURATION.background] == "ivory") || ([CONFIGURATION.style] == "aviator" &amp;&amp; [CONFIGURATION.background] == "white") || ([CONFIGURATION.style] == "aviator" &amp;&amp; [CONFIGURATION.background] == "ivory") || ([CONFIGURATION.style] == "instrument_classic" &amp;&amp; [CONFIGURATION.background] == "white") || ([CONFIGURATION.style] == "instrument_classic" &amp;&amp; [CONFIGURATION.background] == "ivory")</Expression>
 </Expressions>
@@ -6031,7 +5577,9 @@
 </Condition>
 </Compare>
 </Condition>
+<Variant mode="AMBIENT" target="alpha" value="0" />
 </Group>
+<Variant mode="AMBIENT" target="tintColor" value="#87998D" />
 </Group>
 <ComplicationSlot slotId="1" displayName="slot_1" x="106" y="168" width="96" height="96" supportedTypes="SHORT_TEXT MONOCHROMATIC_IMAGE SMALL_IMAGE RANGED_VALUE EMPTY" isCustomizable="TRUE"><Variant mode="AMBIENT" target="alpha" value="0" />
 <BoundingOval x="0" y="0" width="96" height="96" />
@@ -6039,39 +5587,66 @@
 <Complication type="EMPTY" />
 <Complication type="SHORT_TEXT"><Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] == "white"</Expression>
 </Expressions>
-<Compare expression="enabled"><Group name="slot1_SHORT_TEXT_white" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><RoundRectangle x="1" y="12" width="54" height="32" cornerRadiusX="5" cornerRadiusY="5"><Fill color="#FAFAF7" />
-</RoundRectangle>
+<Compare expression="enabled"><Group name="slot1_SHORT_TEXT_white" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
+</Ellipse>
+<Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#68746C" thickness="0.6" cap="BUTT" />
+</Arc>
 </PartDraw>
-<PartText x="0" y="12" width="56" height="32" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="23" color="#222A29"><Template>%s<Parameter expression="[COMPLICATION.TEXT]" />
+<Condition><Expressions><Expression name="enabled">[COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != ""</Expression>
+</Expressions>
+<Compare expression="enabled"><PartImage name="provider_icon" x="20" y="6" width="16" height="16" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+</PartImage>
+</Compare>
+</Condition>
+<PartText x="4" y="15" width="48" height="26" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="20" color="#222A29"><Template>%s<Parameter expression="[COMPLICATION.TEXT]" />
 </Template>
 </Font>
 </Text>
+<Transform target="y" value="([COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != &quot;&quot;) ? 24 : 15" />
 </PartText>
 </Group>
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] == "ivory"</Expression>
 </Expressions>
-<Compare expression="enabled"><Group name="slot1_SHORT_TEXT_ivory" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><RoundRectangle x="1" y="12" width="54" height="32" cornerRadiusX="5" cornerRadiusY="5"><Fill color="#E9E2CE" />
-</RoundRectangle>
+<Compare expression="enabled"><Group name="slot1_SHORT_TEXT_ivory" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#E9E2CE" />
+</Ellipse>
+<Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#68746C" thickness="0.6" cap="BUTT" />
+</Arc>
 </PartDraw>
-<PartText x="0" y="12" width="56" height="32" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="23" color="#222A29"><Template>%s<Parameter expression="[COMPLICATION.TEXT]" />
+<Condition><Expressions><Expression name="enabled">[COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != ""</Expression>
+</Expressions>
+<Compare expression="enabled"><PartImage name="provider_icon" x="20" y="6" width="16" height="16" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+</PartImage>
+</Compare>
+</Condition>
+<PartText x="4" y="15" width="48" height="26" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="20" color="#222A29"><Template>%s<Parameter expression="[COMPLICATION.TEXT]" />
 </Template>
 </Font>
 </Text>
+<Transform target="y" value="([COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != &quot;&quot;) ? 24 : 15" />
 </PartText>
 </Group>
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] == "black"</Expression>
 </Expressions>
-<Compare expression="enabled"><Group name="slot1_SHORT_TEXT_black" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><RoundRectangle x="1" y="12" width="54" height="32" cornerRadiusX="5" cornerRadiusY="5"><Fill color="#000000" />
-</RoundRectangle>
+<Compare expression="enabled"><Group name="slot1_SHORT_TEXT_black" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#000000" />
+</Ellipse>
+<Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#56635A" thickness="0.6" cap="BUTT" />
+</Arc>
 </PartDraw>
-<PartText x="0" y="12" width="56" height="32" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="23" color="#F0F0E7"><Template>%s<Parameter expression="[COMPLICATION.TEXT]" />
+<Condition><Expressions><Expression name="enabled">[COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != ""</Expression>
+</Expressions>
+<Compare expression="enabled"><PartImage name="provider_icon" x="20" y="6" width="16" height="16" tintColor="#F0F0E7"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+</PartImage>
+</Compare>
+</Condition>
+<PartText x="4" y="15" width="48" height="26" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="20" color="#F0F0E7"><Template>%s<Parameter expression="[COMPLICATION.TEXT]" />
 </Template>
 </Font>
 </Text>
+<Transform target="y" value="([COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != &quot;&quot;) ? 24 : 15" />
 </PartText>
 </Group>
 </Compare>
@@ -6079,21 +5654,36 @@
 </Complication>
 <Complication type="MONOCHROMATIC_IMAGE"><Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] == "white"</Expression>
 </Expressions>
-<Compare expression="enabled"><Group name="slot1_MONOCHROMATIC_IMAGE_white" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartImage x="10" y="10" width="36" height="36" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+<Compare expression="enabled"><Group name="slot1_MONOCHROMATIC_IMAGE_white" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
+</Ellipse>
+<Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#68746C" thickness="0.6" cap="BUTT" />
+</Arc>
+</PartDraw>
+<PartImage x="10" y="10" width="36" height="36" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
 </PartImage>
 </Group>
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] == "ivory"</Expression>
 </Expressions>
-<Compare expression="enabled"><Group name="slot1_MONOCHROMATIC_IMAGE_ivory" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartImage x="10" y="10" width="36" height="36" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+<Compare expression="enabled"><Group name="slot1_MONOCHROMATIC_IMAGE_ivory" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#E9E2CE" />
+</Ellipse>
+<Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#68746C" thickness="0.6" cap="BUTT" />
+</Arc>
+</PartDraw>
+<PartImage x="10" y="10" width="36" height="36" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
 </PartImage>
 </Group>
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] == "black"</Expression>
 </Expressions>
-<Compare expression="enabled"><Group name="slot1_MONOCHROMATIC_IMAGE_black" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartImage x="10" y="10" width="36" height="36" tintColor="#F0F0E7"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+<Compare expression="enabled"><Group name="slot1_MONOCHROMATIC_IMAGE_black" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#000000" />
+</Ellipse>
+<Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#56635A" thickness="0.6" cap="BUTT" />
+</Arc>
+</PartDraw>
+<PartImage x="10" y="10" width="36" height="36" tintColor="#F0F0E7"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
 </PartImage>
 </Group>
 </Compare>
@@ -6101,79 +5691,133 @@
 </Complication>
 <Complication type="SMALL_IMAGE"><Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] == "white"</Expression>
 </Expressions>
-<Compare expression="enabled"><Group name="slot1_SMALL_IMAGE_white" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartImage x="10" y="10" width="36" height="36"><Image resource="[COMPLICATION.SMALL_IMAGE]" />
+<Compare expression="enabled"><Group name="slot1_SMALL_IMAGE_white" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
+</Ellipse>
+<Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#68746C" thickness="0.6" cap="BUTT" />
+</Arc>
+</PartDraw>
+<Group name="round_small_image" x="0" y="0" width="56" height="56"><PartDraw x="0" y="0" width="56" height="56" renderMode="MASK"><Ellipse x="5" y="5" width="46" height="46"><Fill color="#FFFFFF" />
+</Ellipse>
+</PartDraw>
+<PartImage x="5" y="5" width="46" height="46"><Image resource="[COMPLICATION.SMALL_IMAGE]" />
 </PartImage>
+</Group>
 </Group>
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] == "ivory"</Expression>
 </Expressions>
-<Compare expression="enabled"><Group name="slot1_SMALL_IMAGE_ivory" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartImage x="10" y="10" width="36" height="36"><Image resource="[COMPLICATION.SMALL_IMAGE]" />
+<Compare expression="enabled"><Group name="slot1_SMALL_IMAGE_ivory" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#E9E2CE" />
+</Ellipse>
+<Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#68746C" thickness="0.6" cap="BUTT" />
+</Arc>
+</PartDraw>
+<Group name="round_small_image" x="0" y="0" width="56" height="56"><PartDraw x="0" y="0" width="56" height="56" renderMode="MASK"><Ellipse x="5" y="5" width="46" height="46"><Fill color="#FFFFFF" />
+</Ellipse>
+</PartDraw>
+<PartImage x="5" y="5" width="46" height="46"><Image resource="[COMPLICATION.SMALL_IMAGE]" />
 </PartImage>
+</Group>
 </Group>
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] == "black"</Expression>
 </Expressions>
-<Compare expression="enabled"><Group name="slot1_SMALL_IMAGE_black" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartImage x="10" y="10" width="36" height="36"><Image resource="[COMPLICATION.SMALL_IMAGE]" />
+<Compare expression="enabled"><Group name="slot1_SMALL_IMAGE_black" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#000000" />
+</Ellipse>
+<Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#56635A" thickness="0.6" cap="BUTT" />
+</Arc>
+</PartDraw>
+<Group name="round_small_image" x="0" y="0" width="56" height="56"><PartDraw x="0" y="0" width="56" height="56" renderMode="MASK"><Ellipse x="5" y="5" width="46" height="46"><Fill color="#FFFFFF" />
+</Ellipse>
+</PartDraw>
+<PartImage x="5" y="5" width="46" height="46"><Image resource="[COMPLICATION.SMALL_IMAGE]" />
 </PartImage>
+</Group>
 </Group>
 </Compare>
 </Condition>
 </Complication>
 <Complication type="RANGED_VALUE"><Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] == "white"</Expression>
 </Expressions>
-<Compare expression="enabled"><Group name="slot1_RANGED_VALUE_white" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><RoundRectangle x="1" y="12" width="54" height="32" cornerRadiusX="5" cornerRadiusY="5"><Fill color="#FAFAF7" />
-</RoundRectangle>
+<Compare expression="enabled"><Group name="slot1_RANGED_VALUE_white" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
+</Ellipse>
+<Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#68746C" thickness="0.6" cap="BUTT" />
+</Arc>
 </PartDraw>
+<Condition><Expressions><Expression name="enabled">[COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != ""</Expression>
+</Expressions>
+<Compare expression="enabled"><PartImage name="provider_icon" x="20" y="6" width="16" height="16" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+</PartImage>
+</Compare>
+</Condition>
 <PartDraw x="0" y="0" width="56" height="56"><Arc centerX="28" centerY="28" width="53" height="53" startAngle="210" endAngle="510"><Stroke color="#222A29" thickness="0.45" cap="BUTT" />
 </Arc>
 <Arc centerX="28" centerY="28" width="53" height="53" startAngle="210" endAngle="210"><Stroke color="#222A29" thickness="1.7" cap="BUTT" />
 <Transform target="endAngle" value="210 + 300 * clamp(([COMPLICATION.RANGED_VALUE_VALUE] - [COMPLICATION.RANGED_VALUE_MIN]) / clamp([COMPLICATION.RANGED_VALUE_MAX] - [COMPLICATION.RANGED_VALUE_MIN], 0.001, 1000000000), 0, 1)" />
 </Arc>
 </PartDraw>
-<PartText x="3" y="11" width="50" height="32" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="25" color="#222A29"><Template>%.0f<Parameter expression="[COMPLICATION.RANGED_VALUE_VALUE]" />
+<PartText x="4" y="15" width="48" height="26" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="21" color="#222A29"><Template>%.0f<Parameter expression="[COMPLICATION.RANGED_VALUE_VALUE]" />
 </Template>
 </Font>
 </Text>
+<Transform target="y" value="([COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != &quot;&quot;) ? 24 : 15" />
 </PartText>
 </Group>
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] == "ivory"</Expression>
 </Expressions>
-<Compare expression="enabled"><Group name="slot1_RANGED_VALUE_ivory" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><RoundRectangle x="1" y="12" width="54" height="32" cornerRadiusX="5" cornerRadiusY="5"><Fill color="#E9E2CE" />
-</RoundRectangle>
+<Compare expression="enabled"><Group name="slot1_RANGED_VALUE_ivory" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#E9E2CE" />
+</Ellipse>
+<Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#68746C" thickness="0.6" cap="BUTT" />
+</Arc>
 </PartDraw>
+<Condition><Expressions><Expression name="enabled">[COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != ""</Expression>
+</Expressions>
+<Compare expression="enabled"><PartImage name="provider_icon" x="20" y="6" width="16" height="16" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+</PartImage>
+</Compare>
+</Condition>
 <PartDraw x="0" y="0" width="56" height="56"><Arc centerX="28" centerY="28" width="53" height="53" startAngle="210" endAngle="510"><Stroke color="#222A29" thickness="0.45" cap="BUTT" />
 </Arc>
 <Arc centerX="28" centerY="28" width="53" height="53" startAngle="210" endAngle="210"><Stroke color="#222A29" thickness="1.7" cap="BUTT" />
 <Transform target="endAngle" value="210 + 300 * clamp(([COMPLICATION.RANGED_VALUE_VALUE] - [COMPLICATION.RANGED_VALUE_MIN]) / clamp([COMPLICATION.RANGED_VALUE_MAX] - [COMPLICATION.RANGED_VALUE_MIN], 0.001, 1000000000), 0, 1)" />
 </Arc>
 </PartDraw>
-<PartText x="3" y="11" width="50" height="32" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="25" color="#222A29"><Template>%.0f<Parameter expression="[COMPLICATION.RANGED_VALUE_VALUE]" />
+<PartText x="4" y="15" width="48" height="26" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="21" color="#222A29"><Template>%.0f<Parameter expression="[COMPLICATION.RANGED_VALUE_VALUE]" />
 </Template>
 </Font>
 </Text>
+<Transform target="y" value="([COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != &quot;&quot;) ? 24 : 15" />
 </PartText>
 </Group>
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] == "black"</Expression>
 </Expressions>
-<Compare expression="enabled"><Group name="slot1_RANGED_VALUE_black" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><RoundRectangle x="1" y="12" width="54" height="32" cornerRadiusX="5" cornerRadiusY="5"><Fill color="#000000" />
-</RoundRectangle>
+<Compare expression="enabled"><Group name="slot1_RANGED_VALUE_black" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#000000" />
+</Ellipse>
+<Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#56635A" thickness="0.6" cap="BUTT" />
+</Arc>
 </PartDraw>
+<Condition><Expressions><Expression name="enabled">[COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != ""</Expression>
+</Expressions>
+<Compare expression="enabled"><PartImage name="provider_icon" x="20" y="6" width="16" height="16" tintColor="#F0F0E7"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+</PartImage>
+</Compare>
+</Condition>
 <PartDraw x="0" y="0" width="56" height="56"><Arc centerX="28" centerY="28" width="53" height="53" startAngle="210" endAngle="510"><Stroke color="#F0F0E7" thickness="0.45" cap="BUTT" />
 </Arc>
 <Arc centerX="28" centerY="28" width="53" height="53" startAngle="210" endAngle="210"><Stroke color="#F0F0E7" thickness="1.7" cap="BUTT" />
 <Transform target="endAngle" value="210 + 300 * clamp(([COMPLICATION.RANGED_VALUE_VALUE] - [COMPLICATION.RANGED_VALUE_MIN]) / clamp([COMPLICATION.RANGED_VALUE_MAX] - [COMPLICATION.RANGED_VALUE_MIN], 0.001, 1000000000), 0, 1)" />
 </Arc>
 </PartDraw>
-<PartText x="3" y="11" width="50" height="32" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="25" color="#F0F0E7"><Template>%.0f<Parameter expression="[COMPLICATION.RANGED_VALUE_VALUE]" />
+<PartText x="4" y="15" width="48" height="26" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="21" color="#F0F0E7"><Template>%.0f<Parameter expression="[COMPLICATION.RANGED_VALUE_VALUE]" />
 </Template>
 </Font>
 </Text>
+<Transform target="y" value="([COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != &quot;&quot;) ? 24 : 15" />
 </PartText>
 </Group>
 </Compare>
@@ -6186,39 +5830,66 @@
 <Complication type="EMPTY" />
 <Complication type="SHORT_TEXT"><Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] == "white"</Expression>
 </Expressions>
-<Compare expression="enabled"><Group name="slot2_SHORT_TEXT_white" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><RoundRectangle x="1" y="12" width="54" height="32" cornerRadiusX="5" cornerRadiusY="5"><Fill color="#FAFAF7" />
-</RoundRectangle>
+<Compare expression="enabled"><Group name="slot2_SHORT_TEXT_white" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
+</Ellipse>
+<Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#68746C" thickness="0.6" cap="BUTT" />
+</Arc>
 </PartDraw>
-<PartText x="0" y="12" width="56" height="32" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="23" color="#222A29"><Template>%s<Parameter expression="[COMPLICATION.TEXT]" />
+<Condition><Expressions><Expression name="enabled">[COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != ""</Expression>
+</Expressions>
+<Compare expression="enabled"><PartImage name="provider_icon" x="20" y="6" width="16" height="16" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+</PartImage>
+</Compare>
+</Condition>
+<PartText x="4" y="15" width="48" height="26" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="20" color="#222A29"><Template>%s<Parameter expression="[COMPLICATION.TEXT]" />
 </Template>
 </Font>
 </Text>
+<Transform target="y" value="([COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != &quot;&quot;) ? 24 : 15" />
 </PartText>
 </Group>
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] == "ivory"</Expression>
 </Expressions>
-<Compare expression="enabled"><Group name="slot2_SHORT_TEXT_ivory" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><RoundRectangle x="1" y="12" width="54" height="32" cornerRadiusX="5" cornerRadiusY="5"><Fill color="#E9E2CE" />
-</RoundRectangle>
+<Compare expression="enabled"><Group name="slot2_SHORT_TEXT_ivory" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#E9E2CE" />
+</Ellipse>
+<Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#68746C" thickness="0.6" cap="BUTT" />
+</Arc>
 </PartDraw>
-<PartText x="0" y="12" width="56" height="32" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="23" color="#222A29"><Template>%s<Parameter expression="[COMPLICATION.TEXT]" />
+<Condition><Expressions><Expression name="enabled">[COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != ""</Expression>
+</Expressions>
+<Compare expression="enabled"><PartImage name="provider_icon" x="20" y="6" width="16" height="16" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+</PartImage>
+</Compare>
+</Condition>
+<PartText x="4" y="15" width="48" height="26" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="20" color="#222A29"><Template>%s<Parameter expression="[COMPLICATION.TEXT]" />
 </Template>
 </Font>
 </Text>
+<Transform target="y" value="([COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != &quot;&quot;) ? 24 : 15" />
 </PartText>
 </Group>
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] == "black"</Expression>
 </Expressions>
-<Compare expression="enabled"><Group name="slot2_SHORT_TEXT_black" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><RoundRectangle x="1" y="12" width="54" height="32" cornerRadiusX="5" cornerRadiusY="5"><Fill color="#000000" />
-</RoundRectangle>
+<Compare expression="enabled"><Group name="slot2_SHORT_TEXT_black" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#000000" />
+</Ellipse>
+<Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#56635A" thickness="0.6" cap="BUTT" />
+</Arc>
 </PartDraw>
-<PartText x="0" y="12" width="56" height="32" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="23" color="#F0F0E7"><Template>%s<Parameter expression="[COMPLICATION.TEXT]" />
+<Condition><Expressions><Expression name="enabled">[COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != ""</Expression>
+</Expressions>
+<Compare expression="enabled"><PartImage name="provider_icon" x="20" y="6" width="16" height="16" tintColor="#F0F0E7"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+</PartImage>
+</Compare>
+</Condition>
+<PartText x="4" y="15" width="48" height="26" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="20" color="#F0F0E7"><Template>%s<Parameter expression="[COMPLICATION.TEXT]" />
 </Template>
 </Font>
 </Text>
+<Transform target="y" value="([COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != &quot;&quot;) ? 24 : 15" />
 </PartText>
 </Group>
 </Compare>
@@ -6226,21 +5897,36 @@
 </Complication>
 <Complication type="MONOCHROMATIC_IMAGE"><Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] == "white"</Expression>
 </Expressions>
-<Compare expression="enabled"><Group name="slot2_MONOCHROMATIC_IMAGE_white" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartImage x="10" y="10" width="36" height="36" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+<Compare expression="enabled"><Group name="slot2_MONOCHROMATIC_IMAGE_white" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
+</Ellipse>
+<Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#68746C" thickness="0.6" cap="BUTT" />
+</Arc>
+</PartDraw>
+<PartImage x="10" y="10" width="36" height="36" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
 </PartImage>
 </Group>
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] == "ivory"</Expression>
 </Expressions>
-<Compare expression="enabled"><Group name="slot2_MONOCHROMATIC_IMAGE_ivory" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartImage x="10" y="10" width="36" height="36" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+<Compare expression="enabled"><Group name="slot2_MONOCHROMATIC_IMAGE_ivory" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#E9E2CE" />
+</Ellipse>
+<Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#68746C" thickness="0.6" cap="BUTT" />
+</Arc>
+</PartDraw>
+<PartImage x="10" y="10" width="36" height="36" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
 </PartImage>
 </Group>
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] == "black"</Expression>
 </Expressions>
-<Compare expression="enabled"><Group name="slot2_MONOCHROMATIC_IMAGE_black" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartImage x="10" y="10" width="36" height="36" tintColor="#F0F0E7"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+<Compare expression="enabled"><Group name="slot2_MONOCHROMATIC_IMAGE_black" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#000000" />
+</Ellipse>
+<Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#56635A" thickness="0.6" cap="BUTT" />
+</Arc>
+</PartDraw>
+<PartImage x="10" y="10" width="36" height="36" tintColor="#F0F0E7"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
 </PartImage>
 </Group>
 </Compare>
@@ -6248,124 +5934,205 @@
 </Complication>
 <Complication type="SMALL_IMAGE"><Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] == "white"</Expression>
 </Expressions>
-<Compare expression="enabled"><Group name="slot2_SMALL_IMAGE_white" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartImage x="10" y="10" width="36" height="36"><Image resource="[COMPLICATION.SMALL_IMAGE]" />
+<Compare expression="enabled"><Group name="slot2_SMALL_IMAGE_white" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
+</Ellipse>
+<Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#68746C" thickness="0.6" cap="BUTT" />
+</Arc>
+</PartDraw>
+<Group name="round_small_image" x="0" y="0" width="56" height="56"><PartDraw x="0" y="0" width="56" height="56" renderMode="MASK"><Ellipse x="5" y="5" width="46" height="46"><Fill color="#FFFFFF" />
+</Ellipse>
+</PartDraw>
+<PartImage x="5" y="5" width="46" height="46"><Image resource="[COMPLICATION.SMALL_IMAGE]" />
 </PartImage>
+</Group>
 </Group>
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] == "ivory"</Expression>
 </Expressions>
-<Compare expression="enabled"><Group name="slot2_SMALL_IMAGE_ivory" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartImage x="10" y="10" width="36" height="36"><Image resource="[COMPLICATION.SMALL_IMAGE]" />
+<Compare expression="enabled"><Group name="slot2_SMALL_IMAGE_ivory" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#E9E2CE" />
+</Ellipse>
+<Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#68746C" thickness="0.6" cap="BUTT" />
+</Arc>
+</PartDraw>
+<Group name="round_small_image" x="0" y="0" width="56" height="56"><PartDraw x="0" y="0" width="56" height="56" renderMode="MASK"><Ellipse x="5" y="5" width="46" height="46"><Fill color="#FFFFFF" />
+</Ellipse>
+</PartDraw>
+<PartImage x="5" y="5" width="46" height="46"><Image resource="[COMPLICATION.SMALL_IMAGE]" />
 </PartImage>
+</Group>
 </Group>
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] == "black"</Expression>
 </Expressions>
-<Compare expression="enabled"><Group name="slot2_SMALL_IMAGE_black" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartImage x="10" y="10" width="36" height="36"><Image resource="[COMPLICATION.SMALL_IMAGE]" />
+<Compare expression="enabled"><Group name="slot2_SMALL_IMAGE_black" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#000000" />
+</Ellipse>
+<Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#56635A" thickness="0.6" cap="BUTT" />
+</Arc>
+</PartDraw>
+<Group name="round_small_image" x="0" y="0" width="56" height="56"><PartDraw x="0" y="0" width="56" height="56" renderMode="MASK"><Ellipse x="5" y="5" width="46" height="46"><Fill color="#FFFFFF" />
+</Ellipse>
+</PartDraw>
+<PartImage x="5" y="5" width="46" height="46"><Image resource="[COMPLICATION.SMALL_IMAGE]" />
 </PartImage>
+</Group>
 </Group>
 </Compare>
 </Condition>
 </Complication>
 <Complication type="RANGED_VALUE"><Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] == "white"</Expression>
 </Expressions>
-<Compare expression="enabled"><Group name="slot2_RANGED_VALUE_white" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><RoundRectangle x="1" y="12" width="54" height="32" cornerRadiusX="5" cornerRadiusY="5"><Fill color="#FAFAF7" />
-</RoundRectangle>
+<Compare expression="enabled"><Group name="slot2_RANGED_VALUE_white" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
+</Ellipse>
+<Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#68746C" thickness="0.6" cap="BUTT" />
+</Arc>
 </PartDraw>
+<Condition><Expressions><Expression name="enabled">[COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != ""</Expression>
+</Expressions>
+<Compare expression="enabled"><PartImage name="provider_icon" x="20" y="6" width="16" height="16" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+</PartImage>
+</Compare>
+</Condition>
 <PartDraw x="0" y="0" width="56" height="56"><Arc centerX="28" centerY="28" width="53" height="53" startAngle="210" endAngle="510"><Stroke color="#222A29" thickness="0.45" cap="BUTT" />
 </Arc>
 <Arc centerX="28" centerY="28" width="53" height="53" startAngle="210" endAngle="210"><Stroke color="#222A29" thickness="1.7" cap="BUTT" />
 <Transform target="endAngle" value="210 + 300 * clamp(([COMPLICATION.RANGED_VALUE_VALUE] - [COMPLICATION.RANGED_VALUE_MIN]) / clamp([COMPLICATION.RANGED_VALUE_MAX] - [COMPLICATION.RANGED_VALUE_MIN], 0.001, 1000000000), 0, 1)" />
 </Arc>
 </PartDraw>
-<PartText x="3" y="11" width="50" height="32" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="25" color="#222A29"><Template>%.0f<Parameter expression="[COMPLICATION.RANGED_VALUE_VALUE]" />
+<PartText x="4" y="15" width="48" height="26" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="21" color="#222A29"><Template>%.0f<Parameter expression="[COMPLICATION.RANGED_VALUE_VALUE]" />
 </Template>
 </Font>
 </Text>
+<Transform target="y" value="([COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != &quot;&quot;) ? 24 : 15" />
 </PartText>
 </Group>
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] == "ivory"</Expression>
 </Expressions>
-<Compare expression="enabled"><Group name="slot2_RANGED_VALUE_ivory" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><RoundRectangle x="1" y="12" width="54" height="32" cornerRadiusX="5" cornerRadiusY="5"><Fill color="#E9E2CE" />
-</RoundRectangle>
+<Compare expression="enabled"><Group name="slot2_RANGED_VALUE_ivory" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#E9E2CE" />
+</Ellipse>
+<Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#68746C" thickness="0.6" cap="BUTT" />
+</Arc>
 </PartDraw>
+<Condition><Expressions><Expression name="enabled">[COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != ""</Expression>
+</Expressions>
+<Compare expression="enabled"><PartImage name="provider_icon" x="20" y="6" width="16" height="16" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+</PartImage>
+</Compare>
+</Condition>
 <PartDraw x="0" y="0" width="56" height="56"><Arc centerX="28" centerY="28" width="53" height="53" startAngle="210" endAngle="510"><Stroke color="#222A29" thickness="0.45" cap="BUTT" />
 </Arc>
 <Arc centerX="28" centerY="28" width="53" height="53" startAngle="210" endAngle="210"><Stroke color="#222A29" thickness="1.7" cap="BUTT" />
 <Transform target="endAngle" value="210 + 300 * clamp(([COMPLICATION.RANGED_VALUE_VALUE] - [COMPLICATION.RANGED_VALUE_MIN]) / clamp([COMPLICATION.RANGED_VALUE_MAX] - [COMPLICATION.RANGED_VALUE_MIN], 0.001, 1000000000), 0, 1)" />
 </Arc>
 </PartDraw>
-<PartText x="3" y="11" width="50" height="32" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="25" color="#222A29"><Template>%.0f<Parameter expression="[COMPLICATION.RANGED_VALUE_VALUE]" />
+<PartText x="4" y="15" width="48" height="26" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="21" color="#222A29"><Template>%.0f<Parameter expression="[COMPLICATION.RANGED_VALUE_VALUE]" />
 </Template>
 </Font>
 </Text>
+<Transform target="y" value="([COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != &quot;&quot;) ? 24 : 15" />
 </PartText>
 </Group>
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] == "black"</Expression>
 </Expressions>
-<Compare expression="enabled"><Group name="slot2_RANGED_VALUE_black" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><RoundRectangle x="1" y="12" width="54" height="32" cornerRadiusX="5" cornerRadiusY="5"><Fill color="#000000" />
-</RoundRectangle>
+<Compare expression="enabled"><Group name="slot2_RANGED_VALUE_black" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#000000" />
+</Ellipse>
+<Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#56635A" thickness="0.6" cap="BUTT" />
+</Arc>
 </PartDraw>
+<Condition><Expressions><Expression name="enabled">[COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != ""</Expression>
+</Expressions>
+<Compare expression="enabled"><PartImage name="provider_icon" x="20" y="6" width="16" height="16" tintColor="#F0F0E7"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+</PartImage>
+</Compare>
+</Condition>
 <PartDraw x="0" y="0" width="56" height="56"><Arc centerX="28" centerY="28" width="53" height="53" startAngle="210" endAngle="510"><Stroke color="#F0F0E7" thickness="0.45" cap="BUTT" />
 </Arc>
 <Arc centerX="28" centerY="28" width="53" height="53" startAngle="210" endAngle="210"><Stroke color="#F0F0E7" thickness="1.7" cap="BUTT" />
 <Transform target="endAngle" value="210 + 300 * clamp(([COMPLICATION.RANGED_VALUE_VALUE] - [COMPLICATION.RANGED_VALUE_MIN]) / clamp([COMPLICATION.RANGED_VALUE_MAX] - [COMPLICATION.RANGED_VALUE_MIN], 0.001, 1000000000), 0, 1)" />
 </Arc>
 </PartDraw>
-<PartText x="3" y="11" width="50" height="32" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="25" color="#F0F0E7"><Template>%.0f<Parameter expression="[COMPLICATION.RANGED_VALUE_VALUE]" />
+<PartText x="4" y="15" width="48" height="26" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="21" color="#F0F0E7"><Template>%.0f<Parameter expression="[COMPLICATION.RANGED_VALUE_VALUE]" />
 </Template>
 </Font>
 </Text>
+<Transform target="y" value="([COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != &quot;&quot;) ? 24 : 15" />
 </PartText>
 </Group>
 </Compare>
 </Condition>
 </Complication>
 </ComplicationSlot>
-<ComplicationSlot slotId="3" displayName="slot_3" x="168" y="244" width="96" height="96" supportedTypes="SHORT_TEXT MONOCHROMATIC_IMAGE SMALL_IMAGE RANGED_VALUE EMPTY" isCustomizable="TRUE"><Variant mode="AMBIENT" target="alpha" value="0" />
+<ComplicationSlot slotId="3" displayName="slot_3" x="168" y="212" width="96" height="96" supportedTypes="SHORT_TEXT MONOCHROMATIC_IMAGE SMALL_IMAGE RANGED_VALUE EMPTY" isCustomizable="TRUE"><Variant mode="AMBIENT" target="alpha" value="0" />
 <BoundingOval x="0" y="0" width="96" height="96" />
 <DefaultProviderPolicy defaultSystemProvider="EMPTY" defaultSystemProviderType="EMPTY" />
 <Complication type="EMPTY" />
 <Complication type="SHORT_TEXT"><Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] == "white"</Expression>
 </Expressions>
-<Compare expression="enabled"><Group name="slot3_SHORT_TEXT_white" x="20" y="8" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><RoundRectangle x="1" y="12" width="54" height="32" cornerRadiusX="5" cornerRadiusY="5"><Fill color="#FAFAF7" />
-</RoundRectangle>
+<Compare expression="enabled"><Group name="slot3_SHORT_TEXT_white" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
+</Ellipse>
+<Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#68746C" thickness="0.6" cap="BUTT" />
+</Arc>
 </PartDraw>
-<PartText x="0" y="12" width="56" height="32" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="23" color="#222A29"><Template>%s<Parameter expression="[COMPLICATION.TEXT]" />
+<Condition><Expressions><Expression name="enabled">[COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != ""</Expression>
+</Expressions>
+<Compare expression="enabled"><PartImage name="provider_icon" x="20" y="6" width="16" height="16" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+</PartImage>
+</Compare>
+</Condition>
+<PartText x="4" y="15" width="48" height="26" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="20" color="#222A29"><Template>%s<Parameter expression="[COMPLICATION.TEXT]" />
 </Template>
 </Font>
 </Text>
+<Transform target="y" value="([COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != &quot;&quot;) ? 24 : 15" />
 </PartText>
 </Group>
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] == "ivory"</Expression>
 </Expressions>
-<Compare expression="enabled"><Group name="slot3_SHORT_TEXT_ivory" x="20" y="8" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><RoundRectangle x="1" y="12" width="54" height="32" cornerRadiusX="5" cornerRadiusY="5"><Fill color="#E9E2CE" />
-</RoundRectangle>
+<Compare expression="enabled"><Group name="slot3_SHORT_TEXT_ivory" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#E9E2CE" />
+</Ellipse>
+<Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#68746C" thickness="0.6" cap="BUTT" />
+</Arc>
 </PartDraw>
-<PartText x="0" y="12" width="56" height="32" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="23" color="#222A29"><Template>%s<Parameter expression="[COMPLICATION.TEXT]" />
+<Condition><Expressions><Expression name="enabled">[COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != ""</Expression>
+</Expressions>
+<Compare expression="enabled"><PartImage name="provider_icon" x="20" y="6" width="16" height="16" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+</PartImage>
+</Compare>
+</Condition>
+<PartText x="4" y="15" width="48" height="26" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="20" color="#222A29"><Template>%s<Parameter expression="[COMPLICATION.TEXT]" />
 </Template>
 </Font>
 </Text>
+<Transform target="y" value="([COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != &quot;&quot;) ? 24 : 15" />
 </PartText>
 </Group>
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] == "black"</Expression>
 </Expressions>
-<Compare expression="enabled"><Group name="slot3_SHORT_TEXT_black" x="20" y="8" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><RoundRectangle x="1" y="12" width="54" height="32" cornerRadiusX="5" cornerRadiusY="5"><Fill color="#000000" />
-</RoundRectangle>
+<Compare expression="enabled"><Group name="slot3_SHORT_TEXT_black" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#000000" />
+</Ellipse>
+<Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#56635A" thickness="0.6" cap="BUTT" />
+</Arc>
 </PartDraw>
-<PartText x="0" y="12" width="56" height="32" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="23" color="#F0F0E7"><Template>%s<Parameter expression="[COMPLICATION.TEXT]" />
+<Condition><Expressions><Expression name="enabled">[COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != ""</Expression>
+</Expressions>
+<Compare expression="enabled"><PartImage name="provider_icon" x="20" y="6" width="16" height="16" tintColor="#F0F0E7"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+</PartImage>
+</Compare>
+</Condition>
+<PartText x="4" y="15" width="48" height="26" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="20" color="#F0F0E7"><Template>%s<Parameter expression="[COMPLICATION.TEXT]" />
 </Template>
 </Font>
 </Text>
+<Transform target="y" value="([COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != &quot;&quot;) ? 24 : 15" />
 </PartText>
 </Group>
 </Compare>
@@ -6373,21 +6140,36 @@
 </Complication>
 <Complication type="MONOCHROMATIC_IMAGE"><Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] == "white"</Expression>
 </Expressions>
-<Compare expression="enabled"><Group name="slot3_MONOCHROMATIC_IMAGE_white" x="20" y="8" width="56" height="56" pivotX="0" pivotY="0"><PartImage x="10" y="10" width="36" height="36" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+<Compare expression="enabled"><Group name="slot3_MONOCHROMATIC_IMAGE_white" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
+</Ellipse>
+<Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#68746C" thickness="0.6" cap="BUTT" />
+</Arc>
+</PartDraw>
+<PartImage x="10" y="10" width="36" height="36" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
 </PartImage>
 </Group>
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] == "ivory"</Expression>
 </Expressions>
-<Compare expression="enabled"><Group name="slot3_MONOCHROMATIC_IMAGE_ivory" x="20" y="8" width="56" height="56" pivotX="0" pivotY="0"><PartImage x="10" y="10" width="36" height="36" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+<Compare expression="enabled"><Group name="slot3_MONOCHROMATIC_IMAGE_ivory" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#E9E2CE" />
+</Ellipse>
+<Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#68746C" thickness="0.6" cap="BUTT" />
+</Arc>
+</PartDraw>
+<PartImage x="10" y="10" width="36" height="36" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
 </PartImage>
 </Group>
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] == "black"</Expression>
 </Expressions>
-<Compare expression="enabled"><Group name="slot3_MONOCHROMATIC_IMAGE_black" x="20" y="8" width="56" height="56" pivotX="0" pivotY="0"><PartImage x="10" y="10" width="36" height="36" tintColor="#F0F0E7"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+<Compare expression="enabled"><Group name="slot3_MONOCHROMATIC_IMAGE_black" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#000000" />
+</Ellipse>
+<Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#56635A" thickness="0.6" cap="BUTT" />
+</Arc>
+</PartDraw>
+<PartImage x="10" y="10" width="36" height="36" tintColor="#F0F0E7"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
 </PartImage>
 </Group>
 </Compare>
@@ -6395,87 +6177,140 @@
 </Complication>
 <Complication type="SMALL_IMAGE"><Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] == "white"</Expression>
 </Expressions>
-<Compare expression="enabled"><Group name="slot3_SMALL_IMAGE_white" x="20" y="8" width="56" height="56" pivotX="0" pivotY="0"><PartImage x="10" y="10" width="36" height="36"><Image resource="[COMPLICATION.SMALL_IMAGE]" />
+<Compare expression="enabled"><Group name="slot3_SMALL_IMAGE_white" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
+</Ellipse>
+<Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#68746C" thickness="0.6" cap="BUTT" />
+</Arc>
+</PartDraw>
+<Group name="round_small_image" x="0" y="0" width="56" height="56"><PartDraw x="0" y="0" width="56" height="56" renderMode="MASK"><Ellipse x="5" y="5" width="46" height="46"><Fill color="#FFFFFF" />
+</Ellipse>
+</PartDraw>
+<PartImage x="5" y="5" width="46" height="46"><Image resource="[COMPLICATION.SMALL_IMAGE]" />
 </PartImage>
+</Group>
 </Group>
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] == "ivory"</Expression>
 </Expressions>
-<Compare expression="enabled"><Group name="slot3_SMALL_IMAGE_ivory" x="20" y="8" width="56" height="56" pivotX="0" pivotY="0"><PartImage x="10" y="10" width="36" height="36"><Image resource="[COMPLICATION.SMALL_IMAGE]" />
+<Compare expression="enabled"><Group name="slot3_SMALL_IMAGE_ivory" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#E9E2CE" />
+</Ellipse>
+<Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#68746C" thickness="0.6" cap="BUTT" />
+</Arc>
+</PartDraw>
+<Group name="round_small_image" x="0" y="0" width="56" height="56"><PartDraw x="0" y="0" width="56" height="56" renderMode="MASK"><Ellipse x="5" y="5" width="46" height="46"><Fill color="#FFFFFF" />
+</Ellipse>
+</PartDraw>
+<PartImage x="5" y="5" width="46" height="46"><Image resource="[COMPLICATION.SMALL_IMAGE]" />
 </PartImage>
+</Group>
 </Group>
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] == "black"</Expression>
 </Expressions>
-<Compare expression="enabled"><Group name="slot3_SMALL_IMAGE_black" x="20" y="8" width="56" height="56" pivotX="0" pivotY="0"><PartImage x="10" y="10" width="36" height="36"><Image resource="[COMPLICATION.SMALL_IMAGE]" />
+<Compare expression="enabled"><Group name="slot3_SMALL_IMAGE_black" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#000000" />
+</Ellipse>
+<Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#56635A" thickness="0.6" cap="BUTT" />
+</Arc>
+</PartDraw>
+<Group name="round_small_image" x="0" y="0" width="56" height="56"><PartDraw x="0" y="0" width="56" height="56" renderMode="MASK"><Ellipse x="5" y="5" width="46" height="46"><Fill color="#FFFFFF" />
+</Ellipse>
+</PartDraw>
+<PartImage x="5" y="5" width="46" height="46"><Image resource="[COMPLICATION.SMALL_IMAGE]" />
 </PartImage>
+</Group>
 </Group>
 </Compare>
 </Condition>
 </Complication>
 <Complication type="RANGED_VALUE"><Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] == "white"</Expression>
 </Expressions>
-<Compare expression="enabled"><Group name="slot3_RANGED_VALUE_white" x="20" y="8" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><RoundRectangle x="1" y="12" width="54" height="32" cornerRadiusX="5" cornerRadiusY="5"><Fill color="#FAFAF7" />
-</RoundRectangle>
+<Compare expression="enabled"><Group name="slot3_RANGED_VALUE_white" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
+</Ellipse>
+<Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#68746C" thickness="0.6" cap="BUTT" />
+</Arc>
 </PartDraw>
+<Condition><Expressions><Expression name="enabled">[COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != ""</Expression>
+</Expressions>
+<Compare expression="enabled"><PartImage name="provider_icon" x="20" y="6" width="16" height="16" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+</PartImage>
+</Compare>
+</Condition>
 <PartDraw x="0" y="0" width="56" height="56"><Arc centerX="28" centerY="28" width="53" height="53" startAngle="210" endAngle="510"><Stroke color="#222A29" thickness="0.45" cap="BUTT" />
 </Arc>
 <Arc centerX="28" centerY="28" width="53" height="53" startAngle="210" endAngle="210"><Stroke color="#222A29" thickness="1.7" cap="BUTT" />
 <Transform target="endAngle" value="210 + 300 * clamp(([COMPLICATION.RANGED_VALUE_VALUE] - [COMPLICATION.RANGED_VALUE_MIN]) / clamp([COMPLICATION.RANGED_VALUE_MAX] - [COMPLICATION.RANGED_VALUE_MIN], 0.001, 1000000000), 0, 1)" />
 </Arc>
 </PartDraw>
-<PartText x="3" y="11" width="50" height="32" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="25" color="#222A29"><Template>%.0f<Parameter expression="[COMPLICATION.RANGED_VALUE_VALUE]" />
+<PartText x="4" y="15" width="48" height="26" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="21" color="#222A29"><Template>%.0f<Parameter expression="[COMPLICATION.RANGED_VALUE_VALUE]" />
 </Template>
 </Font>
 </Text>
+<Transform target="y" value="([COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != &quot;&quot;) ? 24 : 15" />
 </PartText>
 </Group>
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] == "ivory"</Expression>
 </Expressions>
-<Compare expression="enabled"><Group name="slot3_RANGED_VALUE_ivory" x="20" y="8" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><RoundRectangle x="1" y="12" width="54" height="32" cornerRadiusX="5" cornerRadiusY="5"><Fill color="#E9E2CE" />
-</RoundRectangle>
+<Compare expression="enabled"><Group name="slot3_RANGED_VALUE_ivory" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#E9E2CE" />
+</Ellipse>
+<Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#68746C" thickness="0.6" cap="BUTT" />
+</Arc>
 </PartDraw>
+<Condition><Expressions><Expression name="enabled">[COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != ""</Expression>
+</Expressions>
+<Compare expression="enabled"><PartImage name="provider_icon" x="20" y="6" width="16" height="16" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+</PartImage>
+</Compare>
+</Condition>
 <PartDraw x="0" y="0" width="56" height="56"><Arc centerX="28" centerY="28" width="53" height="53" startAngle="210" endAngle="510"><Stroke color="#222A29" thickness="0.45" cap="BUTT" />
 </Arc>
 <Arc centerX="28" centerY="28" width="53" height="53" startAngle="210" endAngle="210"><Stroke color="#222A29" thickness="1.7" cap="BUTT" />
 <Transform target="endAngle" value="210 + 300 * clamp(([COMPLICATION.RANGED_VALUE_VALUE] - [COMPLICATION.RANGED_VALUE_MIN]) / clamp([COMPLICATION.RANGED_VALUE_MAX] - [COMPLICATION.RANGED_VALUE_MIN], 0.001, 1000000000), 0, 1)" />
 </Arc>
 </PartDraw>
-<PartText x="3" y="11" width="50" height="32" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="25" color="#222A29"><Template>%.0f<Parameter expression="[COMPLICATION.RANGED_VALUE_VALUE]" />
+<PartText x="4" y="15" width="48" height="26" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="21" color="#222A29"><Template>%.0f<Parameter expression="[COMPLICATION.RANGED_VALUE_VALUE]" />
 </Template>
 </Font>
 </Text>
+<Transform target="y" value="([COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != &quot;&quot;) ? 24 : 15" />
 </PartText>
 </Group>
 </Compare>
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] == "black"</Expression>
 </Expressions>
-<Compare expression="enabled"><Group name="slot3_RANGED_VALUE_black" x="20" y="8" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><RoundRectangle x="1" y="12" width="54" height="32" cornerRadiusX="5" cornerRadiusY="5"><Fill color="#000000" />
-</RoundRectangle>
+<Compare expression="enabled"><Group name="slot3_RANGED_VALUE_black" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#000000" />
+</Ellipse>
+<Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#56635A" thickness="0.6" cap="BUTT" />
+</Arc>
 </PartDraw>
+<Condition><Expressions><Expression name="enabled">[COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != ""</Expression>
+</Expressions>
+<Compare expression="enabled"><PartImage name="provider_icon" x="20" y="6" width="16" height="16" tintColor="#F0F0E7"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+</PartImage>
+</Compare>
+</Condition>
 <PartDraw x="0" y="0" width="56" height="56"><Arc centerX="28" centerY="28" width="53" height="53" startAngle="210" endAngle="510"><Stroke color="#F0F0E7" thickness="0.45" cap="BUTT" />
 </Arc>
 <Arc centerX="28" centerY="28" width="53" height="53" startAngle="210" endAngle="210"><Stroke color="#F0F0E7" thickness="1.7" cap="BUTT" />
 <Transform target="endAngle" value="210 + 300 * clamp(([COMPLICATION.RANGED_VALUE_VALUE] - [COMPLICATION.RANGED_VALUE_MIN]) / clamp([COMPLICATION.RANGED_VALUE_MAX] - [COMPLICATION.RANGED_VALUE_MIN], 0.001, 1000000000), 0, 1)" />
 </Arc>
 </PartDraw>
-<PartText x="3" y="11" width="50" height="32" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="25" color="#F0F0E7"><Template>%.0f<Parameter expression="[COMPLICATION.RANGED_VALUE_VALUE]" />
+<PartText x="4" y="15" width="48" height="26" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="21" color="#F0F0E7"><Template>%.0f<Parameter expression="[COMPLICATION.RANGED_VALUE_VALUE]" />
 </Template>
 </Font>
 </Text>
+<Transform target="y" value="([COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != &quot;&quot;) ? 24 : 15" />
 </PartText>
 </Group>
 </Compare>
 </Condition>
 </Complication>
 </ComplicationSlot>
-<Group x="0" y="0" width="432" height="432" name="interactive_hands" pivotX="0.5" pivotY="0.5"><Variant mode="AMBIENT" target="alpha" value="0" />
-<Condition><Expressions><Expression name="enabled">([CONFIGURATION.background] == "white") &amp;&amp; ([CONFIGURATION.style] == "classic" || [CONFIGURATION.style] == "minimal" || [CONFIGURATION.style] == "sputnik" || [CONFIGURATION.style] == "instrument" || [CONFIGURATION.style] == "instrument_classic")</Expression>
+<Group x="0" y="0" width="432" height="432" name="interactive_hands" pivotX="0.5" pivotY="0.5"><Condition><Expressions><Expression name="enabled">([CONFIGURATION.background] == "white") &amp;&amp; ([CONFIGURATION.style] == "classic" || [CONFIGURATION.style] == "minimal" || [CONFIGURATION.style] == "sputnik" || [CONFIGURATION.style] == "instrument" || [CONFIGURATION.style] == "instrument_classic")</Expression>
 </Expressions>
 <Compare expression="enabled"><Group x="0" y="0" width="432" height="432" name="hands_shared_common_white" pivotX="0.5" pivotY="0.5"><Condition><Expressions><Expression name="enabled">[CONFIGURATION.minute] == "TRUE"</Expression>
 </Expressions>
@@ -6524,7 +6359,7 @@
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.HandStyle] == "legacy_sputnik"</Expression>
 </Expressions>
-<Compare expression="enabled"><PartImage x="213" y="38" width="6" height="200" pivotX="0.5" pivotY="0.89" name="selected_minute_art"><Image resource="trimmed_minute_sputnik_light" />
+<Compare expression="enabled"><PartImage x="208" y="26" width="16" height="211" pivotX="0.5" pivotY="0.9004739336492891" name="selected_minute_art"><Image resource="updated_sputnik_minute_light" />
 </PartImage>
 </Compare>
 </Condition>
@@ -6573,6 +6408,7 @@
 </PartImage>
 </Compare>
 </Condition>
+<Variant mode="AMBIENT" target="alpha" value="0" />
 </Group>
 </Compare>
 </Condition>
@@ -6603,7 +6439,7 @@
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.HandStyle] == "instrument_white"</Expression>
 </Expressions>
-<Compare expression="enabled"><PartImage x="210" y="57" width="13" height="180" pivotX="0.46153846153846156" pivotY="0.8833333333333333" name="selected_hour_art"><Image resource="trimmed_precision_hour_instrument_white_light" />
+<Compare expression="enabled"><PartImage x="209" y="57" width="14" height="181" pivotX="0.5" pivotY="0.8784530386740331" name="selected_hour_art"><Image resource="updated_instrument_slot_light" />
 </PartImage>
 </Compare>
 </Condition>
@@ -6621,7 +6457,7 @@
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.HandStyle] == "legacy_sputnik"</Expression>
 </Expressions>
-<Compare expression="enabled"><PartImage x="209" y="78" width="15" height="164" pivotX="0.4666666666666667" pivotY="0.8414634146341463" name="selected_hour_art"><Image resource="trimmed_hand_sputnik_light" />
+<Compare expression="enabled"><PartImage x="204" y="76" width="24" height="158" pivotX="0.5" pivotY="0.8860759493670886" name="selected_hour_art"><Image resource="updated_sputnik_hour_light" />
 </PartImage>
 </Compare>
 </Condition>
@@ -6758,7 +6594,7 @@
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.HandStyle] == "legacy_sputnik"</Expression>
 </Expressions>
-<Compare expression="enabled"><PartImage x="213" y="38" width="6" height="200" pivotX="0.5" pivotY="0.89" name="selected_minute_art"><Image resource="trimmed_minute_sputnik_light" />
+<Compare expression="enabled"><PartImage x="208" y="26" width="16" height="211" pivotX="0.5" pivotY="0.9004739336492891" name="selected_minute_art"><Image resource="updated_sputnik_minute_light" />
 </PartImage>
 </Compare>
 </Condition>
@@ -6807,6 +6643,7 @@
 </PartImage>
 </Compare>
 </Condition>
+<Variant mode="AMBIENT" target="alpha" value="0" />
 </Group>
 </Compare>
 </Condition>
@@ -6837,7 +6674,7 @@
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.HandStyle] == "instrument_white"</Expression>
 </Expressions>
-<Compare expression="enabled"><PartImage x="210" y="57" width="13" height="180" pivotX="0.46153846153846156" pivotY="0.8833333333333333" name="selected_hour_art"><Image resource="trimmed_precision_hour_instrument_white_light" />
+<Compare expression="enabled"><PartImage x="209" y="57" width="14" height="181" pivotX="0.5" pivotY="0.8784530386740331" name="selected_hour_art"><Image resource="updated_instrument_slot_light" />
 </PartImage>
 </Compare>
 </Condition>
@@ -6855,7 +6692,7 @@
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.HandStyle] == "legacy_sputnik"</Expression>
 </Expressions>
-<Compare expression="enabled"><PartImage x="209" y="78" width="15" height="164" pivotX="0.4666666666666667" pivotY="0.8414634146341463" name="selected_hour_art"><Image resource="trimmed_hand_sputnik_light" />
+<Compare expression="enabled"><PartImage x="204" y="76" width="24" height="158" pivotX="0.5" pivotY="0.8860759493670886" name="selected_hour_art"><Image resource="updated_sputnik_hour_light" />
 </PartImage>
 </Compare>
 </Condition>
@@ -6992,7 +6829,7 @@
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.HandStyle] == "legacy_sputnik"</Expression>
 </Expressions>
-<Compare expression="enabled"><PartImage x="213" y="38" width="6" height="200" pivotX="0.5" pivotY="0.89" name="selected_minute_art"><Image resource="trimmed_minute_sputnik_dark" />
+<Compare expression="enabled"><PartImage x="208" y="26" width="16" height="211" pivotX="0.5" pivotY="0.9004739336492891" name="selected_minute_art"><Image resource="updated_sputnik_minute_dark" />
 </PartImage>
 </Compare>
 </Condition>
@@ -7041,6 +6878,7 @@
 </PartImage>
 </Compare>
 </Condition>
+<Variant mode="AMBIENT" target="alpha" value="0" />
 </Group>
 </Compare>
 </Condition>
@@ -7071,7 +6909,7 @@
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.HandStyle] == "instrument_white"</Expression>
 </Expressions>
-<Compare expression="enabled"><PartImage x="210" y="57" width="13" height="180" pivotX="0.46153846153846156" pivotY="0.8833333333333333" name="selected_hour_art"><Image resource="trimmed_precision_hour_instrument_white_dark" />
+<Compare expression="enabled"><PartImage x="209" y="57" width="14" height="181" pivotX="0.5" pivotY="0.8784530386740331" name="selected_hour_art"><Image resource="updated_instrument_slot_dark" />
 </PartImage>
 </Compare>
 </Condition>
@@ -7089,7 +6927,7 @@
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.HandStyle] == "legacy_sputnik"</Expression>
 </Expressions>
-<Compare expression="enabled"><PartImage x="209" y="78" width="15" height="164" pivotX="0.4666666666666667" pivotY="0.8414634146341463" name="selected_hour_art"><Image resource="trimmed_hand_sputnik_dark" />
+<Compare expression="enabled"><PartImage x="204" y="76" width="24" height="158" pivotX="0.5" pivotY="0.8860759493670886" name="selected_hour_art"><Image resource="updated_sputnik_hour_dark" />
 </PartImage>
 </Compare>
 </Condition>
@@ -7226,7 +7064,7 @@
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.HandStyle] == "legacy_sputnik"</Expression>
 </Expressions>
-<Compare expression="enabled"><PartImage x="213" y="38" width="6" height="200" pivotX="0.5" pivotY="0.89" name="selected_minute_art" scaleY=".70"><Image resource="trimmed_minute_sputnik_light" />
+<Compare expression="enabled"><PartImage x="208" y="26" width="16" height="211" pivotX="0.5" pivotY="0.9004739336492891" name="selected_minute_art" scaleY=".70"><Image resource="updated_sputnik_minute_light" />
 </PartImage>
 </Compare>
 </Condition>
@@ -7275,6 +7113,7 @@
 </PartImage>
 </Compare>
 </Condition>
+<Variant mode="AMBIENT" target="alpha" value="0" />
 </Group>
 </Compare>
 </Condition>
@@ -7305,7 +7144,7 @@
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.HandStyle] == "instrument_white"</Expression>
 </Expressions>
-<Compare expression="enabled"><PartImage x="210" y="57" width="13" height="180" pivotX="0.46153846153846156" pivotY="0.8833333333333333" name="selected_hour_art" scaleY=".75"><Image resource="trimmed_precision_hour_instrument_white_light" />
+<Compare expression="enabled"><PartImage x="209" y="57" width="14" height="181" pivotX="0.5" pivotY="0.8784530386740331" name="selected_hour_art" scaleY=".75"><Image resource="updated_instrument_slot_light" />
 </PartImage>
 </Compare>
 </Condition>
@@ -7323,7 +7162,7 @@
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.HandStyle] == "legacy_sputnik"</Expression>
 </Expressions>
-<Compare expression="enabled"><PartImage x="209" y="78" width="15" height="164" pivotX="0.4666666666666667" pivotY="0.8414634146341463" name="selected_hour_art" scaleY=".75"><Image resource="trimmed_hand_sputnik_light" />
+<Compare expression="enabled"><PartImage x="204" y="76" width="24" height="158" pivotX="0.5" pivotY="0.8860759493670886" name="selected_hour_art" scaleY=".75"><Image resource="updated_sputnik_hour_light" />
 </PartImage>
 </Compare>
 </Condition>
@@ -7460,7 +7299,7 @@
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.HandStyle] == "legacy_sputnik"</Expression>
 </Expressions>
-<Compare expression="enabled"><PartImage x="213" y="38" width="6" height="200" pivotX="0.5" pivotY="0.89" name="selected_minute_art" scaleY=".70"><Image resource="trimmed_minute_sputnik_light" />
+<Compare expression="enabled"><PartImage x="208" y="26" width="16" height="211" pivotX="0.5" pivotY="0.9004739336492891" name="selected_minute_art" scaleY=".70"><Image resource="updated_sputnik_minute_light" />
 </PartImage>
 </Compare>
 </Condition>
@@ -7509,6 +7348,7 @@
 </PartImage>
 </Compare>
 </Condition>
+<Variant mode="AMBIENT" target="alpha" value="0" />
 </Group>
 </Compare>
 </Condition>
@@ -7539,7 +7379,7 @@
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.HandStyle] == "instrument_white"</Expression>
 </Expressions>
-<Compare expression="enabled"><PartImage x="210" y="57" width="13" height="180" pivotX="0.46153846153846156" pivotY="0.8833333333333333" name="selected_hour_art" scaleY=".75"><Image resource="trimmed_precision_hour_instrument_white_light" />
+<Compare expression="enabled"><PartImage x="209" y="57" width="14" height="181" pivotX="0.5" pivotY="0.8784530386740331" name="selected_hour_art" scaleY=".75"><Image resource="updated_instrument_slot_light" />
 </PartImage>
 </Compare>
 </Condition>
@@ -7557,7 +7397,7 @@
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.HandStyle] == "legacy_sputnik"</Expression>
 </Expressions>
-<Compare expression="enabled"><PartImage x="209" y="78" width="15" height="164" pivotX="0.4666666666666667" pivotY="0.8414634146341463" name="selected_hour_art" scaleY=".75"><Image resource="trimmed_hand_sputnik_light" />
+<Compare expression="enabled"><PartImage x="204" y="76" width="24" height="158" pivotX="0.5" pivotY="0.8860759493670886" name="selected_hour_art" scaleY=".75"><Image resource="updated_sputnik_hour_light" />
 </PartImage>
 </Compare>
 </Condition>
@@ -7694,7 +7534,7 @@
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.HandStyle] == "legacy_sputnik"</Expression>
 </Expressions>
-<Compare expression="enabled"><PartImage x="213" y="38" width="6" height="200" pivotX="0.5" pivotY="0.89" name="selected_minute_art" scaleY=".70"><Image resource="trimmed_minute_sputnik_dark" />
+<Compare expression="enabled"><PartImage x="208" y="26" width="16" height="211" pivotX="0.5" pivotY="0.9004739336492891" name="selected_minute_art" scaleY=".70"><Image resource="updated_sputnik_minute_dark" />
 </PartImage>
 </Compare>
 </Condition>
@@ -7743,6 +7583,7 @@
 </PartImage>
 </Compare>
 </Condition>
+<Variant mode="AMBIENT" target="alpha" value="0" />
 </Group>
 </Compare>
 </Condition>
@@ -7773,7 +7614,7 @@
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.HandStyle] == "instrument_white"</Expression>
 </Expressions>
-<Compare expression="enabled"><PartImage x="210" y="57" width="13" height="180" pivotX="0.46153846153846156" pivotY="0.8833333333333333" name="selected_hour_art" scaleY=".75"><Image resource="trimmed_precision_hour_instrument_white_dark" />
+<Compare expression="enabled"><PartImage x="209" y="57" width="14" height="181" pivotX="0.5" pivotY="0.8784530386740331" name="selected_hour_art" scaleY=".75"><Image resource="updated_instrument_slot_dark" />
 </PartImage>
 </Compare>
 </Condition>
@@ -7791,7 +7632,7 @@
 </Condition>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.HandStyle] == "legacy_sputnik"</Expression>
 </Expressions>
-<Compare expression="enabled"><PartImage x="209" y="78" width="15" height="164" pivotX="0.4666666666666667" pivotY="0.8414634146341463" name="selected_hour_art" scaleY=".75"><Image resource="trimmed_hand_sputnik_dark" />
+<Compare expression="enabled"><PartImage x="204" y="76" width="24" height="158" pivotX="0.5" pivotY="0.8860759493670886" name="selected_hour_art" scaleY=".75"><Image resource="updated_sputnik_hour_dark" />
 </PartImage>
 </Compare>
 </Condition>
@@ -7881,6 +7722,53 @@
 </Condition>
 <Transform target="scaleX" value="[CONFIGURATION.HandSize] == &quot;Compact&quot; ? 0.92 : [CONFIGURATION.HandSize] == &quot;Large&quot; ? 1.06 : 1.0" />
 <Transform target="scaleY" value="[CONFIGURATION.HandSize] == &quot;Compact&quot; ? 0.92 : [CONFIGURATION.HandSize] == &quot;Large&quot; ? 1.06 : 1.0" />
+<Variant mode="AMBIENT" target="tintColor" value="#B7C2B7" />
+<Variant mode="AMBIENT" target="alpha" value="170" />
 </Group>
+<Condition><Expressions><Expression name="enabled">[CONFIGURATION.DigitalTime] == "TRUE"</Expression>
+</Expressions>
+<Compare expression="enabled"><Group name="digital_time" x="180" y="286" width="72" height="22"><Variant mode="AMBIENT" target="alpha" value="170" />
+<Variant mode="AMBIENT" target="tintColor" value="#B7C2B7" />
+<Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] == "black"</Expression>
+</Expressions>
+<Compare expression="enabled"><DigitalClock x="0" y="0" width="72" height="22"><TimeText x="0" y="1" width="70" height="20" format="hh:mm" hourFormat="24" align="CENTER"><Variant mode="AMBIENT" target="alpha" value="0" />
+<Font family="barlow_regular" size="17" color="#222A29" />
+</TimeText>
+<TimeText x="2" y="1" width="70" height="20" format="hh:mm" hourFormat="24" align="CENTER"><Variant mode="AMBIENT" target="alpha" value="0" />
+<Font family="barlow_regular" size="17" color="#222A29" />
+</TimeText>
+<TimeText x="1" y="0" width="70" height="20" format="hh:mm" hourFormat="24" align="CENTER"><Variant mode="AMBIENT" target="alpha" value="0" />
+<Font family="barlow_regular" size="17" color="#222A29" />
+</TimeText>
+<TimeText x="1" y="2" width="70" height="20" format="hh:mm" hourFormat="24" align="CENTER"><Variant mode="AMBIENT" target="alpha" value="0" />
+<Font family="barlow_regular" size="17" color="#222A29" />
+</TimeText>
+<TimeText x="1" y="1" width="70" height="20" format="hh:mm" hourFormat="24" align="CENTER"><Font family="barlow_regular" size="17" color="#F0F0E7" />
+</TimeText>
+</DigitalClock>
+</Compare>
+</Condition>
+<Condition><Expressions><Expression name="enabled">[CONFIGURATION.background] != "black"</Expression>
+</Expressions>
+<Compare expression="enabled"><DigitalClock x="0" y="0" width="72" height="22"><TimeText x="0" y="1" width="70" height="20" format="hh:mm" hourFormat="24" align="CENTER"><Variant mode="AMBIENT" target="alpha" value="0" />
+<Font family="barlow_regular" size="17" color="#F0F0E7" />
+</TimeText>
+<TimeText x="2" y="1" width="70" height="20" format="hh:mm" hourFormat="24" align="CENTER"><Variant mode="AMBIENT" target="alpha" value="0" />
+<Font family="barlow_regular" size="17" color="#F0F0E7" />
+</TimeText>
+<TimeText x="1" y="0" width="70" height="20" format="hh:mm" hourFormat="24" align="CENTER"><Variant mode="AMBIENT" target="alpha" value="0" />
+<Font family="barlow_regular" size="17" color="#F0F0E7" />
+</TimeText>
+<TimeText x="1" y="2" width="70" height="20" format="hh:mm" hourFormat="24" align="CENTER"><Variant mode="AMBIENT" target="alpha" value="0" />
+<Font family="barlow_regular" size="17" color="#F0F0E7" />
+</TimeText>
+<TimeText x="1" y="1" width="70" height="20" format="hh:mm" hourFormat="24" align="CENTER"><Font family="barlow_regular" size="17" color="#222A29" />
+</TimeText>
+</DigitalClock>
+</Compare>
+</Condition>
+</Group>
+</Compare>
+</Condition>
 </Scene>
 </WatchFace>

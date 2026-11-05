@@ -47,7 +47,7 @@ class OptimizedRuntimeTest(unittest.TestCase):
                     self.assertAlmostEqual(float(p.get(attr))+float(p.get(dim))*float(p.get('pivot'+axis)),216,places=6)
         before=E.fromstring(gzip.decompress((ROOT/'docs/optimization/baseline.xml.gz').read_bytes()))
         self.assertEqual(canonical(before.find('.//Group[@name="ambient"]')),canonical(expanded(self.native).find('.//Group[@name="ambient"]')))
-        self.assertFalse(self.native.find('.//Group[@name="ambient"]').findall('.//Image'))
+        self.assertIsNone(self.native.find('.//Group[@name="ambient"]'))
         # Factoring never bakes fonts or dynamic complication/time data.
         self.assertTrue(self.native.findall('.//PartText'))
         for e in self.native.iter('PartImage'):

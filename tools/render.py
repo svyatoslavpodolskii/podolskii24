@@ -13,6 +13,22 @@ def scene():return E.parse(RES/'raw/watchface.xml').getroot()
 def font_file(family,size):return ImageFont.truetype(str(RES/'font'/f'{family}.ttf'),size)
 @lru_cache(maxsize=128)
 def bitmap(name):return Image.open(RES/'drawable-nodpi'/f'{name}.png').convert('RGBA')
+
+@lru_cache(maxsize=3)
+def sample_icon(name):
+    """QA-only stand-ins; the watch receives actual provider images."""
+    im=Image.new('RGBA',(64,64));d=ImageDraw.Draw(im)
+    if name=='qa_weather':
+        d.ellipse((19,19,45,45),outline='white',width=5)
+        for a in range(0,360,45):
+            rad=math.radians(a);d.line([(32+22*math.cos(rad),32+22*math.sin(rad)),(32+29*math.cos(rad),32+29*math.sin(rad))],fill='white',width=4)
+    elif name=='qa_stress':d.line([(3,35),(15,35),(23,18),(33,47),(43,26),(49,35),(61,35)],fill='white',width=5)
+    elif name=='qa_calendar':
+        d.rounded_rectangle((9,13,55,56),radius=5,outline='white',width=5)
+        d.line((10,27,54,27),fill='white',width=4)
+        for x in (23,42):d.line((x,6,x,21),fill='white',width=5)
+    else:raise ValueError(name)
+    return im
 def evaluate(expr,config,hour,minute,data=None):
     values={'HOUR_0_23':hour,'MINUTE':minute}
     values.update({'CONFIGURATION.'+k:v for k,v in config.items()})
@@ -25,16 +41,18 @@ def evaluate(expr,config,hour,minute,data=None):
         return '('+yes+' if '+test+' else '+ternary(no)+')'
     expr=ternary(expr)
     expr=re.sub(r'#[0-9A-Fa-f]{6,8}\b',lambda m:repr(m[0]),expr)
-    return eval(expr,{'__builtins__':{},'clamp':lambda x,a,b:max(a,min(b,x)),'textLength':lambda x:len(x or '')},{})
+    return eval(expr,{'__builtins__':{},'null':None,'clamp':lambda x,a,b:max(a,min(b,x)),'textLength':lambda x:len(x or '')},{})
 
-def render(style='classic',background='white',sectors='none',boundaries='quarter',minute=False,ambient=False,hour=10,mins=8,complications=False,output_size=432,dividers='micro',hand_style='auto',minute_track='None',component='full',hand_size='Original',subtree=None,transparent=False,minute_color='original'):
+def render(style='classic',background='white',sectors='none',boundaries='quarter',minute=False,ambient=False,hour=10,mins=8,complications=False,output_size=432,dividers='micro',hand_style='auto',minute_track='None',component='full',hand_size='Original',subtree=None,transparent=False,minute_color='neutral',digital_time=True):
     config={'style':style,'background':background,'sectors':sectors,'boundaries':boundaries,'dividers':dividers,'HandStyle':hand_style,'MinuteTrackStyle':minute_track,'HandSize':hand_size,'minute':'TRUE' if minute else 'FALSE'}
     config['MinuteColor']=minute_color
+    config['DigitalTime']='TRUE' if digital_time else 'FALSE'
     im=Image.new('RGBA',(SIZE*S,SIZE*S),(0,0,0,0) if transparent else (BACKGROUNDS[background] if component in ('hands','hour','minute') else 'black'))
-    def walk(el,ox=0,oy=0,rotation=0,data=None,ignore_alpha=False,ignore_scale=False):
+    def walk(el,ox=0,oy=0,rotation=0,data=None,ignore_alpha=False,ignore_scale=False,ignore_tint=False):
         nonlocal im
         attrs=dict(el.attrib)
         if attrs.get('name')=='ambient' and not ambient and component in ('hands','hour','minute'):return
+        if attrs.get('name')=='digital_time' and component in ('hands','hour','minute','scale','ticks'):return
         if component=='scale' and attrs.get('name')=='interactive_hands':return
         if component=='ticks' and (attrs.get('name')=='interactive_hands' or el.tag=='PartText'):return
         if component in ('hands','hour','minute') and (attrs.get('name')=='interactive' or el.tag=='ComplicationSlot'):return
@@ -46,7 +64,7 @@ def render(style='classic',background='white',sectors='none',boundaries='quarter
         if alpha==0:return
         if alpha<255 and not ignore_alpha:
             target=im;im=Image.new('RGBA',target.size)
-            walk(el,ox,oy,rotation,data,True)
+            walk(el,ox,oy,rotation,data,True,ignore_scale,ignore_tint)
             im.putalpha(im.getchannel('A').point(lambda p:round(p*alpha/255)))
             target.alpha_composite(im);im=target;return
         for t in el.findall('Transform'):attrs[t.get('target')]=evaluate(t.get('value'),config,hour,mins,data)
@@ -59,12 +77,17 @@ def render(style='classic',background='white',sectors='none',boundaries='quarter
             text.append(font);walk(p,ox,oy,rotation,data);return
         if tag=='Group' and not ignore_scale and (float(attrs.get('scaleX',1))!=1 or float(attrs.get('scaleY',1))!=1):
             target=im;im=Image.new('RGBA',target.size)
-            walk(el,ox,oy,rotation,data,ignore_alpha,True)
+            walk(el,ox,oy,rotation,data,ignore_alpha,True,ignore_tint)
             sx,sy=float(attrs.get('scaleX',1)),float(attrs.get('scaleY',1))
             px=(ox+float(attrs.get('x',0))+float(attrs['width'])*float(attrs.get('pivotX',.5)))*S
             py=(oy+float(attrs.get('y',0))+float(attrs['height'])*float(attrs.get('pivotY',.5)))*S
             scaled=im.transform(target.size,Image.Transform.AFFINE,(1/sx,0,px*(1-1/sx),0,1/sy,py*(1-1/sy)),resample=Image.Resampling.BICUBIC)
             target.alpha_composite(scaled);im=target;return
+        if tag in ('Group','DigitalClock') and attrs.get('tintColor') and not ignore_tint:
+            target=im;im=Image.new('RGBA',target.size)
+            walk(el,ox,oy,rotation,data,ignore_alpha,ignore_scale,True)
+            alpha=im.getchannel('A');im=Image.new('RGBA',im.size,attrs['tintColor']);im.putalpha(alpha)
+            target.alpha_composite(im);im=target;return
         if tag=='Condition':
             exprs={e.get('name'):e.text for e in el.findall('Expressions/Expression')}
             selected=el.find('Default')
@@ -77,6 +100,7 @@ def render(style='classic',background='white',sectors='none',boundaries='quarter
             if ambient or not complications:return
             slot=int(attrs['slotId']);kind={1:'SHORT_TEXT',2:'RANGED_VALUE',3:'SHORT_TEXT'}[slot]
             sample={1:{'TEXT':'12°','TITLE':'ПОГОДА'},2:{'TEXT':'76%','RANGED_VALUE_VALUE':76,'RANGED_VALUE_MIN':0,'RANGED_VALUE_MAX':100,'TITLE':'ЗАРЯД'},3:{'TEXT':'Ср, 4','TITLE':'НОЯБРЬ'}}[slot]
+            sample['MONOCHROMATIC_IMAGE']={1:'qa_weather',2:'qa_stress',3:'qa_calendar'}[slot]
             walk(el.find(f'Complication[@type="{kind}"]'),ox+float(attrs['x']),oy+float(attrs['y']),rotation,sample);return
         if tag in ('Group','PartDraw','PartText','PartImage','DigitalClock'):
             ox+=float(attrs.get('x',0));oy+=float(attrs.get('y',0))
@@ -103,7 +127,9 @@ def render(style='classic',background='white',sectors='none',boundaries='quarter
             for cx,cy,start in ((x+w-r,y+r,-90),(x+w-r,y+h-r,0),(x+r,y+h-r,90),(x+r,y+r,180)):
                 for i in range(13):
                     a=math.radians(start+i*90/12);points.append(pt(cx+r*math.cos(a),cy+r*math.sin(a)))
-            d.polygon(points,fill=el.find('Fill').get('color'));return
+            fill=el.find('Fill');color=fill.get('color')
+            for t in fill.findall('Transform'):color=evaluate(t.get('value'),config,hour,mins,data)
+            d.polygon(points,fill=color);return
         if tag=='Arc':
             cx=float(attrs['centerX'])+ox;cy=float(attrs['centerY'])+oy
             radius=float(attrs['width'])/2;st=el.find('Stroke');width=float(st.get('thickness'))
@@ -115,14 +141,16 @@ def render(style='classic',background='white',sectors='none',boundaries='quarter
         if tag in ('PartText','PartImage'):
             layer=Image.new('RGBA',im.size)
             if tag=='PartText':
-                font=el.find('Text/Font');f=font_file(font.get('family'),round(float(font.get('size'))*S))
+                font=el.find('Text/Font');fa=dict(font.attrib)
+                for t in font.findall('Transform'):fa[t.get('target')]=evaluate(t.get('value'),config,hour,mins,data)
+                f=font_file(fa['family'],round(float(fa['size'])*S))
                 value=font.text or '';t=font.find('Template')
                 if t is not None:value=(t.text or '%s')%evaluate(t.find('Parameter').get('expression'),config,hour,mins,data)
                 w=round(float(attrs['width'])*S);h=round(float(attrs['height'])*S)
                 # Center the visible ink for the contact sheet; renderer/device metrics may differ.
                 patch=Image.new('RGBA',(w,h));pd=ImageDraw.Draw(patch)
                 bbox=pd.textbbox((0,0),value,font=f)
-                pd.text(((w-bbox[2]-bbox[0])/2,(h-bbox[3]-bbox[1])/2),value,font=f,fill=font.get('color'))
+                pd.text(((w-bbox[2]-bbox[0])/2,(h-bbox[3]-bbox[1])/2),value,font=f,fill=fa['color'])
                 if 'scaleX' in attrs or 'scaleY' in attrs:
                     patch=patch.resize((round(w*float(attrs.get('scaleX',1))),round(h*float(attrs.get('scaleY',1)))),Image.Resampling.LANCZOS)
                 if float(attrs.get('angle',0)):patch=patch.rotate(-float(attrs['angle']),resample=Image.Resampling.BICUBIC,expand=True)
@@ -130,9 +158,12 @@ def render(style='classic',background='white',sectors='none',boundaries='quarter
                 layer.alpha_composite(patch,(round(cx-patch.width/2),round(cy-patch.height/2)))
             else:
                 resource=el.find('Image').get('resource')
-                if resource.startswith('['):return  # image-provider rendering needs device testing
+                if resource.startswith('[COMPLICATION.'):
+                    resource=(data or {}).get(resource[14:-1])
+                    if not resource:return
                 w=float(attrs['width']);h=float(attrs['height']);sx=float(attrs.get('scaleX',1));sy=float(attrs.get('scaleY',1))
-                patch=bitmap(resource).resize((round(w*S*sx),round(h*S*sy)),Image.Resampling.BICUBIC if resource.startswith('classic_scale_') else Image.Resampling.LANCZOS)
+                source=sample_icon(resource) if resource.startswith('qa_') else bitmap(resource)
+                patch=source.resize((round(w*S*sx),round(h*S*sy)),Image.Resampling.BICUBIC if resource.startswith('classic_scale_') else Image.Resampling.LANCZOS)
                 if attrs.get('tintColor'):
                     alpha=patch.getchannel('A');patch=Image.new('RGBA',patch.size,attrs['tintColor']);patch.putalpha(alpha)
                 px=ox+w*float(attrs.get('pivotX',.5))*(1-sx);py=oy+h*float(attrs.get('pivotY',.5))*(1-sy)

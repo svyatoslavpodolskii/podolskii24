@@ -331,6 +331,8 @@ def generate():
     # Escape literal percentages; formatted="false" does not protect that call.
     strings.update(instrument_classic='Instrument Classic — цифры и индексы по референсу',HandSize='Размер стрелок',Compact='Compact — 92%%',Original='Original — исходные пропорции',Large='Large — 106%%')
     strings['style']='Дизайн шкалы'
+    strings['legacy_sputnik']='Sputnik — по референсу'
+    strings['instrument_white']='Instrument — сквозная прорезь'
     for id,default,opts in [('style','classic',STYLES),('background','white',BACKGROUNDS),('sectors','none',MODES),('boundaries','quarter',PRESETS),('dividers','micro',DIVIDERS),('HandStyle','auto',HAND_STYLES),('MinuteTrackStyle','None',MINUTE_TRACKS),('HandSize','Original',HAND_SIZES)]:
         cfg=node(uc,'ListConfiguration',id=id,displayName=id,screenReaderText=id,defaultValue=default)
         for opt in opts:
@@ -368,6 +370,8 @@ def generate():
     optimize(w)
     from minute_palette import apply as apply_minute_palette
     apply_minute_palette(w, root)
+    from runtime_scene import digital_configuration
+    digital_configuration(w, root)
     for path,el in ((RES/'raw/watchface.xml',w),(RES/'values/strings.xml',root)):
         path.parent.mkdir(parents=True,exist_ok=True)
         # WFF source has a 10 MB limit. Indentation alone added over 5 MB

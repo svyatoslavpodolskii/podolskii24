@@ -19,12 +19,12 @@
   <string name="vintage">Vintage — белая вставка</string>
   <string name="vintage_red">Vintage Red — красная вставка</string>
   <string name="hand_instrument">Instrument — серая вставка</string>
-  <string name="instrument_white">Instrument White — белая вставка</string>
+  <string name="instrument_white">Instrument — сквозная прорезь</string>
   <string name="aviation">Aviation — оранжевая лопатка</string>
   <string name="aviation_gray">Aviation Grey — серая вставка</string>
   <string name="legacy_classic">Прежняя Classic</string>
   <string name="legacy_minimal">Прежняя Minimal</string>
-  <string name="legacy_sputnik">Прежняя Sputnik</string>
+  <string name="legacy_sputnik">Sputnik — по референсу</string>
   <string name="legacy_instrument">Прежняя Instrument</string>
   <string name="white">White — белый</string>
   <string name="ivory">Ivory — слоновая кость</string>
@@ -69,4 +69,5 @@
   <string name="minute_color_orange">Оранжевый</string>
   <string name="minute_color_green">Зелёный</string>
   <string name="minute_color_blue">Голубой</string>
+  <string name="digital_time">Цифровое время</string>
 </resources>

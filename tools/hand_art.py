@@ -4,7 +4,7 @@ from generate import ROOT,RES,HAND_STYLES
 
 S=8
 CORE=('needle','sword','vintage','instrument')
-def make(kind,tone,minute=False,master=False):
+def make(kind,tone,minute=False,master=False,cutout=False):
     if kind in ('bellross_photo','instrument_classic_clean'):
         from instrument_classic import make as vector_art
         return vector_art('black' if tone=='dark' else 'white',minute,kind=='instrument_classic_clean')
@@ -90,7 +90,10 @@ def make(kind,tone,minute=False,master=False):
     elif kind.startswith('instrument'):
         polygon([(216,59),(220.5,73),(220.1,197),(217.4,235),(214.6,235),(211.9,197),(211.5,73)],orange,edge,.9)
         # Gray is the principal version; the old white inlay is retained as another option.
-        line((216,83),(216,177),white if kind=='instrument_white' else gray,2)
+        if cutout:
+            assert kind=='instrument_white'
+            d.line([p(216,83),p(216,177)],fill=(0,0,0,0),width=round(2*S))
+        else:line((216,83),(216,177),white if kind=='instrument_white' else gray,2)
         circle(216,216,4.8,'#30372D',edge,.6);circle(216,216,2.8,orange)
     elif kind.startswith('aviation'):
         # Broad orange pointer and charcoal counterweight follow the supplied mechanical reference.
@@ -102,8 +105,13 @@ def make(kind,tone,minute=False,master=False):
     else:raise ValueError(kind)
     if master:
         name=f'{"minute" if minute else "hour"}_{kind}_{tone}'
+        if cutout:name=f'hour_instrument_cutout_{tone}'
         out=ROOT/'docs/hand-masters';out.mkdir(exist_ok=True)
-        (out/f'{name}.svg').write_text(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}"><title>{name}; pivot {216-x0},{216-y0}</title>'+''.join(svg)+'</svg>\n',encoding='utf-8')
+        shapes=''.join(svg)
+        if cutout:
+            defs=f'<defs><mask id="slot" maskUnits="userSpaceOnUse" x="0" y="0" width="{w}" height="{h}"><rect width="{w}" height="{h}" fill="white"/><line x1="24" y1="43" x2="24" y2="137" stroke="black" stroke-width="2"/></mask></defs>'
+            shapes=defs+'<g mask="url(#slot)">'+shapes+'</g>'
+        (out/f'{name}.svg').write_text(f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}"><title>{name}; pivot {216-x0},{216-y0}</title>'+shapes+'</svg>\n',encoding='utf-8')
     return im.resize((w*3,h*3),Image.Resampling.BOX if kind=='instrument_refined' else Image.Resampling.LANCZOS)
 
 def main():

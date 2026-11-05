@@ -25,14 +25,22 @@ class RuntimeSceneTest(unittest.TestCase):
         self.assertIn('runtime_classic_scale_alpha',resources)
 
     def test_ambient_and_complication_runtime(self):
-        scene=self.root.find('Scene');ambient=scene.find('Group[@name="ambient"]')
-        self.assertIs(list(scene)[0],ambient)
-        self.assertEqual(ambient.get('alpha'),'255')
-        time=ambient.find('DigitalClock/TimeText')
-        self.assertEqual((time.get('format'),time.get('hourFormat')),('hh:mm','24'))
+        scene=self.root.find('Scene')
+        self.assertIsNone(scene.find('Group[@name="ambient"]'))
+        for name in ('interactive','interactive_hands'):
+            group=scene.find(f'Group[@name="{name}"]')
+            self.assertTrue(group.findall('Variant[@target="tintColor"]'))
+            self.assertFalse(group.findall('Variant[@target="alpha"][@value="0"]'))
+        for minute in scene.findall('Group[@name="interactive_hands"]//Group[@name="minute"]'):
+            self.assertTrue(minute.findall('Variant[@mode="AMBIENT"][@target="alpha"][@value="0"]'))
+        cfg=self.root.find('UserConfigurations/BooleanConfiguration[@id="DigitalTime"]')
+        self.assertEqual(cfg.get('defaultValue'),'TRUE')
+        for time in scene.findall('.//DigitalClock/TimeText'):
+            self.assertEqual((time.get('format'),time.get('hourFormat')),('hh:mm','24'))
         for slot in scene.findall('ComplicationSlot'):
             self.assertEqual(slot.get('width'),'96')
-            self.assertFalse(slot.findall('.//Ellipse'))
+            self.assertTrue(slot.findall('.//Ellipse'))
+            self.assertTrue(slot.findall('.//PartImage[@name="provider_icon"]'))
             for part in slot.findall('Complication[@type="RANGED_VALUE"]//PartText'):
                 parameters=part.findall('.//Parameter')
                 self.assertEqual([p.get('expression') for p in parameters],['[COMPLICATION.RANGED_VALUE_VALUE]'])
@@ -47,7 +55,7 @@ class RuntimeSceneTest(unittest.TestCase):
             for j,background in enumerate(('white','ivory','black')):
                 options=dict(style=style,background=background,sectors=('none','lines','labels','color')[(i+j)%4],
                     boundaries=('quarter','shifted_back_1_hour')[j%2],dividers=('micro','radial','full','arc','classic')[(i+j)%5],
-                    minute_track='InstrumentRing' if j%2 else 'None',minute=True,output_size=216)
+                    minute_track='InstrumentRing' if j%2 else 'None',minute=True,output_size=216,digital_time=False,minute_color='original')
                 old=render(subtree=before,**options)
                 new=render(subtree=self.root,**options)
                 diff=ImageChops.difference(old,new)

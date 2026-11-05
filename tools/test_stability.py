@@ -35,9 +35,10 @@ class StabilityTest(unittest.TestCase):
             self.assertEqual(slot.get('isCustomizable'),'TRUE')
             for group in slot.findall('.//Group'):
                 if group.get('name','').startswith('slot'):
-                    self.assertEqual((group.get('x'),group.get('y')),('20','8' if slot.get('slotId')=='3' else '20'))
+                    self.assertEqual((group.get('x'),group.get('y')),('20','20'))
                     self.assertEqual(float(group.get('scaleX',1)),1)
-            self.assertFalse(slot.findall('.//Ellipse'))
+            self.assertTrue(slot.findall('.//Ellipse'))
+            self.assertFalse(slot.findall('.//RoundRectangle'))
             self.assertFalse([p for p in slot.iter('Parameter') if 'COMPLICATION.TITLE' in p.get('expression','')])
         labels=[e for e in self.root.iter('PartText') if e.get('name','').startswith('period_label_')]
         self.assertTrue(labels)
