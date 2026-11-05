@@ -1,0 +1,402 @@
+S:\MAIN\!DEV\TwentyFour\gradle\wrapper\gradle-wrapper.properties:3: Warning: A newer version of Gradle than 8.13 is available: 8.14.6 [AndroidGradlePluginVersion]
+distributionUrl=https\://services.gradle.org/distributions/gradle-8.13-bin.zip
+                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+   Explanation for issues of type "AndroidGradlePluginVersion":
+   This detector looks for usage of the Android Gradle Plugin where the
+   version you are using is not the current stable release. Using older
+   versions is fine, and there are cases where you deliberately want to stick
+   with an older version. However, you may simply not be aware that a more
+   recent version is available, and that is what this lint check helps find.
+
+S:\MAIN\!DEV\TwentyFour\watchface\src\main\AndroidManifest.xml:4: Warning: The attribute android:allowBackup is deprecated from Android 12 and may be removed in future versions. Consider adding the attribute android:dataExtractionRules specifying an @xml resource which configures backups and device transfers on Android 12 and higher. [DataExtractionRules]
+    <application android:hasCode="false" android:label="@string/app_name" android:icon="@drawable/preview" android:allowBackup="false">
+                                                                                                                                ~~~~~
+
+   Explanation for issues of type "DataExtractionRules":
+   Before Android 12, the attributes android:allowBackup and
+   android:fullBackupContent were used to configure all forms of backup,
+   including cloud backups, device-to-device transfers and adb backup.
+
+   In Android 12 and higher, these attributes have been deprecated and will
+   only apply to cloud backups. You should instead use the attribute
+   android:dataExtractionRules, specifying an @xml resource that configures
+   which files to back up, for cloud backups and for device-to-device
+   transfers, separately. If your minSdkVersion supports older versions,
+   you'll still want to specify an android:fullBackupContent resource if the
+   default behavior is not right for your app.
+
+   https://developer.android.com/about/versions/12/backup-restore#xml-changes
+   https://goo.gle/DataExtractionRules
+
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\geometry_06ce3fa6292e5717dbe0.png: Warning: The resource R.drawable.geometry_06ce3fa6292e5717dbe0 appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\geometry_1431a9818b749add8a6f.png: Warning: The resource R.drawable.geometry_1431a9818b749add8a6f appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\geometry_19403d4744e4c2a91173.png: Warning: The resource R.drawable.geometry_19403d4744e4c2a91173 appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\geometry_247b6fb244bf24d918f4.png: Warning: The resource R.drawable.geometry_247b6fb244bf24d918f4 appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\geometry_38d46f8521fd300617d8.png: Warning: The resource R.drawable.geometry_38d46f8521fd300617d8 appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\geometry_3ac07a4ee0b45d8b312c.png: Warning: The resource R.drawable.geometry_3ac07a4ee0b45d8b312c appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\geometry_443e9567f054ec73ee6b.png: Warning: The resource R.drawable.geometry_443e9567f054ec73ee6b appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\geometry_5b47e52afb5e2fe7d3fd.png: Warning: The resource R.drawable.geometry_5b47e52afb5e2fe7d3fd appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\geometry_7e3bb7ab2d8a70268fbb.png: Warning: The resource R.drawable.geometry_7e3bb7ab2d8a70268fbb appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\geometry_bdf83bfb3e2dd5b67692.png: Warning: The resource R.drawable.geometry_bdf83bfb3e2dd5b67692 appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\geometry_c4f907c5cd9a3e7bd819.png: Warning: The resource R.drawable.geometry_c4f907c5cd9a3e7bd819 appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\geometry_da80c3d746356ca23fcd.png: Warning: The resource R.drawable.geometry_da80c3d746356ca23fcd appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\preview_aviator.png: Warning: The resource R.drawable.preview_aviator appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\preview_black.png: Warning: The resource R.drawable.preview_black appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\preview_classic.png: Warning: The resource R.drawable.preview_classic appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\preview_hand_aviation.png: Warning: The resource R.drawable.preview_hand_aviation appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\preview_hand_aviation_gray.png: Warning: The resource R.drawable.preview_hand_aviation_gray appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\preview_hand_bellross.png: Warning: The resource R.drawable.preview_hand_bellross appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\preview_hand_bellross_needle.png: Warning: The resource R.drawable.preview_hand_bellross_needle appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\preview_hand_bellross_photo.png: Warning: The resource R.drawable.preview_hand_bellross_photo appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\preview_hand_instrument.png: Warning: The resource R.drawable.preview_hand_instrument appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\preview_hand_instrument_classic_clean.png: Warning: The resource R.drawable.preview_hand_instrument_classic_clean appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\preview_hand_instrument_refined.png: Warning: The resource R.drawable.preview_hand_instrument_refined appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\preview_hand_instrument_white.png: Warning: The resource R.drawable.preview_hand_instrument_white appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\preview_hand_legacy_classic.png: Warning: The resource R.drawable.preview_hand_legacy_classic appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\preview_hand_legacy_instrument.png: Warning: The resource R.drawable.preview_hand_legacy_instrument appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\preview_hand_legacy_minimal.png: Warning: The resource R.drawable.preview_hand_legacy_minimal appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\preview_hand_legacy_sputnik.png: Warning: The resource R.drawable.preview_hand_legacy_sputnik appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\preview_hand_needle.png: Warning: The resource R.drawable.preview_hand_needle appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\preview_hand_original_black.png: Warning: The resource R.drawable.preview_hand_original_black appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\preview_hand_original_orange.png: Warning: The resource R.drawable.preview_hand_original_orange appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\preview_hand_original_sputnik.png: Warning: The resource R.drawable.preview_hand_original_sputnik appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\preview_hand_original_white.png: Warning: The resource R.drawable.preview_hand_original_white appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\preview_hand_sword.png: Warning: The resource R.drawable.preview_hand_sword appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\preview_hand_vintage.png: Warning: The resource R.drawable.preview_hand_vintage appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\preview_hand_vintage_red.png: Warning: The resource R.drawable.preview_hand_vintage_red appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\preview_instrument.png: Warning: The resource R.drawable.preview_instrument appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\preview_instrument_classic.png: Warning: The resource R.drawable.preview_instrument_classic appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\preview_ivory.png: Warning: The resource R.drawable.preview_ivory appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\preview_minimal.png: Warning: The resource R.drawable.preview_minimal appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\preview_sputnik.png: Warning: The resource R.drawable.preview_sputnik appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\preview_white.png: Warning: The resource R.drawable.preview_white appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:4: Warning: The resource R.string.style appears to be unused [UnusedResources]
+  <string name="style">Стиль</string>
+          ~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:5: Warning: The resource R.string.background appears to be unused [UnusedResources]
+  <string name="background">Фон</string>
+          ~~~~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:6: Warning: The resource R.string.sectors appears to be unused [UnusedResources]
+  <string name="sectors">Периоды суток</string>
+          ~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:7: Warning: The resource R.string.boundaries appears to be unused [UnusedResources]
+  <string name="boundaries">Границы периодов</string>
+          ~~~~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:8: Warning: The resource R.string.dividers appears to be unused [UnusedResources]
+  <string name="dividers">Стиль разделителей суток</string>
+          ~~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:9: Warning: The resource R.string.HandStyle appears to be unused [UnusedResources]
+  <string name="HandStyle">Стиль стрелок</string>
+          ~~~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:10: Warning: The resource R.string.minute appears to be unused [UnusedResources]
+  <string name="minute">Минутная стрелка</string>
+          ~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:11: Warning: The resource R.string.classic appears to be unused [UnusedResources]
+  <string name="classic">Classic — классический</string>
+          ~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:12: Warning: The resource R.string.minimal appears to be unused [UnusedResources]
+  <string name="minimal">Minimal — минимализм</string>
+          ~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:13: Warning: The resource R.string.sputnik appears to be unused [UnusedResources]
+  <string name="sputnik">Sputnik — винтажный</string>
+          ~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:14: Warning: The resource R.string.instrument appears to be unused [UnusedResources]
+  <string name="instrument">Instrument — приборный</string>
+          ~~~~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:15: Warning: The resource R.string.aviator appears to be unused [UnusedResources]
+  <string name="aviator">Aviator — крупная авиационная шкала</string>
+          ~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:16: Warning: The resource R.string.auto appears to be unused [UnusedResources]
+  <string name="auto">По стилю циферблата</string>
+          ~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:17: Warning: The resource R.string.needle appears to be unused [UnusedResources]
+  <string name="needle">Needle — прецизионная игла</string>
+          ~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:18: Warning: The resource R.string.sword appears to be unused [UnusedResources]
+  <string name="sword">Sword — гранёная сталь</string>
+          ~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:19: Warning: The resource R.string.vintage appears to be unused [UnusedResources]
+  <string name="vintage">Vintage — белая вставка</string>
+          ~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:20: Warning: The resource R.string.vintage_red appears to be unused [UnusedResources]
+  <string name="vintage_red">Vintage Red — красная вставка</string>
+          ~~~~~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:21: Warning: The resource R.string.hand_instrument appears to be unused [UnusedResources]
+  <string name="hand_instrument">Instrument — серая вставка</string>
+          ~~~~~~~~~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:22: Warning: The resource R.string.instrument_white appears to be unused [UnusedResources]
+  <string name="instrument_white">Instrument White — белая вставка</string>
+          ~~~~~~~~~~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:23: Warning: The resource R.string.aviation appears to be unused [UnusedResources]
+  <string name="aviation">Aviation — оранжевая лопатка</string>
+          ~~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:24: Warning: The resource R.string.aviation_gray appears to be unused [UnusedResources]
+  <string name="aviation_gray">Aviation Grey — серая вставка</string>
+          ~~~~~~~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:25: Warning: The resource R.string.legacy_classic appears to be unused [UnusedResources]
+  <string name="legacy_classic">Прежняя Classic</string>
+          ~~~~~~~~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:26: Warning: The resource R.string.legacy_minimal appears to be unused [UnusedResources]
+  <string name="legacy_minimal">Прежняя Minimal</string>
+          ~~~~~~~~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:27: Warning: The resource R.string.legacy_sputnik appears to be unused [UnusedResources]
+  <string name="legacy_sputnik">Прежняя Sputnik</string>
+          ~~~~~~~~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:28: Warning: The resource R.string.legacy_instrument appears to be unused [UnusedResources]
+  <string name="legacy_instrument">Прежняя Instrument</string>
+          ~~~~~~~~~~~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:29: Warning: The resource R.string.white appears to be unused [UnusedResources]
+  <string name="white">White — белый</string>
+          ~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:30: Warning: The resource R.string.ivory appears to be unused [UnusedResources]
+  <string name="ivory">Ivory — слоновая кость</string>
+          ~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:31: Warning: The resource R.string.black appears to be unused [UnusedResources]
+  <string name="black">Black — чёрный</string>
+          ~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:32: Warning: The resource R.string.none appears to be unused [UnusedResources]
+  <string name="none">None — без секторов</string>
+          ~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:33: Warning: The resource R.string.lines appears to be unused [UnusedResources]
+  <string name="lines">Lines — разделители</string>
+          ~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:34: Warning: The resource R.string.labels appears to be unused [UnusedResources]
+  <string name="labels">Labels — разделители и подписи</string>
+          ~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:35: Warning: The resource R.string.color appears to be unused [UnusedResources]
+  <string name="color">Color — цветные сектора</string>
+          ~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:36: Warning: The resource R.string.quarter appears to be unused [UnusedResources]
+  <string name="quarter">Quarter — 00 / 06 / 12 / 18</string>
+          ~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:37: Warning: The resource R.string.shifted_back_1_hour appears to be unused [UnusedResources]
+  <string name="shifted_back_1_hour">На час назад — 23 / 05 / 11 / 17</string>
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:38: Warning: The resource R.string.micro appears to be unused [UnusedResources]
+  <string name="micro">Micro — короткие засечки</string>
+          ~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:39: Warning: The resource R.string.radial appears to be unused [UnusedResources]
+  <string name="radial">Radial — радиальные линии</string>
+          ~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:40: Warning: The resource R.string.full appears to be unused [UnusedResources]
+  <string name="full">Full — линии от центра</string>
+          ~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:41: Warning: The resource R.string.arc appears to be unused [UnusedResources]
+  <string name="arc">Arc — дуги периодов</string>
+          ~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:42: Warning: The resource R.string.classic_dividers appears to be unused [UnusedResources]
+  <string name="classic_dividers">Classic — винтажные разделители</string>
+          ~~~~~~~~~~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:43: Warning: The resource R.string.slot_1 appears to be unused [UnusedResources]
+  <string name="slot_1">Дополнение №1 — слева</string>
+          ~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:44: Warning: The resource R.string.slot_2 appears to be unused [UnusedResources]
+  <string name="slot_2">Дополнение №2 — справа</string>
+          ~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:45: Warning: The resource R.string.slot_3 appears to be unused [UnusedResources]
+  <string name="slot_3">Дополнение №3 — снизу</string>
+          ~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:46: Warning: The resource R.string.bellross appears to be unused [UnusedResources]
+  <string name="bellross">Bell &amp; Ross — по референсу</string>
+          ~~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:47: Warning: The resource R.string.bellross_needle appears to be unused [UnusedResources]
+  <string name="bellross_needle">Bell &amp; Ross — тонкая минутная</string>
+          ~~~~~~~~~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:48: Warning: The resource R.string.original_white appears to be unused [UnusedResources]
+  <string name="original_white">Original 1.0 — White</string>
+          ~~~~~~~~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:49: Warning: The resource R.string.original_black appears to be unused [UnusedResources]
+  <string name="original_black">Original 1.0 — Black</string>
+          ~~~~~~~~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:50: Warning: The resource R.string.original_sputnik appears to be unused [UnusedResources]
+  <string name="original_sputnik">Original 1.0 — Sputnik</string>
+          ~~~~~~~~~~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:51: Warning: The resource R.string.original_orange appears to be unused [UnusedResources]
+  <string name="original_orange">Original 1.0 — Orange</string>
+          ~~~~~~~~~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:52: Warning: The resource R.string.MinuteTrackStyle appears to be unused [UnusedResources]
+  <string name="MinuteTrackStyle">Минутная дорожка</string>
+          ~~~~~~~~~~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:53: Warning: The resource R.string.minute_track_None appears to be unused [UnusedResources]
+  <string name="minute_track_None">None — без минутной шкалы</string>
+          ~~~~~~~~~~~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:54: Warning: The resource R.string.TicksOnly appears to be unused [UnusedResources]
+  <string name="TicksOnly">TicksOnly — только деления</string>
+          ~~~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:55: Warning: The resource R.string.FiveMinuteLabels appears to be unused [UnusedResources]
+  <string name="FiveMinuteLabels">FiveMinuteLabels — подписи через 5 минут</string>
+          ~~~~~~~~~~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:56: Warning: The resource R.string.SputnikRing appears to be unused [UnusedResources]
+  <string name="SputnikRing">SputnikRing — винтажный пояс</string>
+          ~~~~~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:57: Warning: The resource R.string.InstrumentRing appears to be unused [UnusedResources]
+  <string name="InstrumentRing">InstrumentRing — технический пояс</string>
+          ~~~~~~~~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:58: Warning: The resource R.string.instrument_refined appears to be unused [UnusedResources]
+  <string name="instrument_refined">Instrument Refined — цельный приборный комплект</string>
+          ~~~~~~~~~~~~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:59: Warning: The resource R.string.bellross_photo appears to be unused [UnusedResources]
+  <string name="bellross_photo">Instrument Classic — векторные стрелки</string>
+          ~~~~~~~~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:60: Warning: The resource R.string.instrument_classic_clean appears to be unused [UnusedResources]
+  <string name="instrument_classic_clean">Instrument Classic — без обводки</string>
+          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:61: Warning: The resource R.string.instrument_classic appears to be unused [UnusedResources]
+  <string name="instrument_classic">Instrument Classic — цифры и индексы по референсу</string>
+          ~~~~~~~~~~~~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:62: Warning: The resource R.string.HandSize appears to be unused [UnusedResources]
+  <string name="HandSize">Размер стрелок Instrument Classic</string>
+          ~~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:63: Warning: The resource R.string.Compact appears to be unused [UnusedResources]
+  <string name="Compact">Compact — 92%%</string>
+          ~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:64: Warning: The resource R.string.Original appears to be unused [UnusedResources]
+  <string name="Original">Original — исходные пропорции</string>
+          ~~~~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\values\strings.xml:65: Warning: The resource R.string.Large appears to be unused [UnusedResources]
+  <string name="Large">Large — 106%%</string>
+          ~~~~~~~~~~~~
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_classic_scale_brown.png: Warning: The resource R.drawable.trimmed_classic_scale_brown appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_classic_scale_ink.png: Warning: The resource R.drawable.trimmed_classic_scale_ink appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_classic_scale_orange.png: Warning: The resource R.drawable.trimmed_classic_scale_orange appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_classic_scale_paper.png: Warning: The resource R.drawable.trimmed_classic_scale_paper appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_hand_classic_dark.png: Warning: The resource R.drawable.trimmed_hand_classic_dark appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_hand_classic_light.png: Warning: The resource R.drawable.trimmed_hand_classic_light appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_hand_instrument_dark.png: Warning: The resource R.drawable.trimmed_hand_instrument_dark appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_hand_instrument_light.png: Warning: The resource R.drawable.trimmed_hand_instrument_light appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_hand_minimal_dark.png: Warning: The resource R.drawable.trimmed_hand_minimal_dark appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_hand_minimal_light.png: Warning: The resource R.drawable.trimmed_hand_minimal_light appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_hand_sputnik_dark.png: Warning: The resource R.drawable.trimmed_hand_sputnik_dark appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_hand_sputnik_light.png: Warning: The resource R.drawable.trimmed_hand_sputnik_light appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_instrument_classic_clean_hour_black.png: Warning: The resource R.drawable.trimmed_instrument_classic_clean_hour_black appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_instrument_classic_clean_hour_ivory.png: Warning: The resource R.drawable.trimmed_instrument_classic_clean_hour_ivory appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_instrument_classic_clean_hour_white.png: Warning: The resource R.drawable.trimmed_instrument_classic_clean_hour_white appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_instrument_classic_clean_hub_black.png: Warning: The resource R.drawable.trimmed_instrument_classic_clean_hub_black appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_instrument_classic_clean_hub_ivory.png: Warning: The resource R.drawable.trimmed_instrument_classic_clean_hub_ivory appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_instrument_classic_clean_hub_white.png: Warning: The resource R.drawable.trimmed_instrument_classic_clean_hub_white appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_instrument_classic_clean_minute_black.png: Warning: The resource R.drawable.trimmed_instrument_classic_clean_minute_black appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_instrument_classic_clean_minute_ivory.png: Warning: The resource R.drawable.trimmed_instrument_classic_clean_minute_ivory appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_instrument_classic_clean_minute_white.png: Warning: The resource R.drawable.trimmed_instrument_classic_clean_minute_white appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_instrument_classic_hour_black.png: Warning: The resource R.drawable.trimmed_instrument_classic_hour_black appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_instrument_classic_hour_ivory.png: Warning: The resource R.drawable.trimmed_instrument_classic_hour_ivory appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_instrument_classic_hour_white.png: Warning: The resource R.drawable.trimmed_instrument_classic_hour_white appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_instrument_classic_hub_black.png: Warning: The resource R.drawable.trimmed_instrument_classic_hub_black appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_instrument_classic_hub_ivory.png: Warning: The resource R.drawable.trimmed_instrument_classic_hub_ivory appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_instrument_classic_hub_white.png: Warning: The resource R.drawable.trimmed_instrument_classic_hub_white appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_instrument_classic_minute_black.png: Warning: The resource R.drawable.trimmed_instrument_classic_minute_black appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_instrument_classic_minute_ivory.png: Warning: The resource R.drawable.trimmed_instrument_classic_minute_ivory appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_instrument_classic_minute_white.png: Warning: The resource R.drawable.trimmed_instrument_classic_minute_white appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_minute_classic_dark.png: Warning: The resource R.drawable.trimmed_minute_classic_dark appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_minute_classic_light.png: Warning: The resource R.drawable.trimmed_minute_classic_light appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_minute_instrument_dark.png: Warning: The resource R.drawable.trimmed_minute_instrument_dark appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_minute_instrument_light.png: Warning: The resource R.drawable.trimmed_minute_instrument_light appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_minute_minimal_dark.png: Warning: The resource R.drawable.trimmed_minute_minimal_dark appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_minute_minimal_light.png: Warning: The resource R.drawable.trimmed_minute_minimal_light appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_minute_sputnik_dark.png: Warning: The resource R.drawable.trimmed_minute_sputnik_dark appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_minute_sputnik_light.png: Warning: The resource R.drawable.trimmed_minute_sputnik_light appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_hour_aviation_dark.png: Warning: The resource R.drawable.trimmed_precision_hour_aviation_dark appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_hour_aviation_gray_dark.png: Warning: The resource R.drawable.trimmed_precision_hour_aviation_gray_dark appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_hour_aviation_gray_light.png: Warning: The resource R.drawable.trimmed_precision_hour_aviation_gray_light appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_hour_aviation_light.png: Warning: The resource R.drawable.trimmed_precision_hour_aviation_light appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_hour_bellross_dark.png: Warning: The resource R.drawable.trimmed_precision_hour_bellross_dark appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_hour_bellross_light.png: Warning: The resource R.drawable.trimmed_precision_hour_bellross_light appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_hour_bellross_needle_dark.png: Warning: The resource R.drawable.trimmed_precision_hour_bellross_needle_dark appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_hour_bellross_needle_light.png: Warning: The resource R.drawable.trimmed_precision_hour_bellross_needle_light appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_hour_instrument_dark.png: Warning: The resource R.drawable.trimmed_precision_hour_instrument_dark appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_hour_instrument_light.png: Warning: The resource R.drawable.trimmed_precision_hour_instrument_light appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_hour_instrument_refined_dark.png: Warning: The resource R.drawable.trimmed_precision_hour_instrument_refined_dark appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_hour_instrument_refined_light.png: Warning: The resource R.drawable.trimmed_precision_hour_instrument_refined_light appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_hour_instrument_white_dark.png: Warning: The resource R.drawable.trimmed_precision_hour_instrument_white_dark appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_hour_instrument_white_light.png: Warning: The resource R.drawable.trimmed_precision_hour_instrument_white_light appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_hour_needle_dark.png: Warning: The resource R.drawable.trimmed_precision_hour_needle_dark appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_hour_needle_light.png: Warning: The resource R.drawable.trimmed_precision_hour_needle_light appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_hour_sword_dark.png: Warning: The resource R.drawable.trimmed_precision_hour_sword_dark appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_hour_sword_light.png: Warning: The resource R.drawable.trimmed_precision_hour_sword_light appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_hour_vintage_dark.png: Warning: The resource R.drawable.trimmed_precision_hour_vintage_dark appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_hour_vintage_light.png: Warning: The resource R.drawable.trimmed_precision_hour_vintage_light appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_hour_vintage_red_dark.png: Warning: The resource R.drawable.trimmed_precision_hour_vintage_red_dark appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_hour_vintage_red_light.png: Warning: The resource R.drawable.trimmed_precision_hour_vintage_red_light appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_minute_aviation_dark.png: Warning: The resource R.drawable.trimmed_precision_minute_aviation_dark appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_minute_aviation_gray_dark.png: Warning: The resource R.drawable.trimmed_precision_minute_aviation_gray_dark appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_minute_aviation_gray_light.png: Warning: The resource R.drawable.trimmed_precision_minute_aviation_gray_light appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_minute_aviation_light.png: Warning: The resource R.drawable.trimmed_precision_minute_aviation_light appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_minute_bellross_dark.png: Warning: The resource R.drawable.trimmed_precision_minute_bellross_dark appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_minute_bellross_light.png: Warning: The resource R.drawable.trimmed_precision_minute_bellross_light appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_minute_bellross_needle_dark.png: Warning: The resource R.drawable.trimmed_precision_minute_bellross_needle_dark appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_minute_bellross_needle_light.png: Warning: The resource R.drawable.trimmed_precision_minute_bellross_needle_light appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_minute_instrument_dark.png: Warning: The resource R.drawable.trimmed_precision_minute_instrument_dark appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_minute_instrument_light.png: Warning: The resource R.drawable.trimmed_precision_minute_instrument_light appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_minute_instrument_refined_dark.png: Warning: The resource R.drawable.trimmed_precision_minute_instrument_refined_dark appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_minute_instrument_refined_light.png: Warning: The resource R.drawable.trimmed_precision_minute_instrument_refined_light appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_minute_instrument_white_dark.png: Warning: The resource R.drawable.trimmed_precision_minute_instrument_white_dark appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_minute_instrument_white_light.png: Warning: The resource R.drawable.trimmed_precision_minute_instrument_white_light appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_minute_needle_dark.png: Warning: The resource R.drawable.trimmed_precision_minute_needle_dark appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_minute_needle_light.png: Warning: The resource R.drawable.trimmed_precision_minute_needle_light appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_minute_sword_dark.png: Warning: The resource R.drawable.trimmed_precision_minute_sword_dark appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_minute_sword_light.png: Warning: The resource R.drawable.trimmed_precision_minute_sword_light appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_minute_vintage_dark.png: Warning: The resource R.drawable.trimmed_precision_minute_vintage_dark appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_minute_vintage_light.png: Warning: The resource R.drawable.trimmed_precision_minute_vintage_light appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_minute_vintage_red_dark.png: Warning: The resource R.drawable.trimmed_precision_minute_vintage_red_dark appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_minute_vintage_red_light.png: Warning: The resource R.drawable.trimmed_precision_minute_vintage_red_light appears to be unused [UnusedResources]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\xml\watch_face_info.xml:2: Warning: The resource R.xml.watch_face_info appears to be unused [UnusedResources]
+<WatchFaceInfo>
+^
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\raw\watchface.xml:2: Warning: The resource R.raw.watchface appears to be unused [UnusedResources]
+<WatchFace width="432" height="432" clipShape="CIRCLE"><Metadata key="PREVIEW_TIME" value="10:08:00" />
+^
+
+   Explanation for issues of type "UnusedResources":
+   Unused resources make applications larger and slow down builds.
+
+
+   The unused resource check can ignore tests. If you want to include
+   resources that are only referenced from tests, consider packaging them in a
+   test source set instead.
+
+   You can include test sources in the unused resource check by setting the
+   system property lint.unused-resources.include-tests =true, and to exclude
+   them (usually for performance reasons), use
+   lint.unused-resources.exclude-tests =true.
+   ,
+
+   Available options:
+
+   **skip-libraries** (default is true):
+   Whether the unused resource check should skip reporting unused resources in libraries.
+
+   Many libraries will declare resources that are part of the library surface; other modules depending on the library will also reference the resources. To avoid reporting all these resources as unused (in the context of a library), the unused resource check normally skips reporting unused resources in libraries. Instead, run the unused resource check on the consuming app module (along with `checkDependencies=true`).
+
+   However, there are cases where you want to check that all the resources declared in a library are used; in that case, you can disable the skip option.
+
+   To configure this option, use a `lint.xml` file with an <option> like this:
+
+   ```xml
+   <lint>
+       <issue id="UnusedResources">
+           <option name="skip-libraries" value="true" />
+       </issue>
+   </lint>
+   ```
+
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\preview_hand_bellross_needle.png: Warning: The following unrelated icon files have identical contents: preview_hand_bellross.png, preview_hand_bellross_needle.png [IconDuplicates]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\preview_white.png: Warning: The following unrelated icon files have identical contents: preview.png, preview_classic.png, preview_white.png [IconDuplicates]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_hour_bellross_needle_dark.png: Warning: The following unrelated icon files have identical contents: trimmed_precision_hour_bellross_dark.png, trimmed_precision_hour_bellross_needle_dark.png [IconDuplicates]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_hour_bellross_needle_light.png: Warning: The following unrelated icon files have identical contents: trimmed_precision_hour_bellross_light.png, trimmed_precision_hour_bellross_needle_light.png [IconDuplicates]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_minute_aviation_gray_dark.png: Warning: The following unrelated icon files have identical contents: trimmed_precision_minute_aviation_dark.png, trimmed_precision_minute_aviation_gray_dark.png [IconDuplicates]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_minute_aviation_light.png: Warning: The following unrelated icon files have identical contents: trimmed_precision_minute_aviation_gray_light.png, trimmed_precision_minute_aviation_light.png [IconDuplicates]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_minute_instrument_white_dark.png: Warning: The following unrelated icon files have identical contents: trimmed_precision_minute_instrument_dark.png, trimmed_precision_minute_instrument_white_dark.png [IconDuplicates]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_minute_instrument_white_light.png: Warning: The following unrelated icon files have identical contents: trimmed_precision_minute_instrument_light.png, trimmed_precision_minute_instrument_white_light.png [IconDuplicates]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_minute_sword_dark.png: Warning: The following unrelated icon files have identical contents: trimmed_precision_minute_needle_dark.png, trimmed_precision_minute_sword_dark.png [IconDuplicates]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_minute_sword_light.png: Warning: The following unrelated icon files have identical contents: trimmed_precision_minute_needle_light.png, trimmed_precision_minute_sword_light.png [IconDuplicates]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_minute_vintage_red_dark.png: Warning: The following unrelated icon files have identical contents: trimmed_precision_minute_vintage_dark.png, trimmed_precision_minute_vintage_red_dark.png [IconDuplicates]
+S:\MAIN\!DEV\TwentyFour\watchface\build\generated\runtime-res\drawable-nodpi\trimmed_precision_minute_vintage_red_light.png: Warning: The following unrelated icon files have identical contents: trimmed_precision_minute_vintage_light.png, trimmed_precision_minute_vintage_red_light.png [IconDuplicates]
+
+   Explanation for issues of type "IconDuplicates":
+   If an icon is repeated under different names, you can consolidate and just
+   use one of the icons and delete the others to make your application
+   smaller. However, duplicated icons usually are not intentional and can
+   sometimes point to icons that were accidentally overwritten or accidentally
+   not updated.
+
+0 errors, 202 warnings

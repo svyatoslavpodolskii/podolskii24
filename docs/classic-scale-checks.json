@@ -1,0 +1,24 @@
+{
+  "existing_hand_pngs_byte_identical": 69,
+  "existing_dials_unchanged": 15,
+  "custom_tick_positions": 96,
+  "main_hour_positions": 24,
+  "custom_glyphs": [
+    "1",
+    "2",
+    "4",
+    "6",
+    "8"
+  ],
+  "native_scale_components": 103,
+  "no_font_for_custom_numerals": true,
+  "hand_sizes": {
+    "Compact": 0.92,
+    "Original": 1.0,
+    "Large": 1.06
+  },
+  "hour_above_minute": true,
+  "clean_hand_svg_pngs": 9,
+  "configuration_renders": 144,
+  "device_test": false
+}

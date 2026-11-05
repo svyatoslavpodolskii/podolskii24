@@ -1,0 +1,40 @@
+name: Build Podolskii24
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  apk:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '21'
+      - uses: android-actions/setup-android@v3
+      - name: Install API 36
+        run: sdkmanager 'platforms;android-36' 'build-tools;35.0.0'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Install image inspection dependencies
+        run: python -m pip install -r tools/requirements-preview.txt
+      - name: Geometry and resource tests
+        run: python -m unittest discover -s tools -p 'test_*.py' -v
+      - name: Validate WFF v4 and build signed debug APK
+        run: |
+          chmod +x gradlew
+          ./gradlew :watchface:exportDebugApk :watchface:lintDebug --no-daemon
+      - name: Verify resource-only package and APK signature
+        run: |
+          python tools/verify_apk.py dist/Podolskii24-debug.apk
+          "$ANDROID_HOME/build-tools/35.0.0/apksigner" verify --verbose dist/Podolskii24-debug.apk
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Podolskii24-debug
+          path: dist/Podolskii24-debug.apk
+          if-no-files-found: error

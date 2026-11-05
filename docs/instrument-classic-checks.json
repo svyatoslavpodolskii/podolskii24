@@ -1,0 +1,25 @@
+{
+  "vector_masters": 9,
+  "static_pngs": 9,
+  "backgrounds": [
+    "white",
+    "ivory",
+    "black"
+  ],
+  "photographic_inputs": false,
+  "svg_raster_pixels_identical": true,
+  "connected_components_per_png": 1,
+  "existing_other_hand_pngs_byte_identical": 60,
+  "unrelated_wff_unchanged": true,
+  "configuration_renders": 150,
+  "screen_pixels": [
+    432,
+    432
+  ],
+  "times": [
+    "03:00",
+    "10:30",
+    "18:00"
+  ],
+  "device_test": false
+}

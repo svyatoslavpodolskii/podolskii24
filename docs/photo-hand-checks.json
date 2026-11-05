@@ -1,0 +1,10 @@
+{
+  "existing_hand_pngs_byte_identical": 60,
+  "non_photo_wff_unchanged": true,
+  "photo_configuration_renders": 150,
+  "hour_reference_angle": -54.200400469070345,
+  "minute_reference_angle": 67.3092946089361,
+  "source": "docs/references/bellross-original.jpg",
+  "comparison_pose": "Aligned for silhouette comparison only; APK uses normal 24-hour clock",
+  "device_test": false
+}

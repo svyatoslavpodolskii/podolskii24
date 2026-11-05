@@ -1,0 +1,200 @@
+"""Generate native WFF geometry. Python runs on the development machine only."""
+from pathlib import Path
+import math
+import xml.etree.ElementTree as E
+
+ROOT = Path(__file__).resolve().parents[1]
+RES = ROOT / 'watchface/src/main/res'
+C = 216
+SIZE = 432
+PRESETS = {'sputnik': (5, 9, 17, 21), 'alternative': (6, 12, 18, 22)}
+THEMES = {
+    'white': ('#F5F2EA', '#202321', '#202321', ('#E6DFC7', '#F1EDDF', '#B8B3A7', '#303735')),
+    'black': ('#000000', '#EEEEEA', '#EEEEEA', ('#202420', '#171B1C', '#252321', '#090B0D')),
+    'sputnik': ('#E5DFCA', '#252E2B', '#A5382C', ('#D4D4B2', '#E8DFC7', '#ABA698', '#293431')),
+    'orange': ('#000000', '#EF842E', '#EF842E', ('#30271B', '#211E18', '#30221A', '#0B0C0B')),
+}
+def angle(hour, minute=0): return (15 * (hour + minute / 60 - 12)) % 360
+def point(a, radius, center=C):
+    a = math.radians(a)
+    return center + radius * math.sin(a), center - radius * math.cos(a)
+def period(hour, minute=0, preset='sputnik'):
+    h = hour + minute / 60
+    a,b,c,d = PRESETS[preset]
+    return 'morning' if a <= h < b else 'day' if b <= h < c else 'evening' if c <= h < d else 'night'
+def node(parent, tag, **attrs): return E.SubElement(parent, tag, {k: str(v) for k,v in attrs.items()})
+def full(parent, tag, **attrs): return node(parent, tag, x=0, y=0, width=SIZE, height=SIZE, **attrs)
+def group(parent, name, ambient=None):
+    g = full(parent, 'Group', name=name, pivotX=0.5, pivotY=0.5)
+    if ambient is not None:
+        if ambient: g.set('alpha', '0')
+        node(g, 'Variant', mode='AMBIENT', target='alpha', value=255 if ambient else 0)
+    return g
+def condition(parent, expression, name='enabled'):
+    c = node(parent, 'Condition')
+    es = node(c, 'Expressions')
+    node(es, 'Expression', name=name).text = expression
+    return node(c, 'Compare', expression=name)
+def draw(parent): return full(parent, 'PartDraw')
+def line(parent, a, b, color, thickness=1, cap='BUTT'):
+    s = node(parent, 'Line', startX=round(a[0],4), startY=round(a[1],4), endX=round(b[0],4), endY=round(b[1],4))
+    node(s, 'Stroke', color=color, thickness=thickness, cap=cap)
+    return s
+def ellipse(parent, x,y,w,h,color):
+    node(node(parent,'Ellipse',x=x,y=y,width=w,height=h), 'Fill', color=color)
+def text(parent, x,y,w,h, value, color, size, weight='NORMAL', family='sans-serif-condensed'):
+    p = node(parent,'PartText',x=round(x),y=round(y),width=w,height=h)
+    t = node(p,'Text',align='CENTER',ellipsis='TRUE',maxLines=1)
+    f = node(t,'Font',family=family,size=size,color=color,weight=weight)
+    f.text = value
+    return f
+def template(parent, x,y,w,h,expr,color,size):
+    f = text(parent,x,y,w,h,None,color,size)
+    node(f,'Template').text='%s'
+    node(f[-1], 'Parameter', expression=expr)
+def arc(parent, cx,cy,diameter,start,end,color,thickness):
+    a = node(parent,'Arc',centerX=cx,centerY=cy,width=diameter,height=diameter,startAngle=start,endAngle=end)
+    node(a,'Stroke',color=color,thickness=thickness,cap='BUTT')
+    return a
+def scale(parent, theme, ambient=False):
+    fg = '#8C9290' if ambient else THEMES[theme][1]
+    d=draw(parent)
+    # 120 marks, each representing 12 minutes of the 24-hour revolution.
+    count=24 if ambient else 120
+    for i in range(count):
+        a=i*360/count
+        major=ambient or i%5==0
+        length=12 if major else (7 if i%5 in (2,3) else 5)
+        width=2.2 if major else 0.8
+        if theme=='orange' and major and not ambient: length,width=17,3.6
+        line(d,point(a,201-length),point(a,201),fg,width,'ROUND' if theme=='orange' else 'BUTT')
+    hours=range(2,25,2) if theme in ('white','orange') or ambient else range(1,25)
+    for h in hours:
+        x,y=point(angle(h),173 if theme in ('black','sputnik') and not ambient else 169)
+        size=20 if theme in ('black','sputnik') and not ambient else 27
+        if theme=='orange' and h in (6,12,18,24) and not ambient: size=34
+        text(parent,x-22,y-20,44,40,str(h),fg,size,'MEDIUM' if theme=='orange' else 'NORMAL')
+def sectors(parent, theme, preset, mode):
+    bg,fg,hand,colors=THEMES[theme]
+    bounds=PRESETS[preset]
+    d=draw(parent)
+    ends=(*bounds[1:],bounds[0]+24)
+    if mode=='color':
+        for start,end,color in zip(bounds,ends,colors):
+            a=angle(start)
+            arc(d,C,C,140,a,a+(end-start)*15,color,140)
+    for h in bounds:
+        a=angle(h)
+        line(d,point(a,12),point(a,145),fg,0.8)
+    if mode in ('labels','color'):
+        for i,(start,end,label) in enumerate(zip(bounds,ends,('УТРО','ДЕНЬ','ВЕЧЕР','НОЧЬ'))):
+            # Labels occupy the outer interior band, outside the complication envelopes.
+            x,y=point(angle((start+end)/2),124)
+            color='#E4E4D8' if mode=='color' and (i==3 or theme in ('black','orange')) else fg
+            text(parent,x-33,y-12,66,24,label,color,15,'MEDIUM')
+def hand(parent,theme,minute=False,ambient=False):
+    fg= '#BCC1BE' if ambient else THEMES[theme][2 if not minute else 1]
+    g=group(parent,('minute' if minute else 'hour')+('_aod' if ambient else ''))
+    node(g,'Transform',target='angle',value='[MINUTE] * 6' if minute else '15 * ([HOUR_0_23] + [MINUTE] / 60.0 - 12)')
+    d=draw(g)
+    if minute:
+        if not ambient and theme in ('white','sputnik'):
+            outline=draw(condition(g,'[CONFIGURATION.sectors] == "color"'))
+            line(outline,(C,C+21),(C,44),'#E5E5DA',3.4,'ROUND')
+            g.remove(d);g.append(d)
+        line(d,(C,C+21),(C,44),fg,1.4,'ROUND')
+    else:
+        widths={'white':3.6,'black':2.5,'sputnik':3.8,'orange':6}
+        if not ambient and theme in ('white','sputnik'):
+            outline=draw(condition(g,'[CONFIGURATION.sectors] == "color"'))
+            line(outline,(C,C+24),(C,72),'#E5E5DA',8 if theme=='sputnik' else 6,'ROUND')
+            # Keep the contrasting outline below the foreground stroke.
+            g.remove(d);g.append(d)
+        line(d,(C,C+24),(C,72),fg,2 if ambient else widths[theme],'ROUND')
+        if theme=='orange' and not ambient:
+            line(d,(C,130),(C,88),fg,9,'BUTT')
+        if theme=='sputnik' and not ambient:
+            line(d,(C,C+22),(C,80),'#252E2B',6,'ROUND')
+            line(d,(C,145),(C,85),fg,2.8,'ROUND')
+    return g
+def complication(parent, slot, x,y):
+    s=node(parent,'ComplicationSlot',slotId=slot,displayName=f'slot_{slot}',x=x,y=y,width=60,height=60,
+           supportedTypes='SHORT_TEXT MONOCHROMATIC_IMAGE SMALL_IMAGE RANGED_VALUE EMPTY',isCustomizable='TRUE')
+    node(s,'Variant',mode='AMBIENT',target='alpha',value=0)
+    node(s,'BoundingOval',x=0,y=0,width=60,height=60)
+    node(s,'DefaultProviderPolicy',defaultSystemProvider='EMPTY',defaultSystemProviderType='EMPTY')
+    node(s,'Complication',type='EMPTY')
+    for kind in ('SHORT_TEXT','MONOCHROMATIC_IMAGE','SMALL_IMAGE','RANGED_VALUE'):
+        c=node(s,'Complication',type=kind)
+        for theme,(bg,fg,_,_) in THEMES.items():
+            p=condition(c,f'[CONFIGURATION.theme] == "{theme}"')
+            g=node(p,'Group',name=f'slot{slot}_{kind}_{theme}',x=0,y=0,width=60,height=60)
+            # Opaque, circular backing appears only when real data is present.
+            dp=node(g,'PartDraw',x=0,y=0,width=60,height=60)
+            ellipse(dp,0,0,60,60,bg)
+            if kind in ('MONOCHROMATIC_IMAGE','SMALL_IMAGE'):
+                prop='COMPLICATION.'+kind
+                pi=node(g,'PartImage',x=10,y=10,width=40,height=40)
+                if kind=='MONOCHROMATIC_IMAGE': pi.set('tintColor',fg)
+                node(pi,'Image',resource=f'[{prop}]')
+            elif kind=='SHORT_TEXT':
+                template(g,4,16,52,25,'[COMPLICATION.TEXT]',fg,19)
+                template(g,5,38,50,16,'[COMPLICATION.TITLE]',fg,12)
+            else:
+                arc(dp,30,30,54,210,510,fg,0.5)
+                a=arc(dp,30,30,54,210,210,fg,2)
+                node(a,'Transform',target='endAngle',value='210 + 300 * clamp(([COMPLICATION.RANGED_VALUE_VALUE] - [COMPLICATION.RANGED_VALUE_MIN]) / clamp([COMPLICATION.RANGED_VALUE_MAX] - [COMPLICATION.RANGED_VALUE_MIN], 0.001, 1000000000), 0, 1)')
+                # Prefer provider text (units, localized percentage); fall back to the value.
+                choice=node(g,'Condition');es=node(choice,'Expressions')
+                node(es,'Expression',name='has_text').text='textLength([COMPLICATION.TEXT]) > 0'
+                template(node(choice,'Compare',expression='has_text'),5,17,50,25,'[COMPLICATION.TEXT]',fg,18)
+                f=text(node(choice,'Default'),5,17,50,25,None,fg,18)
+                t=node(f,'Template'); t.text='%.0f';node(t,'Parameter',expression='[COMPLICATION.RANGED_VALUE_VALUE]')
+                template(g,5,39,50,15,'[COMPLICATION.TITLE]',fg,12)
+
+def generate():
+    w=E.Element('WatchFace',width=str(SIZE),height=str(SIZE),clipShape='CIRCLE')
+    node(w,'Metadata',key='PREVIEW_TIME',value='10:08:00')
+    uc=node(w,'UserConfigurations')
+    strings={'app_name':'TwentyFour','theme':'Оформление','sectors':'Сектора суток','boundaries':'Границы суток','minute':'Минутная стрелка',
+             'white':'Classic White — светлый','black':'Pure Black — чёрный','sputnik':'Sputnik — приборный','orange':'Instrument Orange — оранжевый',
+             'none':'Нет','lines':'Линии','labels':'Линии и подписи','color':'Цветные сектора','preset_sputnik':'Sputnik: 05 / 09 / 17 / 21',
+             'alternative':'Альтернативные: 06 / 12 / 18 / 22','slot_1':'Дополнение №1 — слева','slot_2':'Дополнение №2 — справа','slot_3':'Дополнение №3 — снизу'}
+    for id,default,opts in [('theme','white',list(THEMES)),('sectors','none',['none','lines','labels','color']),('boundaries','sputnik',list(PRESETS))]:
+        cfg=node(uc,'ListConfiguration',id=id,displayName=id,screenReaderText=id,defaultValue=default)
+        for opt in opts:
+            attrs={'id':opt,'displayName':'preset_sputnik' if id=='boundaries' and opt=='sputnik' else opt}
+            if id=='theme': attrs['icon']='preview_'+opt
+            node(cfg,'ListOption',**attrs)
+    node(uc,'BooleanConfiguration',id='minute',displayName='minute',screenReaderText='minute',defaultValue='FALSE')
+    sc=node(w,'Scene',backgroundColor='#000000')
+    active=group(sc,'interactive',False)
+    for theme,(bg,fg,_,_) in THEMES.items():
+        p=condition(active,f'[CONFIGURATION.theme] == "{theme}"')
+        g=group(p,'dial_'+theme)
+        ellipse(draw(g),0,0,SIZE,SIZE,bg)
+        for preset in PRESETS:
+            for mode in ('lines','labels','color'):
+                p=condition(g,f'[CONFIGURATION.boundaries] == "{preset}" && [CONFIGURATION.sectors] == "{mode}"')
+                sectors(group(p,f'{theme}_{preset}_{mode}'),theme,preset,mode)
+        scale(g,theme)
+    for slot,(x,y) in enumerate(((102,186),(270,186),(186,253)),1):complication(sc,slot,x,y)
+    # Hands follow complications in drawing order and remain legible above them.
+    hands=group(sc,'interactive_hands',False)
+    for theme in THEMES:
+        p=condition(hands,f'[CONFIGURATION.theme] == "{theme}"')
+        g=group(p,'hands_'+theme)
+        hand(g,theme)
+        hand(condition(g,'[CONFIGURATION.minute] == "TRUE"'),theme,True)
+        ellipse(draw(g),C-5,C-5,10,10,THEMES[theme][2])
+    aod=group(sc,'ambient',True)
+    scale(aod,'white',True)
+    hand(aod,'white',ambient=True)
+    ellipse(draw(aod),C-3,C-3,6,6,'#BCC1BE')
+    for path,root in [(RES/'raw/watchface.xml',w),(RES/'values/strings.xml',E.Element('resources'))]:
+        path.parent.mkdir(parents=True,exist_ok=True)
+        if root.tag=='resources':
+            for key,value in strings.items():node(root,'string',name=key).text=value
+        E.indent(root,space='  ')
+        E.ElementTree(root).write(path,encoding='utf-8',xml_declaration=True)
+if __name__=='__main__':generate()

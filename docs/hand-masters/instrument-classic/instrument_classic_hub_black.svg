@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='utf-8'?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" width="28" height="28">
+  <title>Instrument Classic / hub / black; pivot 14,14</title>
+  <circle cx="14" cy="14" r="12.6" fill="#3C3E34" stroke="#7B7E6E" stroke-width="0.65" />
+  <circle cx="14" cy="14" r="10.5" fill="#626556" />
+  <circle cx="14" cy="14" r="8.9" fill="#3C3E34" />
+  <circle cx="14" cy="14" r="1.5" fill="#B7B8A3" />
+  <circle cx="14.25" cy="14.25" r="0.65" fill="#484A3F" />
+</svg>

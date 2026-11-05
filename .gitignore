@@ -1,0 +1,14 @@
+.gradle/
+**/build/
+local.properties
+dist/
+__pycache__/
+.venv/
+*.log
+
+# Reference photographs and archived bitmap prototypes are not distributed.
+docs/references/bellross-original.jpg
+docs/references/archived-photo-masters/
+docs/previews/bellross_photo*
+*.jks
+*.keystore

@@ -1,0 +1,14 @@
+{
+  "hand_variants": 19,
+  "requested_time_renders": 342,
+  "legacy_pngs_byte_identical": 16,
+  "original_sector_groups_identical": 72,
+  "minimum_hour_tip_to_numeral_gap_px": 2.07,
+  "minimum_best_cross_section_contrast": 2.61,
+  "times": [
+    "03:00",
+    "10:30",
+    "18:00"
+  ],
+  "device_test": false
+}

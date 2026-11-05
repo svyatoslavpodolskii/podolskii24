@@ -1,0 +1,25 @@
+{
+  "screen_pixels": [
+    432,
+    432
+  ],
+  "scale_components": {
+    "instrument": {
+      "count": 96,
+      "minimum_pixels": 6
+    },
+    "aviator": {
+      "count": 96,
+      "minimum_pixels": 6
+    }
+  },
+  "hand_components": {
+    "hour_light": 1,
+    "minute_light": 1,
+    "hour_dark": 1,
+    "minute_dark": 1
+  },
+  "minute_track_renders": 300,
+  "numeral_size_selected": 34,
+  "device_test": false
+}
