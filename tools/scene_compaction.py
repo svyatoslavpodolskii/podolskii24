@@ -108,6 +108,7 @@ def complication_templates(root):
         backing=first.find('PartDraw');circle=backing.find('Ellipse')
         background=node(first,'PartDraw',x=0,y=0,width=56,height=56)
         backing.remove(circle);background.append(circle)
+        if not len(backing):first.remove(backing)
         first.remove(background);first.insert(0,background)
         for nodes in triples:
             a=nodes[0]

@@ -1,3 +1,5 @@
+Current patch: 5.5.1 / versionCode 17. See optimization/REPORT-5.5.1.md and tools/preview_layout.py.
+
 # Продолжение разработки Podolskii24 на другом ПК
 
 ## Актуальное состояние 5.5

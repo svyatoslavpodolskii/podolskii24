@@ -104,6 +104,7 @@ def compact_complications(root):
         for g in slot.findall('.//Group'):
             if not g.get('name','').startswith('slot'):continue
             g.set('x','20');g.set('y','20')
+            g.set('pivotX','0.5');g.set('pivotY','0.5')
             g.attrib.pop('scaleX',None);g.attrib.pop('scaleY',None)
             kind=next(k for k in ('SHORT_TEXT','RANGED_VALUE','MONOCHROMATIC_IMAGE','SMALL_IMAGE') if k in g.get('name'))
             bg=BACKGROUNDS[g.get('name').rsplit('_',1)[1]]
@@ -112,29 +113,33 @@ def compact_complications(root):
             for child in list(g):g.remove(child)
             backing=node(g,'PartDraw',x=0,y=0,width=56,height=56)
             ellipse(backing,0,0,56,56,bg)
-            arc(backing,28,28,55,0,360,'#68746C' if bg!='#000000' else '#56635A',.6)
+            border='#68746C' if bg!='#000000' else '#56635A'
+            if kind!='RANGED_VALUE':arc(backing,28,28,55,0,360,border,.6)
             if kind in ('MONOCHROMATIC_IMAGE','SMALL_IMAGE'):
                 image_parent=g
                 if kind=='SMALL_IMAGE':
                     image_parent=node(g,'Group',name='round_small_image',x=0,y=0,width=56,height=56)
                     mask=node(image_parent,'PartDraw',x=0,y=0,width=56,height=56,renderMode='MASK')
-                    ellipse(mask,5,5,46,46,'#FFFFFF')
-                image=node(image_parent,'PartImage',x=10 if kind=='MONOCHROMATIC_IMAGE' else 5,y=10 if kind=='MONOCHROMATIC_IMAGE' else 5,width=36 if kind=='MONOCHROMATIC_IMAGE' else 46,height=36 if kind=='MONOCHROMATIC_IMAGE' else 46)
+                    ellipse(mask,7,7,42,42,'#FFFFFF')
+                image=node(image_parent,'PartImage',x=12 if kind=='MONOCHROMATIC_IMAGE' else 7,y=12 if kind=='MONOCHROMATIC_IMAGE' else 7,width=32 if kind=='MONOCHROMATIC_IMAGE' else 42,height=32 if kind=='MONOCHROMATIC_IMAGE' else 42)
                 if kind=='MONOCHROMATIC_IMAGE':image.set('tintColor',fg)
                 node(image,'Image',resource=f'[COMPLICATION.{kind}]')
                 continue
             has_icon='[COMPLICATION.MONOCHROMATIC_IMAGE] != null && [COMPLICATION.MONOCHROMATIC_IMAGE] != ""'
-            image=node(condition(g,has_icon),'PartImage',name='provider_icon',x=20,y=6,width=16,height=16,tintColor=fg)
+            image=node(condition(g,has_icon),'PartImage',name='provider_icon',x=20,y=10,width=16,height=16,tintColor=fg)
             node(image,'Image',resource='[COMPLICATION.MONOCHROMATIC_IMAGE]')
             if kind=='RANGED_VALUE':
                 d=E.SubElement(g,'PartDraw',x='0',y='0',width='56',height='56')
-                arc(d,28,28,53,210,510,fg,.45)
-                a=arc(d,28,28,53,210,210,fg,1.7)
+                arc(d,28,28,52,210,510,border,.6)
+                a=arc(d,28,28,52,210,210,fg,1.5)
                 E.SubElement(a,'Transform',target='endAngle',value='210 + 300 * clamp(([COMPLICATION.RANGED_VALUE_VALUE] - [COMPLICATION.RANGED_VALUE_MIN]) / clamp([COMPLICATION.RANGED_VALUE_MAX] - [COMPLICATION.RANGED_VALUE_MIN], 0.001, 1000000000), 0, 1)')
-                template(g,28,28,48,26,'[COMPLICATION.RANGED_VALUE_VALUE]',fg,21,'%.0f')
-            else:template(g,28,28,48,26,'[COMPLICATION.TEXT]',fg,20)
+                template(g,28,28,46,22,'[COMPLICATION.RANGED_VALUE_VALUE]',fg,19,'%.0f')
+            else:template(g,28,28,46,22,'[COMPLICATION.TEXT]',fg,17)
             value=g.findall('PartText')[-1]
-            node(value,'Transform',target='y',value=f'({has_icon}) ? 24 : 15')
+            node(value,'Transform',target='y',value=f'({has_icon}) ? 28 : 17')
+            size='[COMPLICATION.RANGED_VALUE_VALUE] >= 10000 ? 13 : [COMPLICATION.RANGED_VALUE_VALUE] >= 1000 ? 15 : 19' if kind=='RANGED_VALUE' else 'textLength([COMPLICATION.TEXT]) > 7 ? 13 : textLength([COMPLICATION.TEXT]) > 5 ? 15 : 17'
+            node(value.find('Text/Font'),'Transform',target='size',value=size)
+            value.find('Text').set('isAutoSize','TRUE')
 
 def ambient_base(root):
     from generate import node,condition

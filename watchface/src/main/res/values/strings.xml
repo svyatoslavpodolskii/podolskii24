@@ -70,6 +70,9 @@
   <string name="minute_color_green">Зелёный</string>
   <string name="minute_color_blue">Голубой</string>
   <string name="digital_time">Цифровое время</string>
+  <string name="p_Layout">Расположение цифрового времени</string>
+  <string name="p_bottom">Снизу — компактные дополнения</string>
+  <string name="p_top">Сверху — свободная компоновка</string>
   <string name="p_AodMinute">Минутная стрелка в AOD</string>
   <string name="p_Seconds">Секундная стрелка</string>
   <string name="p_DialTone">Оттенок фона</string>

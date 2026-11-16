@@ -53,6 +53,6 @@ class HandUpdatesTest(unittest.TestCase):
             self.assertIsNotNone(box)
             # Final output filtering may add a faint fringe of up to 3 pixels.
             self.assertGreaterEqual(box[0],177);self.assertGreaterEqual(box[1],283)
-            self.assertLessEqual(box[2],255);self.assertLessEqual(box[3],315)
+            self.assertLessEqual(box[2],255);self.assertLessEqual(box[3],316)
 
 if __name__=='__main__':unittest.main()

@@ -10,8 +10,10 @@ LISTS = {
     'MinuteInset': ('wide', ('wide','inset')),
     'ComplicationSize': ('normal', ('compact','normal','large')),
     'DigitalSize': ('normal', ('compact','normal','large')),
+    'Layout': ('bottom', ('bottom','top')),
 }
 LABELS = {
+    'Layout':'Расположение цифрового времени', 'bottom':'Снизу — компактные дополнения', 'top':'Сверху — свободная компоновка',
     'AodMinute':'Минутная стрелка в AOD', 'Seconds':'Секундная стрелка',
     'DialTone':'Оттенок фона', 'HandColor':'Цвет стрелок',
     'ScaleInset':'Отступ шкалы Instrument Classic', 'MinuteInset':'Отступ минутной дорожки',
@@ -105,17 +107,24 @@ def apply(root):
     for axis in ('scaleX','scaleY'):
         node(track,'Transform',target=axis,value='[CONFIGURATION.MinuteInset] == "inset" ? 0.965 : 1.0')
     for slot in scene.findall('ComplicationSlot'):
-        if slot.get('slotId')=='1':slot.set('x','114');slot.set('y','162')
-        if slot.get('slotId')=='2':slot.set('x','222');slot.set('y','162')
-        if slot.get('slotId')=='3':slot.set('y','208')
+        if slot.get('slotId')=='1':slot.set('x','116');slot.set('y','168')
+        if slot.get('slotId')=='2':slot.set('x','220');slot.set('y','168')
+        if slot.get('slotId')=='3':
+            slot.set('y','220')
+        slot.find('BoundingOval').attrib.update(x='14',y='14',width='68',height='68')
+        if slot.get('slotId')=='3':
+            slot.find('BoundingOval').attrib.update(y='4',height='88')
         for g in slot.findall('.//Group'):
             if not g.get('name','').startswith('slot'):continue
+            if slot.get('slotId')=='3':
+                node(g,'Transform',target='y',value='[CONFIGURATION.Layout] == "top" ? 30 : 10')
             for axis in ('scaleX','scaleY'):
-                node(g,'Transform',target=axis,value='[CONFIGURATION.ComplicationSize] == "compact" ? 1.0 : [CONFIGURATION.ComplicationSize] == "large" ? 1.25 : 1.12')
+                node(g,'Transform',target=axis,value='[CONFIGURATION.ComplicationSize] == "compact" ? 0.857142857 : [CONFIGURATION.Layout] == "top" && [CONFIGURATION.ComplicationSize] == "large" ? 1.035714286 : [CONFIGURATION.Layout] == "top" ? 0.964285714 : [CONFIGURATION.ComplicationSize] == "large" ? 0.928571429 : 0.892857143')
     clock=scene.find('.//Group[@name="digital_time"]')
-    clock.set('y','288')
+    clock.set('y','291')
+    node(clock,'Transform',target='y',value='[CONFIGURATION.Layout] == "top" ? 154 : 291')
     for axis in ('scaleX','scaleY'):
-        node(clock,'Transform',target=axis,value='[CONFIGURATION.DigitalSize] == "compact" ? 1.0 : [CONFIGURATION.DigitalSize] == "large" ? 1.35 : 1.18')
+        node(clock,'Transform',target=axis,value='[CONFIGURATION.DigitalSize] == "compact" ? 1.0 : [CONFIGURATION.DigitalSize] == "large" ? 1.18 : 1.06')
     native_selectors(root)
 
 def flat_palettes(flat):

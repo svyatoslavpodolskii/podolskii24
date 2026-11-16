@@ -8,6 +8,24 @@ from render import render,evaluate
 from runtime_scene import compact_guards
 
 class PersonalizationTest(unittest.TestCase):
+    def test_layout_keeps_scaling_centered_and_time_separate(self):
+        root=E.parse(RES/'raw/watchface.xml').getroot()
+        for layout in ('bottom','top'):
+            for size in ('compact','normal','large'):
+                config={'Layout':layout,'ComplicationSize':size}
+                for slot in root.findall('Scene/ComplicationSlot'):
+                    for g in slot.findall('Complication/Group'):
+                        self.assertEqual(g.get('pivotX'),'0.5')
+                        self.assertEqual(g.get('pivotY'),'0.5')
+                        radius=28*evaluate(g.find('Transform[@target="scaleX"]').get('value'),config,10,8)
+                        self.assertLessEqual(radius,29.001)
+                        if slot.get('slotId')=='3':
+                            center=float(slot.get('y'))+evaluate(g.find('Transform[@target="y"]').get('value'),config,10,8)+28
+                            if layout=='bottom':self.assertLess(center+radius,285)
+                            else:self.assertLess(center+radius,308)
+        clock=root.find('.//Group[@name="digital_time"]')
+        self.assertEqual(evaluate(clock.find('Transform[@target="y"]').get('value'),{'Layout':'top'},10,8),154)
+
     def test_factored_guards_truth_table(self):
         guards=[f'([CONFIGURATION.style] == "{s}" && [CONFIGURATION.background] == "{b}") && ([CONFIGURATION.boundaries] == "{p}" && [CONFIGURATION.sectors] == "{m}")'
             for s,b,p,m in itertools.product(STYLES,('white','ivory'),PRESETS,('lines','labels'))]

@@ -43,11 +43,11 @@ def evaluate(expr,config,hour,minute,data=None):
     expr=re.sub(r'#[0-9A-Fa-f]{6,8}\b',lambda m:repr(m[0]),expr)
     return eval(expr,{'__builtins__':{},'null':None,'clamp':lambda x,a,b:max(a,min(b,x)),'textLength':lambda x:len(x or '')},{})
 
-def render(style='classic',background='white',sectors='none',boundaries='quarter',minute=False,ambient=False,hour=10,mins=8,complications=False,output_size=432,dividers='micro',hand_style='auto',minute_track='None',component='full',hand_size='Original',subtree=None,transparent=False,minute_color='neutral',digital_time=True,aod_minute=False,seconds=False,second=0,dial_tone='original',hand_color='original',scale_inset='wide',minute_inset='wide',complication_size='normal',digital_size='normal'):
+def render(style='classic',background='white',sectors='none',boundaries='quarter',minute=False,ambient=False,hour=10,mins=8,complications=False,output_size=432,dividers='micro',hand_style='auto',minute_track='None',component='full',hand_size='Original',subtree=None,transparent=False,minute_color='neutral',digital_time=True,aod_minute=False,seconds=False,second=0,dial_tone='original',hand_color='original',scale_inset='wide',minute_inset='wide',complication_size='normal',digital_size='normal',layout='bottom'):
     config={'style':style,'background':background,'sectors':sectors,'boundaries':boundaries,'dividers':dividers,'HandStyle':hand_style,'MinuteTrackStyle':minute_track,'HandSize':hand_size,'minute':'TRUE' if minute else 'FALSE'}
     config['MinuteColor']=minute_color
     config['DigitalTime']='TRUE' if digital_time else 'FALSE'
-    config.update(AodMinute='TRUE' if aod_minute else 'FALSE',Seconds='TRUE' if seconds else 'FALSE',DialTone=dial_tone,HandColor=hand_color,ScaleInset=scale_inset,MinuteInset=minute_inset,ComplicationSize=complication_size,DigitalSize=digital_size)
+    config.update(AodMinute='TRUE' if aod_minute else 'FALSE',Seconds='TRUE' if seconds else 'FALSE',DialTone=dial_tone,HandColor=hand_color,ScaleInset=scale_inset,MinuteInset=minute_inset,ComplicationSize=complication_size,DigitalSize=digital_size,Layout=layout)
     im=Image.new('RGBA',(SIZE*S,SIZE*S),(0,0,0,0) if transparent else (BACKGROUNDS[background] if component in ('hands','hour','minute') else 'black'))
     def walk(el,ox=0,oy=0,rotation=0,data=None,ignore_alpha=False,ignore_scale=False,ignore_tint=False):
         nonlocal im

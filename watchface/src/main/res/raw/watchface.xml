@@ -84,6 +84,9 @@
 <ListOption id="normal" displayName="p_normal" screenReaderText="p_normal" />
 <ListOption id="large" displayName="p_large" screenReaderText="p_large" />
 </ListConfiguration>
+<ListConfiguration id="Layout" displayName="p_Layout" screenReaderText="p_Layout" defaultValue="bottom"><ListOption id="bottom" displayName="p_bottom" screenReaderText="p_bottom" />
+<ListOption id="top" displayName="p_top" screenReaderText="p_top" />
+</ListConfiguration>
 <BooleanConfiguration id="AodMinute" displayName="p_AodMinute" screenReaderText="p_AodMinute" defaultValue="FALSE" />
 <BooleanConfiguration id="Seconds" displayName="p_Seconds" screenReaderText="p_Seconds" defaultValue="FALSE" />
 </UserConfigurations>
@@ -2836,11 +2839,11 @@
 </Group>
 <Variant mode="AMBIENT" target="tintColor" value="#87998D" />
 </Group>
-<ComplicationSlot slotId="1" displayName="slot_1" x="114" y="162" width="96" height="96" supportedTypes="SHORT_TEXT MONOCHROMATIC_IMAGE SMALL_IMAGE RANGED_VALUE EMPTY" isCustomizable="TRUE"><Variant mode="AMBIENT" target="alpha" value="0" />
-<BoundingOval x="0" y="0" width="96" height="96" />
+<ComplicationSlot slotId="1" displayName="slot_1" x="116" y="168" width="96" height="96" supportedTypes="SHORT_TEXT MONOCHROMATIC_IMAGE SMALL_IMAGE RANGED_VALUE EMPTY" isCustomizable="TRUE"><Variant mode="AMBIENT" target="alpha" value="0" />
+<BoundingOval x="14" y="14" width="68" height="68" />
 <DefaultProviderPolicy defaultSystemProvider="EMPTY" defaultSystemProviderType="EMPTY" />
 <Complication type="EMPTY" />
-<Complication type="SHORT_TEXT"><Group name="slot1_SHORT_TEXT_shared" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
+<Complication type="SHORT_TEXT"><Group name="slot1_SHORT_TEXT_shared" x="20" y="20" width="56" height="56" pivotX="0.5" pivotY="0.5"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
 </Ellipse>
 <Transform target="tintColor" value="[CONFIGURATION.background] == &quot;white&quot; ? #FAFAF7 : [CONFIGURATION.background] == &quot;ivory&quot; ? #E9E2CE : #000000" />
 </PartDraw>
@@ -2850,23 +2853,24 @@
 </PartDraw>
 <Condition><Expressions><Expression name="enabled">[COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != ""</Expression>
 </Expressions>
-<Compare expression="enabled"><PartImage name="provider_icon" x="20" y="6" width="16" height="16" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+<Compare expression="enabled"><PartImage name="provider_icon" x="20" y="10" width="16" height="16" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
 <Transform target="tintColor" value="[CONFIGURATION.background] == &quot;white&quot; ? #222A29 : [CONFIGURATION.background] == &quot;ivory&quot; ? #222A29 : #F0F0E7" />
 </PartImage>
 </Compare>
 </Condition>
-<PartText x="4" y="15" width="48" height="26" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="20" color="#222A29"><Template>%s<Parameter expression="[COMPLICATION.TEXT]" />
+<PartText x="5" y="17" width="46" height="22" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1" isAutoSize="TRUE"><Font family="roboto_condensed" size="17" color="#222A29"><Template>%s<Parameter expression="[COMPLICATION.TEXT]" />
 </Template>
+<Transform target="size" value="textLength([COMPLICATION.TEXT]) &gt; 7 ? 13 : textLength([COMPLICATION.TEXT]) &gt; 5 ? 15 : 17" />
 <Transform target="color" value="[CONFIGURATION.background] == &quot;white&quot; ? #222A29 : [CONFIGURATION.background] == &quot;ivory&quot; ? #222A29 : #F0F0E7" />
 </Font>
 </Text>
-<Transform target="y" value="([COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != &quot;&quot;) ? 24 : 15" />
+<Transform target="y" value="([COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != &quot;&quot;) ? 28 : 17" />
 </PartText>
-<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 1.0 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.25 : 1.12" />
-<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 1.0 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.25 : 1.12" />
+<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
+<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
 </Group>
 </Complication>
-<Complication type="MONOCHROMATIC_IMAGE"><Group name="slot1_MONOCHROMATIC_IMAGE_shared" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
+<Complication type="MONOCHROMATIC_IMAGE"><Group name="slot1_MONOCHROMATIC_IMAGE_shared" x="20" y="20" width="56" height="56" pivotX="0.5" pivotY="0.5"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
 </Ellipse>
 <Transform target="tintColor" value="[CONFIGURATION.background] == &quot;white&quot; ? #FAFAF7 : [CONFIGURATION.background] == &quot;ivory&quot; ? #E9E2CE : #000000" />
 </PartDraw>
@@ -2874,14 +2878,14 @@
 </Stroke>
 </Arc>
 </PartDraw>
-<PartImage x="10" y="10" width="36" height="36" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+<PartImage x="12" y="12" width="32" height="32" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
 <Transform target="tintColor" value="[CONFIGURATION.background] == &quot;white&quot; ? #222A29 : [CONFIGURATION.background] == &quot;ivory&quot; ? #222A29 : #F0F0E7" />
 </PartImage>
-<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 1.0 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.25 : 1.12" />
-<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 1.0 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.25 : 1.12" />
+<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
+<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
 </Group>
 </Complication>
-<Complication type="SMALL_IMAGE"><Group name="slot1_SMALL_IMAGE_shared" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
+<Complication type="SMALL_IMAGE"><Group name="slot1_SMALL_IMAGE_shared" x="20" y="20" width="56" height="56" pivotX="0.5" pivotY="0.5"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
 </Ellipse>
 <Transform target="tintColor" value="[CONFIGURATION.background] == &quot;white&quot; ? #FAFAF7 : [CONFIGURATION.background] == &quot;ivory&quot; ? #E9E2CE : #000000" />
 </PartDraw>
@@ -2889,56 +2893,53 @@
 </Stroke>
 </Arc>
 </PartDraw>
-<Group name="round_small_image" x="0" y="0" width="56" height="56"><PartDraw x="0" y="0" width="56" height="56" renderMode="MASK"><Ellipse x="5" y="5" width="46" height="46"><Fill color="#FFFFFF" />
+<Group name="round_small_image" x="0" y="0" width="56" height="56"><PartDraw x="0" y="0" width="56" height="56" renderMode="MASK"><Ellipse x="7" y="7" width="42" height="42"><Fill color="#FFFFFF" />
 </Ellipse>
 </PartDraw>
-<PartImage x="5" y="5" width="46" height="46"><Image resource="[COMPLICATION.SMALL_IMAGE]" />
+<PartImage x="7" y="7" width="42" height="42"><Image resource="[COMPLICATION.SMALL_IMAGE]" />
 </PartImage>
 </Group>
-<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 1.0 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.25 : 1.12" />
-<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 1.0 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.25 : 1.12" />
+<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
+<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
 </Group>
 </Complication>
-<Complication type="RANGED_VALUE"><Group name="slot1_RANGED_VALUE_shared" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
+<Complication type="RANGED_VALUE"><Group name="slot1_RANGED_VALUE_shared" x="20" y="20" width="56" height="56" pivotX="0.5" pivotY="0.5"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
 </Ellipse>
 <Transform target="tintColor" value="[CONFIGURATION.background] == &quot;white&quot; ? #FAFAF7 : [CONFIGURATION.background] == &quot;ivory&quot; ? #E9E2CE : #000000" />
-</PartDraw>
-<PartDraw x="0" y="0" width="56" height="56"><Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#68746C" thickness="0.6" cap="BUTT"><Transform target="color" value="[CONFIGURATION.background] == &quot;white&quot; ? #68746C : [CONFIGURATION.background] == &quot;ivory&quot; ? #68746C : #56635A" />
-</Stroke>
-</Arc>
 </PartDraw>
 <Condition><Expressions><Expression name="enabled">[COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != ""</Expression>
 </Expressions>
-<Compare expression="enabled"><PartImage name="provider_icon" x="20" y="6" width="16" height="16" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+<Compare expression="enabled"><PartImage name="provider_icon" x="20" y="10" width="16" height="16" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
 <Transform target="tintColor" value="[CONFIGURATION.background] == &quot;white&quot; ? #222A29 : [CONFIGURATION.background] == &quot;ivory&quot; ? #222A29 : #F0F0E7" />
 </PartImage>
 </Compare>
 </Condition>
-<PartDraw x="0" y="0" width="56" height="56"><Arc centerX="28" centerY="28" width="53" height="53" startAngle="210" endAngle="510"><Stroke color="#222A29" thickness="0.45" cap="BUTT"><Transform target="color" value="[CONFIGURATION.background] == &quot;white&quot; ? #222A29 : [CONFIGURATION.background] == &quot;ivory&quot; ? #222A29 : #F0F0E7" />
+<PartDraw x="0" y="0" width="56" height="56"><Arc centerX="28" centerY="28" width="52" height="52" startAngle="210" endAngle="510"><Stroke color="#68746C" thickness="0.6" cap="BUTT"><Transform target="color" value="[CONFIGURATION.background] == &quot;white&quot; ? #68746C : [CONFIGURATION.background] == &quot;ivory&quot; ? #68746C : #56635A" />
 </Stroke>
 </Arc>
-<Arc centerX="28" centerY="28" width="53" height="53" startAngle="210" endAngle="210"><Stroke color="#222A29" thickness="1.7" cap="BUTT"><Transform target="color" value="[CONFIGURATION.background] == &quot;white&quot; ? #222A29 : [CONFIGURATION.background] == &quot;ivory&quot; ? #222A29 : #F0F0E7" />
+<Arc centerX="28" centerY="28" width="52" height="52" startAngle="210" endAngle="210"><Stroke color="#222A29" thickness="1.5" cap="BUTT"><Transform target="color" value="[CONFIGURATION.background] == &quot;white&quot; ? #222A29 : [CONFIGURATION.background] == &quot;ivory&quot; ? #222A29 : #F0F0E7" />
 </Stroke>
 <Transform target="endAngle" value="210 + 300 * clamp(([COMPLICATION.RANGED_VALUE_VALUE] - [COMPLICATION.RANGED_VALUE_MIN]) / clamp([COMPLICATION.RANGED_VALUE_MAX] - [COMPLICATION.RANGED_VALUE_MIN], 0.001, 1000000000), 0, 1)" />
 </Arc>
 </PartDraw>
-<PartText x="4" y="15" width="48" height="26" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="21" color="#222A29"><Template>%.0f<Parameter expression="[COMPLICATION.RANGED_VALUE_VALUE]" />
+<PartText x="5" y="17" width="46" height="22" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1" isAutoSize="TRUE"><Font family="roboto_condensed" size="19" color="#222A29"><Template>%.0f<Parameter expression="[COMPLICATION.RANGED_VALUE_VALUE]" />
 </Template>
+<Transform target="size" value="[COMPLICATION.RANGED_VALUE_VALUE] &gt;= 10000 ? 13 : [COMPLICATION.RANGED_VALUE_VALUE] &gt;= 1000 ? 15 : 19" />
 <Transform target="color" value="[CONFIGURATION.background] == &quot;white&quot; ? #222A29 : [CONFIGURATION.background] == &quot;ivory&quot; ? #222A29 : #F0F0E7" />
 </Font>
 </Text>
-<Transform target="y" value="([COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != &quot;&quot;) ? 24 : 15" />
+<Transform target="y" value="([COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != &quot;&quot;) ? 28 : 17" />
 </PartText>
-<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 1.0 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.25 : 1.12" />
-<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 1.0 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.25 : 1.12" />
+<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
+<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
 </Group>
 </Complication>
 </ComplicationSlot>
-<ComplicationSlot slotId="2" displayName="slot_2" x="222" y="162" width="96" height="96" supportedTypes="SHORT_TEXT MONOCHROMATIC_IMAGE SMALL_IMAGE RANGED_VALUE EMPTY" isCustomizable="TRUE"><Variant mode="AMBIENT" target="alpha" value="0" />
-<BoundingOval x="0" y="0" width="96" height="96" />
+<ComplicationSlot slotId="2" displayName="slot_2" x="220" y="168" width="96" height="96" supportedTypes="SHORT_TEXT MONOCHROMATIC_IMAGE SMALL_IMAGE RANGED_VALUE EMPTY" isCustomizable="TRUE"><Variant mode="AMBIENT" target="alpha" value="0" />
+<BoundingOval x="14" y="14" width="68" height="68" />
 <DefaultProviderPolicy defaultSystemProvider="EMPTY" defaultSystemProviderType="EMPTY" />
 <Complication type="EMPTY" />
-<Complication type="SHORT_TEXT"><Group name="slot2_SHORT_TEXT_shared" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
+<Complication type="SHORT_TEXT"><Group name="slot2_SHORT_TEXT_shared" x="20" y="20" width="56" height="56" pivotX="0.5" pivotY="0.5"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
 </Ellipse>
 <Transform target="tintColor" value="[CONFIGURATION.background] == &quot;white&quot; ? #FAFAF7 : [CONFIGURATION.background] == &quot;ivory&quot; ? #E9E2CE : #000000" />
 </PartDraw>
@@ -2948,23 +2949,24 @@
 </PartDraw>
 <Condition><Expressions><Expression name="enabled">[COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != ""</Expression>
 </Expressions>
-<Compare expression="enabled"><PartImage name="provider_icon" x="20" y="6" width="16" height="16" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+<Compare expression="enabled"><PartImage name="provider_icon" x="20" y="10" width="16" height="16" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
 <Transform target="tintColor" value="[CONFIGURATION.background] == &quot;white&quot; ? #222A29 : [CONFIGURATION.background] == &quot;ivory&quot; ? #222A29 : #F0F0E7" />
 </PartImage>
 </Compare>
 </Condition>
-<PartText x="4" y="15" width="48" height="26" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="20" color="#222A29"><Template>%s<Parameter expression="[COMPLICATION.TEXT]" />
+<PartText x="5" y="17" width="46" height="22" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1" isAutoSize="TRUE"><Font family="roboto_condensed" size="17" color="#222A29"><Template>%s<Parameter expression="[COMPLICATION.TEXT]" />
 </Template>
+<Transform target="size" value="textLength([COMPLICATION.TEXT]) &gt; 7 ? 13 : textLength([COMPLICATION.TEXT]) &gt; 5 ? 15 : 17" />
 <Transform target="color" value="[CONFIGURATION.background] == &quot;white&quot; ? #222A29 : [CONFIGURATION.background] == &quot;ivory&quot; ? #222A29 : #F0F0E7" />
 </Font>
 </Text>
-<Transform target="y" value="([COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != &quot;&quot;) ? 24 : 15" />
+<Transform target="y" value="([COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != &quot;&quot;) ? 28 : 17" />
 </PartText>
-<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 1.0 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.25 : 1.12" />
-<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 1.0 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.25 : 1.12" />
+<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
+<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
 </Group>
 </Complication>
-<Complication type="MONOCHROMATIC_IMAGE"><Group name="slot2_MONOCHROMATIC_IMAGE_shared" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
+<Complication type="MONOCHROMATIC_IMAGE"><Group name="slot2_MONOCHROMATIC_IMAGE_shared" x="20" y="20" width="56" height="56" pivotX="0.5" pivotY="0.5"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
 </Ellipse>
 <Transform target="tintColor" value="[CONFIGURATION.background] == &quot;white&quot; ? #FAFAF7 : [CONFIGURATION.background] == &quot;ivory&quot; ? #E9E2CE : #000000" />
 </PartDraw>
@@ -2972,14 +2974,14 @@
 </Stroke>
 </Arc>
 </PartDraw>
-<PartImage x="10" y="10" width="36" height="36" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+<PartImage x="12" y="12" width="32" height="32" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
 <Transform target="tintColor" value="[CONFIGURATION.background] == &quot;white&quot; ? #222A29 : [CONFIGURATION.background] == &quot;ivory&quot; ? #222A29 : #F0F0E7" />
 </PartImage>
-<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 1.0 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.25 : 1.12" />
-<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 1.0 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.25 : 1.12" />
+<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
+<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
 </Group>
 </Complication>
-<Complication type="SMALL_IMAGE"><Group name="slot2_SMALL_IMAGE_shared" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
+<Complication type="SMALL_IMAGE"><Group name="slot2_SMALL_IMAGE_shared" x="20" y="20" width="56" height="56" pivotX="0.5" pivotY="0.5"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
 </Ellipse>
 <Transform target="tintColor" value="[CONFIGURATION.background] == &quot;white&quot; ? #FAFAF7 : [CONFIGURATION.background] == &quot;ivory&quot; ? #E9E2CE : #000000" />
 </PartDraw>
@@ -2987,56 +2989,53 @@
 </Stroke>
 </Arc>
 </PartDraw>
-<Group name="round_small_image" x="0" y="0" width="56" height="56"><PartDraw x="0" y="0" width="56" height="56" renderMode="MASK"><Ellipse x="5" y="5" width="46" height="46"><Fill color="#FFFFFF" />
+<Group name="round_small_image" x="0" y="0" width="56" height="56"><PartDraw x="0" y="0" width="56" height="56" renderMode="MASK"><Ellipse x="7" y="7" width="42" height="42"><Fill color="#FFFFFF" />
 </Ellipse>
 </PartDraw>
-<PartImage x="5" y="5" width="46" height="46"><Image resource="[COMPLICATION.SMALL_IMAGE]" />
+<PartImage x="7" y="7" width="42" height="42"><Image resource="[COMPLICATION.SMALL_IMAGE]" />
 </PartImage>
 </Group>
-<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 1.0 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.25 : 1.12" />
-<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 1.0 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.25 : 1.12" />
+<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
+<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
 </Group>
 </Complication>
-<Complication type="RANGED_VALUE"><Group name="slot2_RANGED_VALUE_shared" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
+<Complication type="RANGED_VALUE"><Group name="slot2_RANGED_VALUE_shared" x="20" y="20" width="56" height="56" pivotX="0.5" pivotY="0.5"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
 </Ellipse>
 <Transform target="tintColor" value="[CONFIGURATION.background] == &quot;white&quot; ? #FAFAF7 : [CONFIGURATION.background] == &quot;ivory&quot; ? #E9E2CE : #000000" />
-</PartDraw>
-<PartDraw x="0" y="0" width="56" height="56"><Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#68746C" thickness="0.6" cap="BUTT"><Transform target="color" value="[CONFIGURATION.background] == &quot;white&quot; ? #68746C : [CONFIGURATION.background] == &quot;ivory&quot; ? #68746C : #56635A" />
-</Stroke>
-</Arc>
 </PartDraw>
 <Condition><Expressions><Expression name="enabled">[COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != ""</Expression>
 </Expressions>
-<Compare expression="enabled"><PartImage name="provider_icon" x="20" y="6" width="16" height="16" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+<Compare expression="enabled"><PartImage name="provider_icon" x="20" y="10" width="16" height="16" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
 <Transform target="tintColor" value="[CONFIGURATION.background] == &quot;white&quot; ? #222A29 : [CONFIGURATION.background] == &quot;ivory&quot; ? #222A29 : #F0F0E7" />
 </PartImage>
 </Compare>
 </Condition>
-<PartDraw x="0" y="0" width="56" height="56"><Arc centerX="28" centerY="28" width="53" height="53" startAngle="210" endAngle="510"><Stroke color="#222A29" thickness="0.45" cap="BUTT"><Transform target="color" value="[CONFIGURATION.background] == &quot;white&quot; ? #222A29 : [CONFIGURATION.background] == &quot;ivory&quot; ? #222A29 : #F0F0E7" />
+<PartDraw x="0" y="0" width="56" height="56"><Arc centerX="28" centerY="28" width="52" height="52" startAngle="210" endAngle="510"><Stroke color="#68746C" thickness="0.6" cap="BUTT"><Transform target="color" value="[CONFIGURATION.background] == &quot;white&quot; ? #68746C : [CONFIGURATION.background] == &quot;ivory&quot; ? #68746C : #56635A" />
 </Stroke>
 </Arc>
-<Arc centerX="28" centerY="28" width="53" height="53" startAngle="210" endAngle="210"><Stroke color="#222A29" thickness="1.7" cap="BUTT"><Transform target="color" value="[CONFIGURATION.background] == &quot;white&quot; ? #222A29 : [CONFIGURATION.background] == &quot;ivory&quot; ? #222A29 : #F0F0E7" />
+<Arc centerX="28" centerY="28" width="52" height="52" startAngle="210" endAngle="210"><Stroke color="#222A29" thickness="1.5" cap="BUTT"><Transform target="color" value="[CONFIGURATION.background] == &quot;white&quot; ? #222A29 : [CONFIGURATION.background] == &quot;ivory&quot; ? #222A29 : #F0F0E7" />
 </Stroke>
 <Transform target="endAngle" value="210 + 300 * clamp(([COMPLICATION.RANGED_VALUE_VALUE] - [COMPLICATION.RANGED_VALUE_MIN]) / clamp([COMPLICATION.RANGED_VALUE_MAX] - [COMPLICATION.RANGED_VALUE_MIN], 0.001, 1000000000), 0, 1)" />
 </Arc>
 </PartDraw>
-<PartText x="4" y="15" width="48" height="26" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="21" color="#222A29"><Template>%.0f<Parameter expression="[COMPLICATION.RANGED_VALUE_VALUE]" />
+<PartText x="5" y="17" width="46" height="22" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1" isAutoSize="TRUE"><Font family="roboto_condensed" size="19" color="#222A29"><Template>%.0f<Parameter expression="[COMPLICATION.RANGED_VALUE_VALUE]" />
 </Template>
+<Transform target="size" value="[COMPLICATION.RANGED_VALUE_VALUE] &gt;= 10000 ? 13 : [COMPLICATION.RANGED_VALUE_VALUE] &gt;= 1000 ? 15 : 19" />
 <Transform target="color" value="[CONFIGURATION.background] == &quot;white&quot; ? #222A29 : [CONFIGURATION.background] == &quot;ivory&quot; ? #222A29 : #F0F0E7" />
 </Font>
 </Text>
-<Transform target="y" value="([COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != &quot;&quot;) ? 24 : 15" />
+<Transform target="y" value="([COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != &quot;&quot;) ? 28 : 17" />
 </PartText>
-<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 1.0 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.25 : 1.12" />
-<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 1.0 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.25 : 1.12" />
+<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
+<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
 </Group>
 </Complication>
 </ComplicationSlot>
-<ComplicationSlot slotId="3" displayName="slot_3" x="168" y="208" width="96" height="96" supportedTypes="SHORT_TEXT MONOCHROMATIC_IMAGE SMALL_IMAGE RANGED_VALUE EMPTY" isCustomizable="TRUE"><Variant mode="AMBIENT" target="alpha" value="0" />
-<BoundingOval x="0" y="0" width="96" height="96" />
+<ComplicationSlot slotId="3" displayName="slot_3" x="168" y="220" width="96" height="96" supportedTypes="SHORT_TEXT MONOCHROMATIC_IMAGE SMALL_IMAGE RANGED_VALUE EMPTY" isCustomizable="TRUE"><Variant mode="AMBIENT" target="alpha" value="0" />
+<BoundingOval x="14" y="4" width="68" height="88" />
 <DefaultProviderPolicy defaultSystemProvider="EMPTY" defaultSystemProviderType="EMPTY" />
 <Complication type="EMPTY" />
-<Complication type="SHORT_TEXT"><Group name="slot3_SHORT_TEXT_shared" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
+<Complication type="SHORT_TEXT"><Group name="slot3_SHORT_TEXT_shared" x="20" y="20" width="56" height="56" pivotX="0.5" pivotY="0.5"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
 </Ellipse>
 <Transform target="tintColor" value="[CONFIGURATION.background] == &quot;white&quot; ? #FAFAF7 : [CONFIGURATION.background] == &quot;ivory&quot; ? #E9E2CE : #000000" />
 </PartDraw>
@@ -3046,23 +3045,25 @@
 </PartDraw>
 <Condition><Expressions><Expression name="enabled">[COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != ""</Expression>
 </Expressions>
-<Compare expression="enabled"><PartImage name="provider_icon" x="20" y="6" width="16" height="16" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+<Compare expression="enabled"><PartImage name="provider_icon" x="20" y="10" width="16" height="16" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
 <Transform target="tintColor" value="[CONFIGURATION.background] == &quot;white&quot; ? #222A29 : [CONFIGURATION.background] == &quot;ivory&quot; ? #222A29 : #F0F0E7" />
 </PartImage>
 </Compare>
 </Condition>
-<PartText x="4" y="15" width="48" height="26" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="20" color="#222A29"><Template>%s<Parameter expression="[COMPLICATION.TEXT]" />
+<PartText x="5" y="17" width="46" height="22" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1" isAutoSize="TRUE"><Font family="roboto_condensed" size="17" color="#222A29"><Template>%s<Parameter expression="[COMPLICATION.TEXT]" />
 </Template>
+<Transform target="size" value="textLength([COMPLICATION.TEXT]) &gt; 7 ? 13 : textLength([COMPLICATION.TEXT]) &gt; 5 ? 15 : 17" />
 <Transform target="color" value="[CONFIGURATION.background] == &quot;white&quot; ? #222A29 : [CONFIGURATION.background] == &quot;ivory&quot; ? #222A29 : #F0F0E7" />
 </Font>
 </Text>
-<Transform target="y" value="([COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != &quot;&quot;) ? 24 : 15" />
+<Transform target="y" value="([COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != &quot;&quot;) ? 28 : 17" />
 </PartText>
-<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 1.0 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.25 : 1.12" />
-<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 1.0 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.25 : 1.12" />
+<Transform target="y" value="[CONFIGURATION.Layout] == &quot;top&quot; ? 30 : 10" />
+<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
+<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
 </Group>
 </Complication>
-<Complication type="MONOCHROMATIC_IMAGE"><Group name="slot3_MONOCHROMATIC_IMAGE_shared" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
+<Complication type="MONOCHROMATIC_IMAGE"><Group name="slot3_MONOCHROMATIC_IMAGE_shared" x="20" y="20" width="56" height="56" pivotX="0.5" pivotY="0.5"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
 </Ellipse>
 <Transform target="tintColor" value="[CONFIGURATION.background] == &quot;white&quot; ? #FAFAF7 : [CONFIGURATION.background] == &quot;ivory&quot; ? #E9E2CE : #000000" />
 </PartDraw>
@@ -3070,14 +3071,15 @@
 </Stroke>
 </Arc>
 </PartDraw>
-<PartImage x="10" y="10" width="36" height="36" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+<PartImage x="12" y="12" width="32" height="32" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
 <Transform target="tintColor" value="[CONFIGURATION.background] == &quot;white&quot; ? #222A29 : [CONFIGURATION.background] == &quot;ivory&quot; ? #222A29 : #F0F0E7" />
 </PartImage>
-<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 1.0 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.25 : 1.12" />
-<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 1.0 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.25 : 1.12" />
+<Transform target="y" value="[CONFIGURATION.Layout] == &quot;top&quot; ? 30 : 10" />
+<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
+<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
 </Group>
 </Complication>
-<Complication type="SMALL_IMAGE"><Group name="slot3_SMALL_IMAGE_shared" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
+<Complication type="SMALL_IMAGE"><Group name="slot3_SMALL_IMAGE_shared" x="20" y="20" width="56" height="56" pivotX="0.5" pivotY="0.5"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
 </Ellipse>
 <Transform target="tintColor" value="[CONFIGURATION.background] == &quot;white&quot; ? #FAFAF7 : [CONFIGURATION.background] == &quot;ivory&quot; ? #E9E2CE : #000000" />
 </PartDraw>
@@ -3085,48 +3087,47 @@
 </Stroke>
 </Arc>
 </PartDraw>
-<Group name="round_small_image" x="0" y="0" width="56" height="56"><PartDraw x="0" y="0" width="56" height="56" renderMode="MASK"><Ellipse x="5" y="5" width="46" height="46"><Fill color="#FFFFFF" />
+<Group name="round_small_image" x="0" y="0" width="56" height="56"><PartDraw x="0" y="0" width="56" height="56" renderMode="MASK"><Ellipse x="7" y="7" width="42" height="42"><Fill color="#FFFFFF" />
 </Ellipse>
 </PartDraw>
-<PartImage x="5" y="5" width="46" height="46"><Image resource="[COMPLICATION.SMALL_IMAGE]" />
+<PartImage x="7" y="7" width="42" height="42"><Image resource="[COMPLICATION.SMALL_IMAGE]" />
 </PartImage>
 </Group>
-<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 1.0 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.25 : 1.12" />
-<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 1.0 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.25 : 1.12" />
+<Transform target="y" value="[CONFIGURATION.Layout] == &quot;top&quot; ? 30 : 10" />
+<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
+<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
 </Group>
 </Complication>
-<Complication type="RANGED_VALUE"><Group name="slot3_RANGED_VALUE_shared" x="20" y="20" width="56" height="56" pivotX="0" pivotY="0"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
+<Complication type="RANGED_VALUE"><Group name="slot3_RANGED_VALUE_shared" x="20" y="20" width="56" height="56" pivotX="0.5" pivotY="0.5"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
 </Ellipse>
 <Transform target="tintColor" value="[CONFIGURATION.background] == &quot;white&quot; ? #FAFAF7 : [CONFIGURATION.background] == &quot;ivory&quot; ? #E9E2CE : #000000" />
-</PartDraw>
-<PartDraw x="0" y="0" width="56" height="56"><Arc centerX="28" centerY="28" width="55" height="55" startAngle="0" endAngle="360"><Stroke color="#68746C" thickness="0.6" cap="BUTT"><Transform target="color" value="[CONFIGURATION.background] == &quot;white&quot; ? #68746C : [CONFIGURATION.background] == &quot;ivory&quot; ? #68746C : #56635A" />
-</Stroke>
-</Arc>
 </PartDraw>
 <Condition><Expressions><Expression name="enabled">[COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != ""</Expression>
 </Expressions>
-<Compare expression="enabled"><PartImage name="provider_icon" x="20" y="6" width="16" height="16" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
+<Compare expression="enabled"><PartImage name="provider_icon" x="20" y="10" width="16" height="16" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
 <Transform target="tintColor" value="[CONFIGURATION.background] == &quot;white&quot; ? #222A29 : [CONFIGURATION.background] == &quot;ivory&quot; ? #222A29 : #F0F0E7" />
 </PartImage>
 </Compare>
 </Condition>
-<PartDraw x="0" y="0" width="56" height="56"><Arc centerX="28" centerY="28" width="53" height="53" startAngle="210" endAngle="510"><Stroke color="#222A29" thickness="0.45" cap="BUTT"><Transform target="color" value="[CONFIGURATION.background] == &quot;white&quot; ? #222A29 : [CONFIGURATION.background] == &quot;ivory&quot; ? #222A29 : #F0F0E7" />
+<PartDraw x="0" y="0" width="56" height="56"><Arc centerX="28" centerY="28" width="52" height="52" startAngle="210" endAngle="510"><Stroke color="#68746C" thickness="0.6" cap="BUTT"><Transform target="color" value="[CONFIGURATION.background] == &quot;white&quot; ? #68746C : [CONFIGURATION.background] == &quot;ivory&quot; ? #68746C : #56635A" />
 </Stroke>
 </Arc>
-<Arc centerX="28" centerY="28" width="53" height="53" startAngle="210" endAngle="210"><Stroke color="#222A29" thickness="1.7" cap="BUTT"><Transform target="color" value="[CONFIGURATION.background] == &quot;white&quot; ? #222A29 : [CONFIGURATION.background] == &quot;ivory&quot; ? #222A29 : #F0F0E7" />
+<Arc centerX="28" centerY="28" width="52" height="52" startAngle="210" endAngle="210"><Stroke color="#222A29" thickness="1.5" cap="BUTT"><Transform target="color" value="[CONFIGURATION.background] == &quot;white&quot; ? #222A29 : [CONFIGURATION.background] == &quot;ivory&quot; ? #222A29 : #F0F0E7" />
 </Stroke>
 <Transform target="endAngle" value="210 + 300 * clamp(([COMPLICATION.RANGED_VALUE_VALUE] - [COMPLICATION.RANGED_VALUE_MIN]) / clamp([COMPLICATION.RANGED_VALUE_MAX] - [COMPLICATION.RANGED_VALUE_MIN], 0.001, 1000000000), 0, 1)" />
 </Arc>
 </PartDraw>
-<PartText x="4" y="15" width="48" height="26" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1"><Font family="roboto_condensed" size="21" color="#222A29"><Template>%.0f<Parameter expression="[COMPLICATION.RANGED_VALUE_VALUE]" />
+<PartText x="5" y="17" width="46" height="22" pivotX="0.5" pivotY="0.5"><Text align="CENTER" ellipsis="TRUE" maxLines="1" isAutoSize="TRUE"><Font family="roboto_condensed" size="19" color="#222A29"><Template>%.0f<Parameter expression="[COMPLICATION.RANGED_VALUE_VALUE]" />
 </Template>
+<Transform target="size" value="[COMPLICATION.RANGED_VALUE_VALUE] &gt;= 10000 ? 13 : [COMPLICATION.RANGED_VALUE_VALUE] &gt;= 1000 ? 15 : 19" />
 <Transform target="color" value="[CONFIGURATION.background] == &quot;white&quot; ? #222A29 : [CONFIGURATION.background] == &quot;ivory&quot; ? #222A29 : #F0F0E7" />
 </Font>
 </Text>
-<Transform target="y" value="([COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != &quot;&quot;) ? 24 : 15" />
+<Transform target="y" value="([COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != &quot;&quot;) ? 28 : 17" />
 </PartText>
-<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 1.0 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.25 : 1.12" />
-<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 1.0 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.25 : 1.12" />
+<Transform target="y" value="[CONFIGURATION.Layout] == &quot;top&quot; ? 30 : 10" />
+<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
+<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
 </Group>
 </Complication>
 </ComplicationSlot>
@@ -4004,7 +4005,7 @@
 </Group>
 <Condition><Expressions><Expression name="enabled">[CONFIGURATION.DigitalTime] == "TRUE"</Expression>
 </Expressions>
-<Compare expression="enabled"><Group name="digital_time" x="180" y="288" width="72" height="22"><Variant mode="AMBIENT" target="alpha" value="170" />
+<Compare expression="enabled"><Group name="digital_time" x="180" y="291" width="72" height="22"><Variant mode="AMBIENT" target="alpha" value="170" />
 <Variant mode="AMBIENT" target="tintColor" value="#B7C2B7" />
 <ListConfiguration id="background"><ListOption id="black"><DigitalClock x="0" y="0" width="72" height="22"><TimeText x="0" y="1" width="70" height="20" format="hh:mm" hourFormat="24" align="CENTER"><Variant mode="AMBIENT" target="alpha" value="0" />
 <Font family="barlow_regular" size="17" color="#222A29" />
@@ -4042,8 +4043,9 @@
 </DigitalClock>
 </Compare>
 </Condition>
-<Transform target="scaleX" value="[CONFIGURATION.DigitalSize] == &quot;compact&quot; ? 1.0 : [CONFIGURATION.DigitalSize] == &quot;large&quot; ? 1.35 : 1.18" />
-<Transform target="scaleY" value="[CONFIGURATION.DigitalSize] == &quot;compact&quot; ? 1.0 : [CONFIGURATION.DigitalSize] == &quot;large&quot; ? 1.35 : 1.18" />
+<Transform target="y" value="[CONFIGURATION.Layout] == &quot;top&quot; ? 154 : 291" />
+<Transform target="scaleX" value="[CONFIGURATION.DigitalSize] == &quot;compact&quot; ? 1.0 : [CONFIGURATION.DigitalSize] == &quot;large&quot; ? 1.18 : 1.06" />
+<Transform target="scaleY" value="[CONFIGURATION.DigitalSize] == &quot;compact&quot; ? 1.0 : [CONFIGURATION.DigitalSize] == &quot;large&quot; ? 1.18 : 1.06" />
 </Group>
 </Compare>
 </Condition>
