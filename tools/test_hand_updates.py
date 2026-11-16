@@ -41,7 +41,7 @@ class HandUpdatesTest(unittest.TestCase):
             box=row.getbbox();self.assertGreaterEqual((box[2]-box[0])/scale,8)
 
     def test_optional_icons_and_digital_switch(self):
-        slot=self.root.find('.//Group[@name="slot1_SHORT_TEXT_black"]')
+        slot=self.root.find('.//Group[@name="slot1_SHORT_TEXT_shared"]')
         icon_condition=next(c for c in slot.findall('Condition') if c.find('.//PartImage[@name="provider_icon"]') is not None)
         expression=icon_condition.find('Expressions/Expression').text
         for icon,expected in ((None,False),('',False),('provider_icon',True)):

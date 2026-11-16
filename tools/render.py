@@ -145,7 +145,10 @@ def render(style='classic',background='white',sectors='none',boundaries='quarter
             def p(deg,r):return ((cx+r*math.sin(math.radians(deg)))*S,(cy-r*math.cos(math.radians(deg)))*S)
             n=max(2,math.ceil(abs(b-a)*2));angles=[a+(b-a)*i/n for i in range(n+1)]
             poly=[p(t,radius+width/2) for t in angles]+[p(t,max(0,radius-width/2)) for t in reversed(angles)]
-            d.polygon(poly,fill=st.get('color'));return
+            color=st.get('color')
+            for transform in st.findall('Transform'):
+                if transform.get('target')=='color':color=evaluate(transform.get('value'),config,hour,mins,data)
+            d.polygon(poly,fill=color);return
         if tag in ('PartText','PartImage'):
             layer=Image.new('RGBA',im.size)
             if tag=='PartText':

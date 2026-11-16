@@ -58,8 +58,8 @@ val validateWff by tasks.registering {
         }
         val scene = javax.xml.parsers.DocumentBuilderFactory.newInstance().newDocumentBuilder()
             .parse(rootProject.file("watchface/src/main/res/raw/watchface.xml"))
-        check(scene.getElementsByTagName("*").length <= 8000) { "WFF object budget exceeded" }
-        check(rootProject.file("watchface/src/main/res/raw/watchface.xml").length() <= 800_000) { "Optimized WFF source budget exceeded" }
+        check(scene.getElementsByTagName("*").length <= 4500) { "WFF object budget exceeded" }
+        check(rootProject.file("watchface/src/main/res/raw/watchface.xml").length() <= 400_000) { "Optimized WFF source budget exceeded" }
         val strings = javax.xml.parsers.DocumentBuilderFactory.newInstance().newDocumentBuilder()
             .parse(rootProject.file("watchface/src/main/res/values/strings.xml"))
         val labels = strings.getElementsByTagName("string")

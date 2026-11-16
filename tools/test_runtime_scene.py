@@ -13,8 +13,8 @@ class RuntimeSceneTest(unittest.TestCase):
         cls.manifest=json.loads((ROOT/'docs/optimization/geometry-sources.json').read_text(encoding='utf8'))
 
     def test_stronger_budgets_and_pruned_hands(self):
-        self.assertLess(len(list(self.root.iter())),8000)
-        self.assertLess((RES/'raw/watchface.xml').stat().st_size,800000)
+        self.assertLess(len(list(self.root.iter())),4500)
+        self.assertLess((RES/'raw/watchface.xml').stat().st_size,400000)
         self.assertLess(self.manifest['runtime_png_rgba_bytes'],19000000)
         self.assertLess(len(self.root.findall('.//PartDraw[@renderMode="MASK"]')),150)
         cfg=self.root.find('UserConfigurations/ListConfiguration[@id="HandStyle"]')

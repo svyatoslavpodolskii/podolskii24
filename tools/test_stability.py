@@ -43,7 +43,7 @@ class StabilityTest(unittest.TestCase):
             self.assertFalse([p for p in slot.iter('Parameter') if 'COMPLICATION.TITLE' in p.get('expression','')])
         labels=[e for e in self.root.iter('PartText') if e.get('name','').startswith('period_label_')]
         self.assertTrue(labels)
-        for label in labels:self.assertEqual({t.get('target') for t in label.findall('Transform')},{'x','y'})
+        for label in labels:self.assertEqual({t.get('target') for t in label.findall('Transform')},{'x','y','angle'})
     def test_size_changes_legacy_needle_visibly(self):
         images=[render('classic','black',hand_style='auto',hand_size=s,component='hands').tobytes() for s in ('Compact','Original','Large')]
         self.assertEqual(len(set(images)),3)

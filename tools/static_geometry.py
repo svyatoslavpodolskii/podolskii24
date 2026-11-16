@@ -248,6 +248,9 @@ def optimize(root):
             if el.get(attr) in aliases:el.set(attr,aliases[el.get(attr)])
     from runtime_scene import apply as improve_runtime_scene
     usability['runtime_scene_source']=improve_runtime_scene(root,canonical)
+    usability['global_scene_source']=canonical(root.find('Scene'))
+    from scene_compaction import apply as compact_scene
+    usability['global_compaction']=compact_scene(root)
     used={e.get(a) for e in root.iter() for a in ('resource','icon') if e.get(a)}|{'preview'}
     # Only these generated palette insets are disposable; original masters and
     # previously shipped choices remain untouched.
