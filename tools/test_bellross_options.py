@@ -102,8 +102,8 @@ class BellrossOptionsTest(unittest.TestCase):
             branded=render('instrument_classic','black',layout=name)
             box=ImageChops.difference(base,branded).convert('RGB').getbbox()
             self.assertIsNotNone(box)
-            self.assertGreaterEqual(box[1],115)
-            self.assertLessEqual(box[3],150)
+            self.assertGreaterEqual(box[1],130)
+            self.assertLessEqual(box[3],165)
 
     def test_wordmarks_are_vector_derived_and_below_hands(self):
         scene=self.root.find('Scene')
@@ -117,5 +117,16 @@ class BellrossOptionsTest(unittest.TestCase):
             vector=E.parse(source).getroot()
             self.assertFalse(vector.findall('.//{*}text'))
             self.assertTrue(vector.findall('{*}path'))
+
+    def test_bases_and_date_windows_match_actual_theme_background(self):
+        from complication_theme import background_expression
+        for bg,tone,color in (('black','brown','#35302B'),('black','navy','#142331'),('white','original','#FAFAF7'),('ivory','original','#E9E2CE')):
+            image=render('instrument_classic',bg,dial_tone=tone,hand_color='br_orange',
+                         component='hands',hour=18,mins=0,transparent=True)
+            self.assertEqual(image.getpixel((240,216))[:3],tuple(bytes.fromhex(color[1:])))
+        for window in self.root.findall('.//Group[@name="br_date_window"]'):
+            fills=window.findall('.//Fill/Transform[@target="color"]')
+            self.assertEqual(len(fills),2)
+            self.assertTrue(all(f.get('value')==background_expression() for f in fills))
 
 if __name__=='__main__':unittest.main()

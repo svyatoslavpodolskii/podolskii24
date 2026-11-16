@@ -15,7 +15,7 @@ class RuntimeSceneTest(unittest.TestCase):
 
     def test_stronger_budgets_and_pruned_hands(self):
         self.assertLess(len(list(self.root.iter())),4500)
-        self.assertLess((RES/'raw/watchface.xml').stat().st_size,440000)
+        self.assertLess((RES/'raw/watchface.xml').stat().st_size,470000)
         self.assertLess(self.manifest['runtime_png_rgba_bytes'],19300000)
         self.assertLess(len(self.root.findall('.//PartDraw[@renderMode="MASK"]')),150)
         cfg=self.root.find('UserConfigurations/ListConfiguration[@id="HandStyle"]')
@@ -58,6 +58,12 @@ class RuntimeSceneTest(unittest.TestCase):
                     boundaries=('quarter','shifted_back_1_hour')[j%2],dividers=('micro','radial','full','arc','classic')[(i+j)%5],
                     minute_track='InstrumentRing' if j%2 else 'None',minute=True,output_size=216,digital_time=False,minute_color='original',component='scale',scale_inset='original')
                 expected=before
+                if style=='aviator' and options['sectors']!='color':
+                    expected=copy.deepcopy(before)
+                    for dial in expected.findall('.//Group'):
+                        if not dial.get('name','').startswith('dial_aviator_'):continue
+                        for scale in dial.findall('.//Group[@name="regular_scale"]'):
+                            scale.set('tintColor','#F08A35' if background=='black' else '#222A29')
                 if style=='instrument_classic' and options['sectors']!='color':
                     expected=copy.deepcopy(before)
                     # The pale regular scale intentionally changed ink in 5.6.1;

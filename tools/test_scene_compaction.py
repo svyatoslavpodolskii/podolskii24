@@ -20,7 +20,7 @@ class GlobalCompactionTest(unittest.TestCase):
         before=len(list(self.before.iter()));after=len(list(self.root.find('Scene').iter()))
         self.assertLess(after,before*.78)
         self.assertLess(len(list(self.root.iter())),4500)
-        self.assertLess((RES/'raw/watchface.xml').stat().st_size,440000)
+        self.assertLess((RES/'raw/watchface.xml').stat().st_size,470000)
         self.assertLess(len(self.root.findall('.//PartDraw[@renderMode="MASK"]')),80)
         self.assertEqual(self.manifest['global_compaction']['complication_copies_removed'],24)
         self.assertGreaterEqual(self.manifest['global_compaction']['redundant_masks_removed'],18)

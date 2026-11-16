@@ -133,8 +133,12 @@ def render(style='classic',background='white',sectors='none',boundaries='quarter
             if stroke is not None:
                 for t in stroke.findall('Transform'):
                     if t.get('target')=='color':stroke_color=evaluate(t.get('value'),config,hour,mins,data)
+            fill_color=fill.get('color') if fill is not None else None
+            if fill is not None:
+                for t in fill.findall('Transform'):
+                    if t.get('target')=='color':fill_color=evaluate(t.get('value'),config,hour,mins,data)
             paint=d.ellipse if tag=='Ellipse' else d.rectangle
-            paint((x,y,x+w,y+h),fill=fill.get('color') if fill is not None else None,
+            paint((x,y,x+w,y+h),fill=fill_color,
                   outline=stroke_color,
                   width=max(1,round(float(stroke.get('thickness'))*S)) if stroke is not None else 1)
             return

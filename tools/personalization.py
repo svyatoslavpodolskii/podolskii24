@@ -44,6 +44,11 @@ def controls(root, strings):
 def apply(root):
     from generate import node,condition,group,draw,line,ellipse
     scene=root.find('Scene');active=scene.find('Group[@name="interactive"]')
+    from design_palette import ACCENT
+    for dial in active.findall('.//Group'):
+        if not dial.get('name','').startswith('dial_aviator_'):continue
+        for regular in dial.findall('.//Group[@name="regular_scale"]'):
+            node(regular,'Transform',target='tintColor',value='[CONFIGURATION.background] != "black" ? #222A29 : [CONFIGURATION.HandColor] == "white" ? #F0F0E7 : '+ACCENT)
     # Keep the three original luminance families so existing contrast logic stays
     # valid. New tones only change the base, never the independently colored sectors.
     backgrounds=active.find('Group[@name="shared_backgrounds"]')
@@ -133,8 +138,26 @@ def apply(root):
             for axis in ('scaleX','scaleY'):
                 node(g,'Transform',target=axis,value='[CONFIGURATION.ComplicationSize] == "compact" ? 0.857142857 : [CONFIGURATION.style] != "instrument_classic" && [CONFIGURATION.ComplicationSize] == "large" ? 1.142857143 : [CONFIGURATION.style] != "instrument_classic" ? 1.0 : [CONFIGURATION.Layout] == "top" && [CONFIGURATION.ComplicationSize] == "large" ? 1.035714286 : [CONFIGURATION.Layout] == "top" ? 0.964285714 : [CONFIGURATION.ComplicationSize] == "large" ? 0.928571429 : 0.892857143')
     clock=scene.find('.//Group[@name="digital_time"]')
+    # A five-copy text outline made small digital time look doubled. Use one
+    # native text and a close-fitting backing only over mixed-color sectors.
+    for native_clock in clock.iter('DigitalClock'):
+        texts=native_clock.findall('TimeText')
+        for offset_copy in texts[:-1]:native_clock.remove(offset_copy)
+    backing=node(clock,'PartDraw',name='digital_sector_backing',x=10,y=1,width=52,height=20)
+    clock.remove(backing);clock.insert(0,backing)
+    node(backing,'Variant',mode='AMBIENT',target='alpha',value=0)
+    node(backing,'Transform',target='alpha',value='[CONFIGURATION.sectors] == "color" ? 255 : 0')
+    from complication_theme import background_expression
+    node(backing,'Transform',target='tintColor',value=background_expression())
+    capsule=node(backing,'RoundRectangle',x=0,y=0,width=52,height=20,cornerRadiusX=4,cornerRadiusY=4)
+    node(capsule,'Fill',color='#FFFFFF')
+    # The lower arc otherwise passes directly through bottom digital time.
+    # Keep the angle geometry and move the ring inside that text's clear space.
+    for ring in active.findall('.//Group[@name="period_dividers_arc"]'):
+        for axis in ('scaleX','scaleY'):
+            node(ring,'Transform',target=axis,value='[CONFIGURATION.DigitalTime] == "TRUE" ? 0.83 : 1')
     clock.set('y','299')
-    node(clock,'Transform',target='y',value='[CONFIGURATION.Layout] == "top" ? 154 : [CONFIGURATION.style] == "instrument_classic" ? 299 : 326')
+    node(clock,'Transform',target='y',value='[CONFIGURATION.Layout] == "top" ? 154 : [CONFIGURATION.style] == "instrument_classic" ? 299 : [CONFIGURATION.MinuteTrackStyle] != "None" ? 312 : 326')
     for axis in ('scaleX','scaleY'):
         node(clock,'Transform',target=axis,value='[CONFIGURATION.DigitalSize] == "compact" ? 1.0 : [CONFIGURATION.style] != "instrument_classic" && [CONFIGURATION.DigitalSize] == "large" ? 1.45 : [CONFIGURATION.style] != "instrument_classic" ? 1.2 : [CONFIGURATION.DigitalSize] == "large" ? 1.18 : 1.06')
     from complication_theme import apply as theme_complications

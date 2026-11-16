@@ -79,6 +79,19 @@ def apply(root):
                     if t.get('target')!='alpha':p.append(copy.deepcopy(t))
                 node(p,'Image',resource=name)
                 if layer=='accent':node(p,'Transform',target='tintColor',value=ACCENT)
+                elif kind!='hub':
+                    # Reuse the existing coverage inset. Only the perimeter
+                    # remains visible; the actual body matches the whole theme.
+                    fill=copy.deepcopy(part)
+                    fill.set('name',f'br_{kind}_theme_body')
+                    for t in list(fill.findall('Transform')):
+                        if t.get('target') in ('alpha','tintColor'):fill.remove(t)
+                    mask=resource.rsplit('_',1)[0]+'_white'
+                    mask='flat_inset_'+mask
+                    assert (RES/'drawable-nodpi'/(mask+'.png')).is_file(),mask
+                    fill.find('Image').set('resource',mask)
+                    node(fill,'Transform',target='tintColor',value=background_expression())
+                    branch.append(fill)
     scene=root.find('Scene')
     for sid in ('1','2'):
         container=scene.find(f'ComplicationSlot[@slotId="{sid}"]')
@@ -108,7 +121,8 @@ def apply(root):
             node(group,'Transform',target='alpha',value=f'({LAYOUT}) ? 0 : 255')
         small=node(condition(comp,LAYOUT),'Group',name='br_date_window',x=0,y=0,width=176,height=128)
         d=node(small,'PartDraw',x=135,y=83,width=30,height=30)
-        circle=ellipse(d,0,0,30,30,'#101414')
+        ellipse(d,0,0,30,30,'#101414');circle=d.find('Ellipse')
+        node(circle.find('Fill'),'Transform',target='color',value=background_expression())
         # A thin frame is independent of the selected provider's artwork.
         edge=node(d,'Ellipse',x=.5,y=.5,width=29,height=29)
         node(edge,'Stroke',color='#A7AFA5',thickness=.7)
@@ -117,6 +131,7 @@ def apply(root):
         box=node(small,'PartDraw',x=133,y=85,width=34,height=26)
         shape=node(box,'Rectangle',x=0,y=0,width=34,height=26)
         node(shape,'Fill',color='#101414');node(shape,'Stroke',color='#FFC027',thickness=.8)
+        node(shape.find('Fill'),'Transform',target='color',value=background_expression())
         node(shape.find('Stroke'),'Transform',target='color',value=DATE_INK)
         node(box,'Transform',target='alpha',value='subText([CONFIGURATION.Layout], 3, 4) == "s" ? 255 : 0')
         if comp.get('type') in ('SHORT_TEXT','RANGED_VALUE'):
@@ -131,7 +146,7 @@ def apply(root):
                 image.set('tintColor','#F1F1E6');node(image,'Transform',target='tintColor',value=DATE_INK)
             node(image,'Image',resource=f'[COMPLICATION.{key}]')
     clock=scene.find('.//Group[@name="digital_time"]')
-    t=clock.find('Transform[@target="y"]');t.set('value',f'({LAYOUT}) ? 260 : '+t.get('value'))
+    t=clock.find('Transform[@target="y"]');t.set('value',f'({LAYOUT}) ? 274 : '+t.get('value'))
     brand=condition(scene,LAYOUT)
     brand_layer=list(scene)[-1]
     # Scene order is painter order: dial lettering belongs below moving hands.
@@ -147,7 +162,7 @@ def apply(root):
         g=condition(parent,' || '.join(f'[CONFIGURATION.Layout] == "{v}"' for v in ids))
         resource,width=lettering[text]
         width=2*round(width/2)
-        p=node(g,'PartImage',x=216-width//2,y=120,width=width,height=24)
+        p=node(g,'PartImage',x=216-width//2,y=134,width=width,height=24)
         node(p,'Image',resource=resource)
         node(p,'Transform',target='tintColor',value=ink)
 

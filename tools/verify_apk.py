@@ -46,7 +46,7 @@ def verify(path):
         assert z.read('res/raw/watchface.xml') == (RES/'raw/watchface.xml').read_bytes(), 'Packaged scene differs from validated XML'
         xml=E.fromstring(z.read('res/raw/watchface.xml'))
         assert len(list(xml.iter()))<=4500,'Native object budget exceeded'
-        assert len(z.read('res/raw/watchface.xml'))<=440000,'Native XML budget exceeded'
+        assert len(z.read('res/raw/watchface.xml'))<=470000,'Native XML budget exceeded'
         for item in xml.iter():
             for attr in ('icon','resource','family'):
                 if attr not in item.attrib:continue

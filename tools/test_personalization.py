@@ -26,14 +26,14 @@ class PersonalizationTest(unittest.TestCase):
                                 self.assertLess(center+radius,291)
                             else:self.assertLess(center+radius,308)
         clock=root.find('.//Group[@name="digital_time"]')
-        self.assertEqual(evaluate(clock.find('Transform[@target="y"]').get('value'),{'Layout':'top','style':'instrument_classic'},10,8),154)
+        self.assertEqual(evaluate(clock.find('Transform[@target="y"]').get('value'),{'Layout':'top','style':'instrument_classic','MinuteTrackStyle':'None'},10,8),154)
 
     def test_regular_dials_keep_roomier_layout(self):
         root=E.parse(RES/'raw/watchface.xml').getroot()
         for style in STYLES:
             if style=='instrument_classic':continue
             for size,diameter in (('compact',48),('normal',56),('large',64)):
-                config={'style':style,'Layout':'bottom','ComplicationSize':size,'DigitalSize':'large'}
+                config={'style':style,'Layout':'bottom','ComplicationSize':size,'DigitalSize':'large','MinuteTrackStyle':'None'}
                 centers=[]
                 for slot in root.findall('Scene/ComplicationSlot'):
                     g=slot.find('Complication/Group')

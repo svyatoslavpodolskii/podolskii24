@@ -3,11 +3,27 @@ import unittest
 import xml.etree.ElementTree as E
 from generate import RES,STYLES,luminance
 from preview_collection import RECIPES,options
-from render import evaluate
+from render import evaluate,render
 from design_palette import ACCENT,INK
 from complication_theme import INK as WIDGET_INK
 
 class CollectionTest(unittest.TestCase):
+    def test_reviewed_recipes_keep_time_below_and_sector_hands_contrasting(self):
+        for _,recipe in RECIPES:
+            self.assertNotEqual(recipe.get('layout'),'top')
+            if recipe.get('sectors')=='color':self.assertEqual(recipe.get('hand_color'),'white')
+        self.assertEqual(options(RECIPES[8][1])['digital_size'],'compact')
+
+    def test_ninth_recipe_time_has_clearance_from_lower_arc(self):
+        root=E.parse(RES/'raw/watchface.xml').getroot()
+        cfg=options(RECIPES[8][1])
+        ring=root.find('.//Group[@name="period_dividers_arc"]')
+        clock=root.find('.//Group[@name="digital_time"]')
+        arc_box=render(subtree=ring,transparent=True,**cfg).getchannel('A').getbbox()
+        time_box=render(subtree=clock,transparent=True,**cfg).getchannel('A').getbbox()
+        self.assertGreaterEqual(time_box[1]-arc_box[3],6)
+        for native in clock.iter('DigitalClock'):self.assertEqual(len(native.findall('TimeText')),1)
+
     def test_all_six_styles_have_three_unique_native_recipes(self):
         root=E.parse(RES/'raw/watchface.xml').getroot()
         self.assertEqual(len(RECIPES),18)

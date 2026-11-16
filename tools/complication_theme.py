@@ -3,7 +3,7 @@ import xml.etree.ElementTree as E
 
 from design_palette import ACCENT, INK as INSTRUMENT_INK
 INK='[CONFIGURATION.background] != "black" ? #222A29 : [CONFIGURATION.style] != "instrument_classic" && [CONFIGURATION.HandColor] != "orange" ? #F0F0E7 : '+ACCENT
-DATE_INK='[CONFIGURATION.style] != "instrument_classic" && [CONFIGURATION.HandColor] != "orange" ? #F0F0E7 : '+ACCENT
+DATE_INK=INK
 
 def background_expression():
     pairs={'charcoal':('#303128','#E6E4D9'),'navy':('#142331','#E2EBEE'),
