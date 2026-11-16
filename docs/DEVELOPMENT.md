@@ -1,4 +1,4 @@
-Current patch: 5.6.3 / versionCode 23. Read optimization/REPORT-5.6.3.md first. New layouts/palettes: tools/bellross_options.py; complication inks: tools/complication_theme.py; previews: tools/preview_bellross_options.py. Canonical source remains TwentyFour. Device verification is pending.
+Current patch: 5.7 / versionCode 24. Read optimization/REPORT-5.7.md first. Time decoration/shared surface: tools/widget_options.py; layouts: tools/bellross_options.py; complication inks: tools/complication_theme.py. Rebuild previews with tools/preview_collection.py and tools/preview_widget_options.py. Canonical source remains TwentyFour. Local APK only; device verification is pending.
 
 # Продолжение разработки Podolskii24 на другом ПК
 

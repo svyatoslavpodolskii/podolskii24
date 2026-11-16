@@ -12,7 +12,7 @@ class CollectionTest(unittest.TestCase):
         for _,recipe in RECIPES:
             self.assertNotEqual(recipe.get('layout'),'top')
             if recipe.get('sectors')=='color':self.assertEqual(recipe.get('hand_color'),'white')
-        self.assertEqual(options(RECIPES[8][1])['digital_size'],'compact')
+        self.assertEqual(options(RECIPES[8][1])['digital_size'],'c_outline')
 
     def test_ninth_recipe_time_has_clearance_from_lower_arc(self):
         root=E.parse(RES/'raw/watchface.xml').getroot()
@@ -22,7 +22,7 @@ class CollectionTest(unittest.TestCase):
         arc_box=render(subtree=ring,transparent=True,**cfg).getchannel('A').getbbox()
         time_box=render(subtree=clock,transparent=True,**cfg).getchannel('A').getbbox()
         self.assertGreaterEqual(time_box[1]-arc_box[3],6)
-        for native in clock.iter('DigitalClock'):self.assertEqual(len(native.findall('TimeText')),1)
+        self.assertEqual(len(clock.findall('.//Group[@name="digital_readout"]/PartText')),2)
 
     def test_all_six_styles_have_three_unique_native_recipes(self):
         root=E.parse(RES/'raw/watchface.xml').getroot()
@@ -31,7 +31,7 @@ class CollectionTest(unittest.TestCase):
         mapping={'style':'style','background':'background','hand_style':'HandStyle',
             'hand_color':'HandColor','dial_tone':'DialTone','layout':'Layout',
             'sectors':'sectors','boundaries':'boundaries','dividers':'dividers',
-            'minute_track':'MinuteTrackStyle','minute_color':'MinuteColor','complication_size':'ComplicationSize'}
+            'minute_track':'MinuteTrackStyle','minute_color':'MinuteColor','complication_size':'ComplicationSize','digital_size':'DigitalSize'}
         for title,recipe in RECIPES:
             for key,value in options(recipe).items():
                 if key not in mapping:continue

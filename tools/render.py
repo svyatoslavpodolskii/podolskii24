@@ -33,12 +33,47 @@ def evaluate(expr,config,hour,minute,data=None):
     values={'HOUR_0_23':hour,'MINUTE':minute}
     values.update({'CONFIGURATION.'+k:v for k,v in config.items()})
     if data:values.update({'COMPLICATION.'+k:v for k,v in data.items()})
-    expr=re.sub(r'\[([^]]+)\]',lambda m:repr(values[m[1]]),expr)
+    if '[REFERENCE.themeSurface]' in expr:
+        from complication_theme import background_expression
+        values['REFERENCE.themeSurface']=evaluate(background_expression(),config,hour,minute,data)
+    expr=re.sub(r'\[([^]]+)\]',lambda m:values[m[1]] if m[1].startswith('REFERENCE.') else repr(values[m[1]]),expr)
     expr=expr.replace('&&',' and ').replace('||',' or ')
     def ternary(value):
-        if '?' not in value:return value
-        test,rest=value.split('?',1);yes,no=rest.split(':',1)
-        return '('+yes+' if '+test+' else '+ternary(no)+')'
+        # Process nested expressions and preserve quoted provider strings.
+        out='';i=0
+        while i<len(value):
+            if value[i] in ('"',"'"):
+                quote=value[i];j=i+1
+                while j<len(value):
+                    if value[j]=='\\':j+=2;continue
+                    if value[j]==quote:break
+                    j+=1
+                out+=value[i:j+1];i=j+1
+            elif value[i]=='(':
+                depth=1;j=i+1;quote=None
+                while depth and j<len(value):
+                    ch=value[j]
+                    if quote:
+                        if ch==quote and value[j-1]!='\\':quote=None
+                    elif ch in ('"',"'"):quote=ch
+                    elif ch=='(':depth+=1
+                    elif ch==')':depth-=1
+                    j+=1
+                out+='('+ternary(value[i+1:j-1])+')';i=j
+            else:out+=value[i];i+=1
+        question=None;level=0;quote=None
+        for i,ch in enumerate(out):
+            if quote:
+                if ch==quote and (i==0 or out[i-1]!='\\'):quote=None
+                continue
+            if ch in ('"',"'"):quote=ch;continue
+            if ch=='?':
+                if question is None:question=i
+                else:level+=1
+            elif ch==':' and question is not None:
+                if level:level-=1
+                else:return '('+ternary(out[question+1:i])+' if '+out[:question]+' else '+ternary(out[i+1:])+')'
+        return out
     expr=ternary(expr)
     expr=re.sub(r'#[0-9A-Fa-f]{6,8}\b',lambda m:repr(m[0]),expr)
     return eval(expr,{'__builtins__':{},'null':None,'clamp':lambda x,a,b:max(a,min(b,x)),'textLength':lambda x:len(x or ''),'subText':lambda s,a,b:s[int(a):int(b)]},{})
@@ -149,9 +184,16 @@ def render(style='classic',background='white',sectors='none',boundaries='quarter
             for cx,cy,start in ((x+w-r,y+r,-90),(x+w-r,y+h-r,0),(x+r,y+h-r,90),(x+r,y+r,180)):
                 for i in range(13):
                     a=math.radians(start+i*90/12);points.append(pt(cx+r*math.cos(a),cy+r*math.sin(a)))
-            fill=el.find('Fill');color=fill.get('color')
-            for t in fill.findall('Transform'):color=evaluate(t.get('value'),config,hour,mins,data)
-            d.polygon(points,fill=color);return
+            fill=el.find('Fill');color=fill.get('color') if fill is not None else None
+            if fill is not None:
+                for t in fill.findall('Transform'):color=evaluate(t.get('value'),config,hour,mins,data)
+            if color and color!='#00000000':d.polygon(points,fill=color)
+            stroke=el.find('Stroke')
+            if stroke is not None:
+                color=stroke.get('color')
+                for t in stroke.findall('Transform'):color=evaluate(t.get('value'),config,hour,mins,data)
+                if color!='#00000000':d.line(points+[points[0]],fill=color,width=max(1,round(float(stroke.get('thickness'))*S)),joint='curve')
+            return
         if tag=='Arc':
             cx=float(attrs['centerX'])+ox;cy=float(attrs['centerY'])+oy
             radius=float(attrs['width'])/2;st=el.find('Stroke');width=float(st.get('thickness'))
@@ -169,13 +211,20 @@ def render(style='classic',background='white',sectors='none',boundaries='quarter
                 font=el.find('Text/Font');fa=dict(font.attrib)
                 for t in font.findall('Transform'):fa[t.get('target')]=evaluate(t.get('value'),config,hour,mins,data)
                 f=font_file(fa['family'],round(float(fa['size'])*S))
-                value=font.text or '';t=font.find('Template')
-                if t is not None:value=(t.text or '%s')%evaluate(t.find('Parameter').get('expression'),config,hour,mins,data)
+                value=font.text or '';t=font.find('.//Template')
+                if t is not None:
+                    arguments=tuple(evaluate(p.get('expression'),config,hour,mins,data) for p in t.findall('Parameter'))
+                    value=(t.text or '%s')%(arguments if len(arguments)>1 else arguments[0])
                 w=round(float(attrs['width'])*S);h=round(float(attrs['height'])*S)
                 # Center the visible ink for the contact sheet; renderer/device metrics may differ.
                 patch=Image.new('RGBA',(w,h));pd=ImageDraw.Draw(patch)
                 bbox=pd.textbbox((0,0),value,font=f)
-                pd.text(((w-bbox[2]-bbox[0])/2,(h-bbox[3]-bbox[1])/2),value,font=f,fill=fa['color'])
+                effect=font.find('Outline');stroke={}
+                if effect is not None:
+                    color=effect.get('color')
+                    for t in effect.findall('Transform'):color=evaluate(t.get('value'),config,hour,mins,data)
+                    if color!='#00000000':stroke=dict(stroke_width=max(1,round(float(effect.get('width',2))*S)),stroke_fill=color)
+                pd.text(((w-bbox[2]-bbox[0])/2,(h-bbox[3]-bbox[1])/2),value,font=f,fill=fa['color'],**stroke)
                 if 'scaleX' in attrs or 'scaleY' in attrs:
                     patch=patch.resize((round(w*float(attrs.get('scaleX',1))),round(h*float(attrs.get('scaleY',1)))),Image.Resampling.LANCZOS)
                 if float(attrs.get('angle',0)):patch=patch.rotate(-float(attrs['angle']),resample=Image.Resampling.BICUBIC,expand=True)

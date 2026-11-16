@@ -11,6 +11,9 @@ def background_expression():
            'amber_dial':('#101212','#ECE8DB'),'mono_dial':('#101212','#F0F0E9')}
     return ''.join(f'[CONFIGURATION.DialTone] == "{key}" && [CONFIGURATION.background] == "black" ? {dark} : [CONFIGURATION.DialTone] == "{key}" ? {light} : ' for key,(dark,light) in pairs.items())+'[CONFIGURATION.background] == "black" ? #000000 : [CONFIGURATION.background] == "ivory" ? #E9E2CE : #FAFAF7'
 
+def complication_surface():
+    return '[CONFIGURATION.sectors] == "color" && [CONFIGURATION.background] == "black" ? #18221E : [CONFIGURATION.sectors] == "color" && [CONFIGURATION.background] == "ivory" ? #B8BAAC : [CONFIGURATION.sectors] == "color" ? #C2C6BE : '+background_expression()
+
 def apply(root):
     from generate import node
     for slot in root.findall('Scene/ComplicationSlot'):
@@ -21,6 +24,7 @@ def apply(root):
                 backing=group.find('PartDraw')
                 foreground=node(group,'Group',name='provider_foreground',x=0,y=0,width=56,height=56)
                 node(foreground,'Transform',target='tintColor',value=INK)
+                node(foreground,'Transform',target='alpha',value='[CONFIGURATION.background] == "black" && [CONFIGURATION.style] != "instrument_classic" ? 205 : 230')
                 border=node(foreground,'PartDraw',x=0,y=0,width=56,height=56)
                 for shape in list(backing):
                     if shape.tag!='Ellipse':backing.remove(shape);border.append(shape)

@@ -254,6 +254,8 @@ def optimize(root):
     from bellross_options import apply as bellross_options,scale_palette
     bellross_options(root)
     scale_palette(root)
+    from widget_options import theme_reference
+    theme_reference(root)
     used={e.get(a) for e in root.iter() for a in ('resource','icon') if e.get(a)}|{'preview'}
     # Only these generated palette insets are disposable; original masters and
     # previously shipped choices remain untouched.

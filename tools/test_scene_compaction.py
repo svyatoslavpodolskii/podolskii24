@@ -35,11 +35,21 @@ class GlobalCompactionTest(unittest.TestCase):
                 minute=True,minute_track=('None','SputnikRing','InstrumentRing')[i%3],
                 dividers=('micro','radial','full','arc','classic')[i%5],complications=True,
                 hand_color=('original','white','black')[i%3],output_size=432,minute_color='original')
-            expected=self.before
+            expected=copy.deepcopy(self.before)
+            # 5.7 deliberately tones down sector complication surfaces. Compare
+            # compaction against the same paint, keeping this change explicit.
+            from complication_theme import complication_surface
+            for comp in expected.findall('ComplicationSlot/Complication'):
+                for group in comp.iter('Group'):
+                    if not group.get('name','').startswith('slot'):continue
+                    draw=group.find('PartDraw')
+                    if draw is None:continue
+                    backing=draw.find('Transform[@target="tintColor"]')
+                    if backing is None:backing=E.SubElement(draw,'Transform',target='tintColor')
+                    backing.set('value',complication_surface())
             if style=='instrument_classic' and mode!='color':
                 # 5.6.1 intentionally replaces the regular pale-dial rust ink.
                 # Compare optimization against that explicit design change.
-                expected=copy.deepcopy(self.before)
                 for scale in expected.findall('.//PartImage[@name="instrument_classic_custom_scale"]'):
                     for tint in scale.findall('Transform[@target="tintColor"]'):scale.remove(tint)
                     scale.set('tintColor','#F08A35' if bg=='black' else '#222A29')

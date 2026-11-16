@@ -92,8 +92,8 @@
   <string name="p_HandColor">Цвет стрелок</string>
   <string name="p_ScaleInset">Отступ шкалы Instrument Classic</string>
   <string name="p_MinuteInset">Отступ минутной дорожки</string>
-  <string name="p_ComplicationSize">Размер дополнений</string>
-  <string name="p_DigitalSize">Размер цифрового времени</string>
+  <string name="p_ComplicationSize">Размер и расстояние дополнений</string>
+  <string name="p_DigitalSize">Размер и оформление времени</string>
   <string name="p_original">Исходный</string>
   <string name="p_charcoal">Графит Bell &amp; Ross</string>
   <string name="p_navy">Синий</string>
@@ -107,4 +107,21 @@
   <string name="p_compact">Компактный</string>
   <string name="p_normal">Средний</string>
   <string name="p_large">Крупный</string>
+  <string name="p_huge">Очень крупные</string>
+  <string name="p_compact_wide">Малые — дальше от центра</string>
+  <string name="p_normal_wide">Средние — дальше от центра</string>
+  <string name="p_large_wide">Крупные — дальше от центра</string>
+  <string name="p_huge_wide">Очень крупные — дальше от центра</string>
+  <string name="p_c_plain">Малое — без оформления</string>
+  <string name="p_c_outline">Малое — контур текста</string>
+  <string name="p_c_frame">Малое — рамка без заливки</string>
+  <string name="p_c_box">Малое — заливка и рамка</string>
+  <string name="p_n_plain">Среднее — без оформления</string>
+  <string name="p_n_outline">Среднее — контур текста</string>
+  <string name="p_n_frame">Среднее — рамка без заливки</string>
+  <string name="p_n_box">Среднее — заливка и рамка</string>
+  <string name="p_l_plain">Крупное — без оформления</string>
+  <string name="p_l_outline">Крупное — контур текста</string>
+  <string name="p_l_frame">Крупное — рамка без заливки</string>
+  <string name="p_l_box">Крупное — заливка и рамка</string>
 </resources>

@@ -12,7 +12,7 @@ class PersonalizationTest(unittest.TestCase):
         root=E.parse(RES/'raw/watchface.xml').getroot()
         for layout in ('bottom','top'):
             for size in ('compact','normal','large'):
-                config={'Layout':layout,'ComplicationSize':size,'style':'instrument_classic'}
+                config={'Layout':layout,'ComplicationSize':size,'style':'instrument_classic','MinuteTrackStyle':'None'}
                 for slot in root.findall('Scene/ComplicationSlot'):
                     for g in slot.findall('Complication/Group'):
                         self.assertEqual(g.get('pivotX'),'0.5')

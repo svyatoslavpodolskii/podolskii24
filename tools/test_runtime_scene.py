@@ -36,10 +36,15 @@ class RuntimeSceneTest(unittest.TestCase):
             self.assertIn('CONFIGURATION.AodMinute',minute.find('Variant[@mode="AMBIENT"][@target="alpha"]').get('value'))
         cfg=self.root.find('UserConfigurations/BooleanConfiguration[@id="DigitalTime"]')
         self.assertEqual(cfg.get('defaultValue'),'TRUE')
-        for time in scene.findall('.//DigitalClock/TimeText'):
-            self.assertEqual((time.get('format'),time.get('hourFormat')),('hh:mm','24'))
+        readouts=scene.findall('.//Group[@name="digital_readout"]')
+        self.assertEqual(len(readouts),2)
+        for readout in readouts:
+            template=readout.find('PartText/Text/Font/Outline/Template')
+            self.assertIsNotNone(template)
+            self.assertEqual(template.text,'%02d:%02d')
+            self.assertEqual([p.get('expression') for p in template],['[HOUR_0_23]','[MINUTE]'])
         for slot in scene.findall('ComplicationSlot'):
-            self.assertEqual(slot.get('width'),'176')
+            self.assertEqual(slot.get('width'),'176' if slot.get('slotId')=='3' else '208')
             self.assertTrue(slot.findall('.//Ellipse'))
             self.assertTrue(slot.findall('.//PartImage[@name="provider_icon"]'))
             for part in slot.findall('Complication[@type="RANGED_VALUE"]//PartText'):

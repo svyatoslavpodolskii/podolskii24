@@ -8,8 +8,8 @@ LISTS = {
     'HandColor': ('adaptive', ('adaptive','original','white','black','orange','green','br_orange','br_amber','br_mono')),
     'ScaleInset': ('wide', ('original','wide')),
     'MinuteInset': ('wide', ('wide','inset')),
-    'ComplicationSize': ('normal', ('compact','normal','large')),
-    'DigitalSize': ('normal', ('compact','normal','large')),
+    'ComplicationSize': ('normal', ('compact','normal','large','huge','compact_wide','normal_wide','large_wide','huge_wide')),
+    'DigitalSize': ('n_outline', ('compact','normal','large')+tuple(f'{size}_{mode}' for size in ('c','n','l') for mode in ('plain','outline','frame','box'))),
     'Layout': ('bottom', ('bottom','top','br_round','br_square','br_round_belorus','br_round_podolskii','br_square_belorus','br_square_podolskii')),
 }
 LABELS = {
@@ -29,6 +29,13 @@ LABELS = {
     'orange':'Оранжевый', 'green':'Зелёный', 'wide':'Шире', 'inset':'С отступом',
     'compact':'Компактный', 'normal':'Средний', 'large':'Крупный',
 }
+
+LABELS.update({'DigitalSize':'Размер и оформление времени','ComplicationSize':'Размер и расстояние дополнений',
+ 'huge':'Очень крупные','compact_wide':'Малые — дальше от центра','normal_wide':'Средние — дальше от центра',
+ 'large_wide':'Крупные — дальше от центра','huge_wide':'Очень крупные — дальше от центра'})
+for code,size in (('c','Малое'),('n','Среднее'),('l','Крупное')):
+    for mode,name in (('plain','без оформления'),('outline','контур текста'),('frame','рамка без заливки'),('box','заливка и рамка')):
+        LABELS[f'{code}_{mode}']=f'{size} — {name}'
 
 def controls(root, strings):
     from generate import node
@@ -136,21 +143,12 @@ def apply(root):
                 offset=10 if slot.get('slotId')=='1' else 30
                 node(g,'Transform',target='x',value=f'[CONFIGURATION.style] == "instrument_classic" ? 20 : {offset}')
             for axis in ('scaleX','scaleY'):
-                node(g,'Transform',target=axis,value='[CONFIGURATION.ComplicationSize] == "compact" ? 0.857142857 : [CONFIGURATION.style] != "instrument_classic" && [CONFIGURATION.ComplicationSize] == "large" ? 1.142857143 : [CONFIGURATION.style] != "instrument_classic" ? 1.0 : [CONFIGURATION.Layout] == "top" && [CONFIGURATION.ComplicationSize] == "large" ? 1.035714286 : [CONFIGURATION.Layout] == "top" ? 0.964285714 : [CONFIGURATION.ComplicationSize] == "large" ? 0.928571429 : 0.892857143')
+                huge='subText([CONFIGURATION.ComplicationSize], 0, 1) == "h"'
+                prefix=f'[CONFIGURATION.Layout] == "bottom" && [CONFIGURATION.MinuteTrackStyle] != "None" ? 0.857142857 : {huge} && [CONFIGURATION.style] == "instrument_classic" ? 1 : ' if slot.get('slotId')=='3' else ''
+                node(g,'Transform',target=axis,value=prefix+f'{huge} ? 1.285714286 : '+'subText([CONFIGURATION.ComplicationSize], 0, 1) == "c" ? 0.857142857 : [CONFIGURATION.style] != "instrument_classic" && subText([CONFIGURATION.ComplicationSize], 0, 1) == "l" ? 1.142857143 : [CONFIGURATION.style] != "instrument_classic" ? 1.0 : [CONFIGURATION.Layout] == "top" && subText([CONFIGURATION.ComplicationSize], 0, 1) == "l" ? 1.035714286 : [CONFIGURATION.Layout] == "top" ? 0.964285714 : subText([CONFIGURATION.ComplicationSize], 0, 1) == "l" ? 0.928571429 : 0.892857143')
     clock=scene.find('.//Group[@name="digital_time"]')
-    # A five-copy text outline made small digital time look doubled. Use one
-    # native text and a close-fitting backing only over mixed-color sectors.
-    for native_clock in clock.iter('DigitalClock'):
-        texts=native_clock.findall('TimeText')
-        for offset_copy in texts[:-1]:native_clock.remove(offset_copy)
-    backing=node(clock,'PartDraw',name='digital_sector_backing',x=10,y=1,width=52,height=20)
-    clock.remove(backing);clock.insert(0,backing)
-    node(backing,'Variant',mode='AMBIENT',target='alpha',value=0)
-    node(backing,'Transform',target='alpha',value='[CONFIGURATION.sectors] == "color" ? 255 : 0')
-    from complication_theme import background_expression
-    node(backing,'Transform',target='tintColor',value=background_expression())
-    capsule=node(backing,'RoundRectangle',x=0,y=0,width=52,height=20,cornerRadiusX=4,cornerRadiusY=4)
-    node(capsule,'Fill',color='#FFFFFF')
+    from widget_options import digital_decoration
+    digital_decoration(clock)
     # The lower arc otherwise passes directly through bottom digital time.
     # Keep the angle geometry and move the ring inside that text's clear space.
     for ring in active.findall('.//Group[@name="period_dividers_arc"]'):
@@ -159,7 +157,7 @@ def apply(root):
     clock.set('y','299')
     node(clock,'Transform',target='y',value='[CONFIGURATION.Layout] == "top" ? 154 : [CONFIGURATION.style] == "instrument_classic" ? 299 : [CONFIGURATION.MinuteTrackStyle] != "None" ? 312 : 326')
     for axis in ('scaleX','scaleY'):
-        node(clock,'Transform',target=axis,value='[CONFIGURATION.DigitalSize] == "compact" ? 1.0 : [CONFIGURATION.style] != "instrument_classic" && [CONFIGURATION.DigitalSize] == "large" ? 1.45 : [CONFIGURATION.style] != "instrument_classic" ? 1.2 : [CONFIGURATION.DigitalSize] == "large" ? 1.18 : 1.06')
+        node(clock,'Transform',target=axis,value='subText([CONFIGURATION.DigitalSize], 0, 1) == "c" ? 1.0 : [CONFIGURATION.style] != "instrument_classic" && subText([CONFIGURATION.DigitalSize], 0, 1) == "l" ? 1.45 : [CONFIGURATION.style] != "instrument_classic" ? 1.2 : subText([CONFIGURATION.DigitalSize], 0, 1) == "l" ? 1.18 : 1.06')
     from complication_theme import apply as theme_complications
     theme_complications(root)
     native_selectors(root)

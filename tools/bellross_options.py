@@ -55,7 +55,7 @@ def artwork():
 
 def apply(root):
     from generate import node,condition,ellipse,template
-    from complication_theme import background_expression,DATE_INK
+    from complication_theme import background_expression,complication_surface,DATE_INK
     records=artwork()
     original=root.find('.//Group[@name="original_hands"]')
     for parent in list(original.iter()):
@@ -95,19 +95,23 @@ def apply(root):
     scene=root.find('Scene')
     for sid in ('1','2'):
         container=scene.find(f'ComplicationSlot[@slotId="{sid}"]')
-        container.attrib.update(x='38' if sid=='1' else '218',y='140',width='176',height='152')
-        container.find('BoundingOval').attrib.update(x='0',y='0',width='176',height='152')
+        container.attrib.update(x='14' if sid=='1' else '210',y='124',width='208',height='184')
+        container.find('BoundingOval').attrib.update(x='0',y='0',width='208',height='184')
         for group in scene.findall(f'ComplicationSlot[@slotId="{sid}"]/Complication/Group'):
             tx=group.find('Transform[@target="x"]')
-            tx.set('value',f'({LAYOUT}) ? {48 if sid=="1" else 72} : [CONFIGURATION.style] == "instrument_classic" ? {98 if sid=="1" else 22} : {88 if sid=="1" else 32}')
-            node(group,'Transform',target='y',value='48')
+            wide='subText([CONFIGURATION.ComplicationSize], textLength([CONFIGURATION.ComplicationSize])-4, textLength([CONFIGURATION.ComplicationSize])) == "wide"'
+            offset=f'({wide}) ? {-8 if sid=="1" else 8} : 0'
+            base=f'({LAYOUT}) ? {72 if sid=="1" else 80} : [CONFIGURATION.style] == "instrument_classic" ? {122 if sid=="1" else 30} : {112 if sid=="1" else 40}'
+            # Keep one fixed-width suffix check, independent of the size prefix.
+            tx.set('value',f'({base}) + ({offset})')
+            node(group,'Transform',target='y',value='64')
             for axis in ('scaleX','scaleY'):
                 t=group.find(f'Transform[@target="{axis}"]')
                 # Two subdials can be slightly larger than the three-dial layout.
-                t.set('value',f'({LAYOUT}) && [CONFIGURATION.ComplicationSize] == "compact" ? 2.142857143 : ({LAYOUT}) && [CONFIGURATION.ComplicationSize] == "large" ? 2.714285714 : ({LAYOUT}) ? 2.428571429 : '+t.get('value'))
+                t.set('value',f'({LAYOUT}) && subText([CONFIGURATION.ComplicationSize], 0, 1) == "h" ? 3 : ({LAYOUT}) && subText([CONFIGURATION.ComplicationSize], 0, 1) == "c" ? 2.142857143 : ({LAYOUT}) && subText([CONFIGURATION.ComplicationSize], 0, 1) == "l" ? 2.714285714 : ({LAYOUT}) ? 2.428571429 : '+t.get('value'))
     for group in scene.findall('ComplicationSlot/Complication/Group'):
         backdrop=group.find('PartDraw/Transform[@target="tintColor"]')
-        if backdrop is not None:backdrop.set('value',background_expression())
+        if backdrop is not None:backdrop.set('value',complication_surface())
     # The provider remains slot 3, so an existing user selection survives.
     slot=scene.find('ComplicationSlot[@slotId="3"]')
     slot.set('width','176');slot.set('height','128')
@@ -120,17 +124,19 @@ def apply(root):
         for group in comp.findall('Group'):
             node(group,'Transform',target='alpha',value=f'({LAYOUT}) ? 0 : 255')
         small=node(condition(comp,LAYOUT),'Group',name='br_date_window',x=0,y=0,width=176,height=128)
+        node(small,'Transform',target='x',value=-10)
+        node(small,'Transform',target='y',value=4)
         d=node(small,'PartDraw',x=135,y=83,width=30,height=30)
         ellipse(d,0,0,30,30,'#101414');circle=d.find('Ellipse')
         node(circle.find('Fill'),'Transform',target='color',value=background_expression())
         # A thin frame is independent of the selected provider's artwork.
         edge=node(d,'Ellipse',x=.5,y=.5,width=29,height=29)
-        node(edge,'Stroke',color='#A7AFA5',thickness=.7)
+        node(edge,'Stroke',color='#A7AFA5',thickness=1.2)
         node(edge.find('Stroke'),'Transform',target='color',value=DATE_INK)
         node(d,'Transform',target='alpha',value='subText([CONFIGURATION.Layout], 3, 4) == "s" ? 0 : 255')
         box=node(small,'PartDraw',x=133,y=85,width=34,height=26)
         shape=node(box,'Rectangle',x=0,y=0,width=34,height=26)
-        node(shape,'Fill',color='#101414');node(shape,'Stroke',color='#FFC027',thickness=.8)
+        node(shape,'Fill',color='#101414');node(shape,'Stroke',color='#FFC027',thickness=1.2)
         node(shape.find('Fill'),'Transform',target='color',value=background_expression())
         node(shape.find('Stroke'),'Transform',target='color',value=DATE_INK)
         node(box,'Transform',target='alpha',value='subText([CONFIGURATION.Layout], 3, 4) == "s" ? 255 : 0')
@@ -192,5 +198,9 @@ def scale_palette(root):
     # The two side-number holes only open in the new chronograph composition.
     for group in (scales,colored):
         mask=node(condition(group,LAYOUT),'PartDraw',x=0,y=0,width=432,height=432,renderMode='MASK',name='subdial_number_mask')
-        for x,y,w,h in ((0,0,432,174),(0,258,432,174),(0,174,26,84),(114,174,200,84),(406,174,26,84)):
+        # Clear the adjacent 8/16 and 4/20 positions as well: wide subdials
+        # otherwise graze these numerals, particularly with an outer minute ring.
+        for x,y,w,h in ((0,0,432,110),(0,322,432,110),
+                (0,110,26,90),(0,232,26,90),(406,110,26,90),(406,232,26,90),
+                (0,200,8,32),(424,200,8,32),(130,110,172,212)):
             shape=node(mask,'Rectangle',x=x,y=y,width=w,height=h);node(shape,'Fill',color='#FFFFFF')

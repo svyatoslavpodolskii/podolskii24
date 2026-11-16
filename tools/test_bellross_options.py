@@ -127,6 +127,6 @@ class BellrossOptionsTest(unittest.TestCase):
         for window in self.root.findall('.//Group[@name="br_date_window"]'):
             fills=window.findall('.//Fill/Transform[@target="color"]')
             self.assertEqual(len(fills),2)
-            self.assertTrue(all(f.get('value')==background_expression() for f in fills))
+            self.assertTrue(all(f.get('value')=='[REFERENCE.themeSurface]' for f in fills))
 
 if __name__=='__main__':unittest.main()
