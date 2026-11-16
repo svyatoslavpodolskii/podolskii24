@@ -10,8 +10,8 @@ android {
         applicationId = "dev.twentyfour.watchface"
         minSdk = 36
         targetSdk = 36
-        versionCode = 15
-        versionName = "5.4"
+        versionCode = 16
+        versionName = "5.5"
     }
     // Strip AGP-generated R classes as well: a WFF APK must contain no DEX.
     buildTypes {
@@ -85,7 +85,8 @@ tasks.register<Copy>("exportDebugApk") {
 }
 tasks.register<Copy>("exportReleaseApk") {
     dependsOn("assembleRelease")
+    inputs.property("exportVersion", android.defaultConfig.versionName ?: "")
     from(layout.buildDirectory.file("outputs/apk/release/watchface-release.apk"))
     into(rootProject.layout.projectDirectory.dir("dist"))
-    rename { "Podolskii24-5.4.apk" }
+    rename { "Podolskii24-${android.defaultConfig.versionName}.apk" }
 }

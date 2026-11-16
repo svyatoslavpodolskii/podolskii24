@@ -249,6 +249,10 @@ def optimize(root):
     from runtime_scene import apply as improve_runtime_scene
     usability['runtime_scene_source']=improve_runtime_scene(root,canonical)
     used={e.get(a) for e in root.iter() for a in ('resource','icon') if e.get(a)}|{'preview'}
+    # Only these generated palette insets are disposable; original masters and
+    # previously shipped choices remain untouched.
+    for path in (RES/'drawable-nodpi').glob('flat_inset_*.png'):
+        if path.stem not in used:path.unlink()
     assets={name:info for name,info in assets.items() if name in used}
     for path in (RES/'drawable-nodpi').glob('trimmed_*.png'):
         if path.stem not in trimmed_assets:path.unlink()

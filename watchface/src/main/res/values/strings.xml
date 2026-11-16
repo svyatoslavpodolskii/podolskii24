@@ -70,4 +70,25 @@
   <string name="minute_color_green">Зелёный</string>
   <string name="minute_color_blue">Голубой</string>
   <string name="digital_time">Цифровое время</string>
+  <string name="p_AodMinute">Минутная стрелка в AOD</string>
+  <string name="p_Seconds">Секундная стрелка</string>
+  <string name="p_DialTone">Оттенок фона</string>
+  <string name="p_HandColor">Цвет стрелок</string>
+  <string name="p_ScaleInset">Отступ шкалы Instrument Classic</string>
+  <string name="p_MinuteInset">Отступ минутной дорожки</string>
+  <string name="p_ComplicationSize">Размер дополнений</string>
+  <string name="p_DigitalSize">Размер цифрового времени</string>
+  <string name="p_original">Исходный</string>
+  <string name="p_charcoal">Графит Bell &amp; Ross</string>
+  <string name="p_navy">Синий</string>
+  <string name="p_forest">Хвойный</string>
+  <string name="p_white">Белый / тёмный контур</string>
+  <string name="p_black">Тёмный / светлый контур</string>
+  <string name="p_orange">Оранжевый</string>
+  <string name="p_green">Зелёный</string>
+  <string name="p_wide">Шире</string>
+  <string name="p_inset">С отступом</string>
+  <string name="p_compact">Компактный</string>
+  <string name="p_normal">Средний</string>
+  <string name="p_large">Крупный</string>
 </resources>

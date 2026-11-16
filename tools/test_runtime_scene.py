@@ -32,7 +32,7 @@ class RuntimeSceneTest(unittest.TestCase):
             self.assertTrue(group.findall('Variant[@target="tintColor"]'))
             self.assertFalse(group.findall('Variant[@target="alpha"][@value="0"]'))
         for minute in scene.findall('Group[@name="interactive_hands"]//Group[@name="minute"]'):
-            self.assertTrue(minute.findall('Variant[@mode="AMBIENT"][@target="alpha"][@value="0"]'))
+            self.assertIn('CONFIGURATION.AodMinute',minute.find('Variant[@mode="AMBIENT"][@target="alpha"]').get('value'))
         cfg=self.root.find('UserConfigurations/BooleanConfiguration[@id="DigitalTime"]')
         self.assertEqual(cfg.get('defaultValue'),'TRUE')
         for time in scene.findall('.//DigitalClock/TimeText'):
@@ -55,7 +55,7 @@ class RuntimeSceneTest(unittest.TestCase):
             for j,background in enumerate(('white','ivory','black')):
                 options=dict(style=style,background=background,sectors=('none','lines','labels','color')[(i+j)%4],
                     boundaries=('quarter','shifted_back_1_hour')[j%2],dividers=('micro','radial','full','arc','classic')[(i+j)%5],
-                    minute_track='InstrumentRing' if j%2 else 'None',minute=True,output_size=216,digital_time=False,minute_color='original')
+                    minute_track='InstrumentRing' if j%2 else 'None',minute=True,output_size=216,digital_time=False,minute_color='original',component='scale',scale_inset='original')
                 old=render(subtree=before,**options)
                 new=render(subtree=self.root,**options)
                 diff=ImageChops.difference(old,new)

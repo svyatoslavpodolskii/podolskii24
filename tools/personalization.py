@@ -1,0 +1,173 @@
+"""Small native controls; no new bitmap variants or renderer services."""
+import xml.etree.ElementTree as E
+import copy
+import re
+
+LISTS = {
+    'DialTone': ('original', ('original','charcoal','navy','forest')),
+    'HandColor': ('original', ('original','white','black','orange','green')),
+    'ScaleInset': ('wide', ('original','wide')),
+    'MinuteInset': ('wide', ('wide','inset')),
+    'ComplicationSize': ('normal', ('compact','normal','large')),
+    'DigitalSize': ('normal', ('compact','normal','large')),
+}
+LABELS = {
+    'AodMinute':'Минутная стрелка в AOD', 'Seconds':'Секундная стрелка',
+    'DialTone':'Оттенок фона', 'HandColor':'Цвет стрелок',
+    'ScaleInset':'Отступ шкалы Instrument Classic', 'MinuteInset':'Отступ минутной дорожки',
+    'ComplicationSize':'Размер дополнений', 'DigitalSize':'Размер цифрового времени',
+    'original':'Исходный', 'charcoal':'Графит Bell & Ross', 'navy':'Синий',
+    'forest':'Хвойный', 'white':'Белый / тёмный контур', 'black':'Тёмный / светлый контур',
+    'orange':'Оранжевый', 'green':'Зелёный', 'wide':'Шире', 'inset':'С отступом',
+    'compact':'Компактный', 'normal':'Средний', 'large':'Крупный',
+}
+
+def controls(root, strings):
+    from generate import node
+    uc=root.find('UserConfigurations')
+    for key,(default,options) in LISTS.items():
+        cfg=node(uc,'ListConfiguration',id=key,displayName='p_'+key,screenReaderText='p_'+key,defaultValue=default)
+        for option in options:
+            node(cfg,'ListOption',id=option,displayName='p_'+option,screenReaderText='p_'+option)
+    for key in ('AodMinute','Seconds'):
+        node(uc,'BooleanConfiguration',id=key,displayName='p_'+key,screenReaderText='p_'+key,defaultValue='FALSE')
+    for key,value in LABELS.items():node(strings,'string',name='p_'+key).text=value
+
+def apply(root):
+    from generate import node,condition,group,draw,line,ellipse
+    scene=root.find('Scene');active=scene.find('Group[@name="interactive"]')
+    # Keep the three original luminance families so existing contrast logic stays
+    # valid. New tones only change the base, never the independently colored sectors.
+    backgrounds=active.find('Group[@name="shared_backgrounds"]')
+    dark='[CONFIGURATION.background] == "black"'
+    for paint in backgrounds.findall('Condition/Compare/PartDraw'):
+        base=paint.find('Ellipse/Fill').get('color')
+        expr=''.join(f'[CONFIGURATION.DialTone] == "{key}" ? {color} : ' for key,color in {
+            'charcoal':'#303128' if base=='#000000' else '#E6E4D9',
+            'navy':'#142331' if base=='#000000' else '#E2EBEE',
+            'forest':'#182B22' if base=='#000000' else '#E3EADD',
+        }.items())+base
+        node(paint,'Transform',target='tintColor',value=expr)
+    hands=scene.find('Group[@name="interactive_hands"]')
+    # Share the common/Aviator trees: their only difference is the original
+    # vertical scale of selected sprites. Preserve that difference as transforms.
+    for background in ('white','ivory','black'):
+        a=hands.find(f'Condition/Compare/Group[@name="hands_shared_common_{background}"]')
+        b=hands.find(f'Condition/Compare/Group[@name="hands_shared_aviator_{background}"]')
+        ac=next(c for c in hands if a in list(c.iter()))
+        bc=next(c for c in hands if b in list(c.iter()))
+        for x,y in zip(list(a.iter()),list(b.iter())):
+            if x is a:continue
+            assert x.tag==y.tag and x.text==y.text
+            differences={key for key in set(x.attrib)|set(y.attrib) if x.get(key)!=y.get(key)}
+            assert differences <= {'scaleY'}, (x.attrib,y.attrib)
+            if differences:
+                node(x,'Transform',target='scaleY',value=f'[CONFIGURATION.style] == "aviator" ? {y.get("scaleY")} : {x.get("scaleY","1")}')
+        ac.find('Expressions/Expression').text=f'[CONFIGURATION.background] == "{background}"'
+        hands.remove(bc)
+    for minute in hands.findall('.//Group[@name="minute"]'):
+        minute.find('Variant[@mode="AMBIENT"][@target="alpha"]').set('value','[CONFIGURATION.AodMinute] == "TRUE" ? 255 : 0')
+    # Independent active/AOD switches, without duplicating minute artwork.
+    for parent in list(hands.iter()):
+        for child in list(parent):
+            if child.tag!='Condition':continue
+            expression=child.find('Expressions/Expression')
+            if expression is None or expression.text!='[CONFIGURATION.minute] == "TRUE"':continue
+            wrapper=E.Element('Group',name='minute_visibility',x='0',y='0',width='432',height='432')
+            node(wrapper,'Transform',target='alpha',value='[CONFIGURATION.minute] == "TRUE" ? 255 : 0')
+            node(wrapper,'Variant',mode='AMBIENT',target='alpha',value='[CONFIGURATION.AodMinute] == "TRUE" ? 255 : 0')
+            wrapper.extend(list(child.find('Compare')))
+            index=list(parent).index(child);parent.remove(child);parent.insert(index,wrapper)
+    payload=list(hands.findall('Condition'))
+    original=group(condition(hands,'[CONFIGURATION.HandColor] == "original"'),'original_hands')
+    flat=group(condition(hands,'[CONFIGURATION.HandColor] != "original"'),'flat_hands')
+    for item in payload:
+        hands.remove(item);original.append(item)
+    # A flat palette has no background-specific source colors. One silhouette
+    # tree serves all three backgrounds, instead of three copies of the same set.
+    flat.append(copy.deepcopy(payload[0].find('Compare/Group')))
+    flat_palettes(flat)
+    # One shared seconds layer, outside the scaled hand tree. Its time source
+    # exists only in the optional branch and it is unconditionally absent in AOD.
+    seconds=group(condition(scene,'[CONFIGURATION.Seconds] == "TRUE"'),'seconds')
+    node(seconds,'Variant',mode='AMBIENT',target='alpha',value=0)
+    node(seconds,'Transform',target='angle',value='[SECOND] * 6')
+    d=draw(seconds)
+    line(d,(216,40),(216,235),'#E3654A',1.1,'ROUND')
+    ellipse(d,213.2,213.2,5.6,5.6,'#E3654A')
+    # Scale around the true dial center, retaining the existing compact profile
+    # when an outer minutes ring is selected.
+    for part in active.findall('.//PartImage[@name="instrument_classic_custom_scale"]'):
+        for axis in ('scaleX','scaleY'):
+            base=part.get(axis,'1')
+            node(part,'Transform',target=axis,value=f'[CONFIGURATION.ScaleInset] == "wide" ? {float(base)*1.075:.6f} : {base}')
+    track=active.find('Group[@name="shared_minute_tracks"]')
+    for axis in ('scaleX','scaleY'):
+        node(track,'Transform',target=axis,value='[CONFIGURATION.MinuteInset] == "inset" ? 0.965 : 1.0')
+    for slot in scene.findall('ComplicationSlot'):
+        if slot.get('slotId')=='1':slot.set('x','114');slot.set('y','162')
+        if slot.get('slotId')=='2':slot.set('x','222');slot.set('y','162')
+        if slot.get('slotId')=='3':slot.set('y','208')
+        for g in slot.findall('.//Group'):
+            if not g.get('name','').startswith('slot'):continue
+            for axis in ('scaleX','scaleY'):
+                node(g,'Transform',target=axis,value='[CONFIGURATION.ComplicationSize] == "compact" ? 1.0 : [CONFIGURATION.ComplicationSize] == "large" ? 1.25 : 1.12')
+    clock=scene.find('.//Group[@name="digital_time"]')
+    clock.set('y','288')
+    for axis in ('scaleX','scaleY'):
+        node(clock,'Transform',target=axis,value='[CONFIGURATION.DigitalSize] == "compact" ? 1.0 : [CONFIGURATION.DigitalSize] == "large" ? 1.35 : 1.18')
+    native_selectors(root)
+
+def flat_palettes(flat):
+    """Reuse the high resolution perimeter, add only a tiny coverage inset.
+
+    Both pale-on-dark and dark-on-pale combinations retain a contrasting rim.
+    The inset is at native resolution; the outer alpha remains the original
+    supersampled contour. No repeated color PNGs are generated.
+    """
+    from PIL import Image,ImageFilter
+    from generate import RES,node
+    for parent in list(flat.iter()):
+        for part in list(parent):
+            if part.tag!='PartImage':continue
+            resource=part.find('Image').get('resource')
+            name='flat_inset_'+resource
+            with Image.open(RES/'drawable-nodpi'/(resource+'.png')) as source:
+                bitmap=source.convert('RGBA')
+            width,height=int(part.get('width')),int(part.get('height'))
+            ratio=bitmap.width/width
+            radius=max(1,round(.65*ratio))
+            alpha=bitmap.getchannel('A').filter(ImageFilter.MinFilter(2*radius+1))
+            alpha=alpha.resize((width,height),Image.Resampling.BOX)
+            inset=Image.new('RGBA',(width,height),'white');inset.putalpha(alpha)
+            inset.save(RES/'drawable-nodpi'/(name+'.png'),optimize=True)
+            inner=copy.deepcopy(part);inner.find('Image').set('resource',name)
+            # Flat color replaces every pixel, so the source RGB never matters.
+            node(part,'Transform',target='tintColor',value='[CONFIGURATION.HandColor] == "black" ? #F0F0E7 : #222A29')
+            node(inner,'Transform',target='tintColor',value='[CONFIGURATION.HandColor] == "white" ? #F0F0E7 : [CONFIGURATION.HandColor] == "black" ? #222A29 : [CONFIGURATION.HandColor] == "orange" ? #EE923E : #91DB9B')
+            wrapper=E.Element('Group',name='flat_blade',x='0',y='0',width='432',height='432')
+            index=list(parent).index(part);parent.remove(part)
+            wrapper.append(part);wrapper.append(inner);parent.insert(index,wrapper)
+
+def native_selectors(root):
+    """A single list equality needs two native nodes, not a five-node condition.
+
+    Compound expressions keep their existing exact semantics. This conversion
+    only touches scene selectors, never the user schema or geometry.
+    """
+    bools={'minute','DigitalTime','AodMinute','Seconds'}
+    for parent in list(root.find('Scene').iter()):
+        for child in list(parent):
+            if child.tag!='Condition' or child.find('Default') is not None:continue
+            expressions=child.findall('Expressions/Expression')
+            compares=child.findall('Compare')
+            if len(expressions)!=1 or len(compares)!=1:continue
+            match=re.fullmatch(r'\[CONFIGURATION\.(\w+)\] == "([^\"]+)"',expressions[0].text or '')
+            if not match or match[1] in bools:continue
+            native=E.Element('ListConfiguration',id=match[1])
+            option=E.SubElement(native,'ListOption',id=match[2])
+            option.extend(list(compares[0]))
+            if parent.tag not in ('Group','Scene'):
+                wrapper=E.Element('Group',name='native_selector',x='0',y='0',width='432',height='432')
+                wrapper.append(native);native=wrapper
+            index=list(parent).index(child);parent.remove(child);parent.insert(index,native)

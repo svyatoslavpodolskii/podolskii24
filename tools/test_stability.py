@@ -24,7 +24,8 @@ class StabilityTest(unittest.TestCase):
         transforms=hands.findall('Transform');self.assertEqual({t.get('target') for t in transforms},{'scaleX','scaleY'})
         for choice,factor in (('Compact',.92),('Original',1),('Large',1.06)):
             for t in transforms:self.assertAlmostEqual(evaluate(t.get('value'),{'HandSize':choice},12,0),factor)
-        bodies=hands.findall('Condition/Compare/Group');self.assertEqual(len(bodies),6)
+        bodies=[g for g in hands.iter('Group') if g.get('name','').startswith('hands_shared_')]
+        self.assertEqual(len(bodies),4)  # Three original backgrounds + one shared flat tree.
         for body in bodies:
             minute=next(c for c in body if c.find('.//Group[@name="minute"]') is not None)
             self.assertGreater(list(body).index(body.find('Group[@name="hour"]')),list(body).index(minute))

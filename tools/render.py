@@ -43,10 +43,11 @@ def evaluate(expr,config,hour,minute,data=None):
     expr=re.sub(r'#[0-9A-Fa-f]{6,8}\b',lambda m:repr(m[0]),expr)
     return eval(expr,{'__builtins__':{},'null':None,'clamp':lambda x,a,b:max(a,min(b,x)),'textLength':lambda x:len(x or '')},{})
 
-def render(style='classic',background='white',sectors='none',boundaries='quarter',minute=False,ambient=False,hour=10,mins=8,complications=False,output_size=432,dividers='micro',hand_style='auto',minute_track='None',component='full',hand_size='Original',subtree=None,transparent=False,minute_color='neutral',digital_time=True):
+def render(style='classic',background='white',sectors='none',boundaries='quarter',minute=False,ambient=False,hour=10,mins=8,complications=False,output_size=432,dividers='micro',hand_style='auto',minute_track='None',component='full',hand_size='Original',subtree=None,transparent=False,minute_color='neutral',digital_time=True,aod_minute=False,seconds=False,second=0,dial_tone='original',hand_color='original',scale_inset='wide',minute_inset='wide',complication_size='normal',digital_size='normal'):
     config={'style':style,'background':background,'sectors':sectors,'boundaries':boundaries,'dividers':dividers,'HandStyle':hand_style,'MinuteTrackStyle':minute_track,'HandSize':hand_size,'minute':'TRUE' if minute else 'FALSE'}
     config['MinuteColor']=minute_color
     config['DigitalTime']='TRUE' if digital_time else 'FALSE'
+    config.update(AodMinute='TRUE' if aod_minute else 'FALSE',Seconds='TRUE' if seconds else 'FALSE',DialTone=dial_tone,HandColor=hand_color,ScaleInset=scale_inset,MinuteInset=minute_inset,ComplicationSize=complication_size,DigitalSize=digital_size)
     im=Image.new('RGBA',(SIZE*S,SIZE*S),(0,0,0,0) if transparent else (BACKGROUNDS[background] if component in ('hands','hour','minute') else 'black'))
     def walk(el,ox=0,oy=0,rotation=0,data=None,ignore_alpha=False,ignore_scale=False,ignore_tint=False):
         nonlocal im
@@ -59,7 +60,10 @@ def render(style='classic',background='white',sectors='none',boundaries='quarter
         if component=='hour' and attrs.get('name')=='minute':return
         if component=='minute' and attrs.get('name') in ('hour','instrument_classic_hour_front'):return
         if ambient:
-            for v in el.findall('Variant'):attrs[v.get('target')]=v.get('value')
+            for v in el.findall('Variant'):attrs[v.get('target')]=evaluate(v.get('value'),config,hour,mins,data)
+        for t in el.findall('Transform'):
+            if ambient and any(v.get('target')==t.get('target') for v in el.findall('Variant')):continue
+            attrs[t.get('target')]=evaluate(t.get('value').replace('[SECOND]',str(second)),config,hour,mins,data)
         alpha=int(attrs.get('alpha',255))
         if alpha==0:return
         if alpha<255 and not ignore_alpha:
@@ -67,8 +71,12 @@ def render(style='classic',background='white',sectors='none',boundaries='quarter
             walk(el,ox,oy,rotation,data,True,ignore_scale,ignore_tint)
             im.putalpha(im.getchannel('A').point(lambda p:round(p*alpha/255)))
             target.alpha_composite(im);im=target;return
-        for t in el.findall('Transform'):attrs[t.get('target')]=evaluate(t.get('value'),config,hour,mins,data)
         tag=el.tag
+        if tag=='ListConfiguration':
+            selected=el.find(f'ListOption[@id="{config[attrs["id"]]}"]')
+            if selected is not None:
+                for ch in selected:walk(ch,ox,oy,rotation,data)
+            return
         if tag=='TimeText':
             p=E.Element('PartText',{k:v for k,v in attrs.items() if k not in ('format','hourFormat')})
             text=E.SubElement(p,'Text',align=attrs.get('align','CENTER'))
@@ -83,7 +91,7 @@ def render(style='classic',background='white',sectors='none',boundaries='quarter
             py=(oy+float(attrs.get('y',0))+float(attrs['height'])*float(attrs.get('pivotY',.5)))*S
             scaled=im.transform(target.size,Image.Transform.AFFINE,(1/sx,0,px*(1-1/sx),0,1/sy,py*(1-1/sy)),resample=Image.Resampling.BICUBIC)
             target.alpha_composite(scaled);im=target;return
-        if tag in ('Group','DigitalClock') and attrs.get('tintColor') and not ignore_tint:
+        if tag in ('Group','DigitalClock','PartDraw') and attrs.get('tintColor') and not ignore_tint:
             target=im;im=Image.new('RGBA',target.size)
             walk(el,ox,oy,rotation,data,ignore_alpha,ignore_scale,True)
             alpha=im.getchannel('A');im=Image.new('RGBA',im.size,attrs['tintColor']);im.putalpha(alpha)

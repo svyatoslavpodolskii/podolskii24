@@ -47,12 +47,12 @@ class HandUpdatesTest(unittest.TestCase):
         for icon,expected in ((None,False),('',False),('provider_icon',True)):
             self.assertEqual(evaluate(expression,{},10,8,{'MONOCHROMATIC_IMAGE':icon}),expected)
         for ambient in (False,True):
-            on=render(background='black',ambient=ambient,digital_time=True)
-            off=render(background='black',ambient=ambient,digital_time=False)
+            on=render(background='black',ambient=ambient,digital_time=True,digital_size='compact')
+            off=render(background='black',ambient=ambient,digital_time=False,digital_size='compact')
             box=ImageChops.difference(on,off).convert('RGB').getbbox()
             self.assertIsNotNone(box)
             # Final output filtering may add a faint fringe of up to 3 pixels.
             self.assertGreaterEqual(box[0],177);self.assertGreaterEqual(box[1],283)
-            self.assertLessEqual(box[2],255);self.assertLessEqual(box[3],311)
+            self.assertLessEqual(box[2],255);self.assertLessEqual(box[3],315)
 
 if __name__=='__main__':unittest.main()

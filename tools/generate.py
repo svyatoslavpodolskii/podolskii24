@@ -372,6 +372,8 @@ def generate():
     apply_minute_palette(w, root)
     from runtime_scene import digital_configuration
     digital_configuration(w, root)
+    from personalization import controls
+    controls(w, root)
     for path,el in ((RES/'raw/watchface.xml',w),(RES/'values/strings.xml',root)):
         path.parent.mkdir(parents=True,exist_ok=True)
         # WFF source has a 10 MB limit. Indentation alone added over 5 MB

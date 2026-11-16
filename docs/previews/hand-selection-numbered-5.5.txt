@@ -1,0 +1,14 @@
+01 auto
+02 sword
+03 vintage
+04 vintage_red
+05 instrument_white
+06 legacy_classic
+07 legacy_minimal
+08 legacy_sputnik
+09 legacy_instrument
+10 bellross
+11 original_sputnik
+12 instrument_refined
+13 bellross_photo
+14 instrument_classic_clean

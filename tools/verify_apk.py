@@ -76,7 +76,9 @@ def verify(path):
             assert face.findall('.//PartImage[@name="instrument_classic_custom_scale"]')
         cfg=xml.find('UserConfigurations/ListConfiguration[@id="MinuteTrackStyle"]')
         assert cfg is not None and cfg.get('defaultValue')=='None' and tuple(o.get('id') for o in cfg)==MINUTE_TRACKS
-        for part in ('hour','minute'):
+        # Hour masters remain immutable. Minute blades were replaced by the
+        # closed-contour runtime assets verified pixel-for-pixel above.
+        for part in ('hour',):
             for tone in ('light','dark'):
                 for kind in ('instrument_refined',):
                     filename=f'precision_{part}_{kind}_{tone}.png'
@@ -91,6 +93,8 @@ def verify(path):
                     assert same_graphic(packed,RES/'drawable-nodpi'/actual),filename
             branch=xml.find(f'.//Group[@name="hands_aviator_{bg}"]')
             if branch is None:branch=xml.find(f'.//Group[@name="hands_shared_aviator_{bg}"]')
+            if branch is None:branch=xml.find(f'.//Group[@name="original_hands"]//Group[@name="hands_shared_common_{bg}"]')
+            assert branch is not None, f'Shared hand branch missing: {bg}'
             images=[i.get('resource') for i in branch.findall('.//Image')]
             for part in ('hour','minute','hub'):assert any(n in images for n in (f'instrument_classic_{part}_{bg}',f'trimmed_instrument_classic_{part}_{bg}'))
         for style in ('instrument','aviator'):

@@ -58,6 +58,11 @@ class OptimizedRuntimeTest(unittest.TestCase):
     def test_shared_tracks_native_visibility(self):
         shared=self.native.find('.//Group[@name="shared_minute_tracks"]')
         def visit(el,config,names):
+            if el.tag=='ListConfiguration':
+                option=el.find(f'ListOption[@id="{config[el.get("id")]}"]')
+                if option is not None:
+                    for child in option:visit(child,config,names)
+                return
             if el.tag=='Condition':
                 expr={e.get('name'):e.text for e in el.findall('Expressions/Expression')}
                 for cmp in el.findall('Compare'):

@@ -2,6 +2,37 @@
 import copy
 import xml.etree.ElementTree as E
 
+def compact_guards(guards):
+    """Factor exact Cartesian selections without changing their truth table."""
+    import re
+    from generate import STYLES,BACKGROUNDS,PRESETS,MODES
+    domains={'style':STYLES,'background':tuple(BACKGROUNDS),'boundaries':PRESETS,'sectors':MODES}
+    keys=tuple(domains)
+    pattern=r'\[CONFIGURATION\.(\w+)\] == "([^\"]+)"'
+    rows=[]
+    for guard in guards:
+        rest=re.sub(pattern,'',guard)
+        if rest.strip(' ()&') or '||' in guard:return ' || '.join('('+g+')' for g in guards)
+        values=dict(re.findall(pattern,guard))
+        rows.append(tuple(frozenset((values[k],)) if k in values else frozenset(domains[k]) for k in keys))
+    rows=set(rows)
+    while True:
+        before=set(rows)
+        for axis in range(len(keys)):
+            groups={}
+            for row in rows:
+                key=row[:axis]+row[axis+1:]
+                groups.setdefault(key,set()).update(row[axis])
+            rows={key[:axis]+(frozenset(value),)+key[axis:] for key,value in groups.items()}
+        if rows==before:break
+    def term(row):
+        pieces=[]
+        for k,values in zip(keys,row):
+            if values==frozenset(domains[k]):continue
+            pieces.append('('+' || '.join(f'[CONFIGURATION.{k}] == "{v}"' for v in sorted(values))+')')
+        return '('+' && '.join(pieces)+')' if pieces else 'true'
+    return ' || '.join(sorted(term(row) for row in rows))
+
 def share_classic_scale(root):
     from generate import RES
     from PIL import Image,ImageChops
@@ -56,7 +87,7 @@ def factor_layers(root, canonical):
     def emit(name):
         container=E.Element('Group',name='shared_'+name,x='0',y='0',width='432',height='432')
         for el,guards in layers[name].values():
-            condition(container,' || '.join('('+g+')' for g in guards)).append(el)
+            condition(container,compact_guards(guards)).append(el)
         return container
     active.insert(0,emit('backgrounds'));active.insert(1,emit('period_fills'))
     active.insert(2,emit('period_details_under'))
@@ -166,4 +197,8 @@ def apply(root, canonical):
     prune_hands(root)
     from hand_updates import apply as update_requested_hands
     update_requested_hands(root)
+    from minute_blades import apply as refine_minutes
+    refine_minutes(root)
+    from personalization import apply as personalize
+    personalize(root)
     return source
