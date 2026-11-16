@@ -31,15 +31,15 @@ class BellrossOptionsTest(unittest.TestCase):
                 self.assertLessEqual(value('y')+28+diameter/2,float(slot.get('height')))
             self.assertGreaterEqual(204-diameter,52)
 
-    def test_three_hand_palettes_share_only_eight_vector_assets(self):
+    def test_three_hand_palettes_share_only_eleven_vector_assets(self):
         from PIL import Image
         assets={p.get('resource') for p in self.root.iter('Image') if p.get('resource','').startswith('br_shared_')}
-        self.assertEqual(len(assets),8)
+        self.assertEqual(len(assets),11)
         decoded=0
         for name in assets:
             with Image.open(RES/'drawable-nodpi'/(name+'.png')) as im:decoded+=im.width*im.height*4
             self.assertTrue((ROOT/'docs/hand-masters/bellross-palettes'/(name+'.svg')).is_file())
-        self.assertLess(decoded,600000)
+        self.assertLess(decoded,950000)
         outputs=[render('instrument_classic','black',minute=True,hand_color=p,component='hands').tobytes() for p in ('original','br_orange','br_amber','br_mono')]
         self.assertEqual(len(set(outputs)),4)
 
@@ -48,7 +48,7 @@ class BellrossOptionsTest(unittest.TestCase):
         self.assertTrue(blades)
         for blade in blades:
             color=blade.findall('PartImage')[1].find('Transform[@target="tintColor"]').get('value')
-            for bg,expected in (('white','#514934'),('ivory','#403A2C'),('black','#EEEBD9')):
+            for bg,expected in (('white','#FAFAF7'),('ivory','#E9E2CE'),('black','#EEEBD9')):
                 self.assertEqual(evaluate(color,{'HandColor':'adaptive','background':bg},10,8),expected)
         for palette in ('br_orange','br_amber','br_mono'):
             a=render('instrument_classic','white',minute=True,hand_color=palette,component='hands')
@@ -95,5 +95,18 @@ class BellrossOptionsTest(unittest.TestCase):
             self.assertIsNotNone(box)
             self.assertGreaterEqual(box[1],115)
             self.assertLessEqual(box[3],150)
+
+    def test_wordmarks_are_vector_derived_and_below_hands(self):
+        scene=self.root.find('Scene')
+        layers=list(scene)
+        brand=next(layer for layer in layers if layer.find('.//Group[@name="dial_brand"]') is not None)
+        self.assertLess(layers.index(brand),layers.index(scene.find('Group[@name="interactive_hands"]')))
+        self.assertFalse(brand.findall('.//PartText'))
+        self.assertFalse(brand.findall('.//Ellipse'))
+        for word in ('belorus','podolskii'):
+            source=ROOT/'docs/hand-masters/wordmarks'/('dial_wordmark_'+word+'.svg')
+            vector=E.parse(source).getroot()
+            self.assertFalse(vector.findall('.//{*}text'))
+            self.assertTrue(vector.findall('{*}path'))
 
 if __name__=='__main__':unittest.main()

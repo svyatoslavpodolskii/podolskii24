@@ -35,7 +35,15 @@ class GlobalCompactionTest(unittest.TestCase):
                 minute=True,minute_track=('None','SputnikRing','InstrumentRing')[i%3],
                 dividers=('micro','radial','full','arc','classic')[i%5],complications=True,
                 hand_color=('original','white','black')[i%3],output_size=432,minute_color='original')
-            a=render(subtree=self.before,**options);b=render(subtree=self.root,**options)
+            expected=self.before
+            if style=='instrument_classic' and bg!='black' and mode!='color':
+                # 5.6.1 intentionally replaces the regular pale-dial rust ink.
+                # Compare optimization against that explicit design change.
+                expected=copy.deepcopy(self.before)
+                for scale in expected.findall('.//PartImage[@name="instrument_classic_custom_scale"]'):
+                    for tint in scale.findall('Transform[@target="tintColor"]'):scale.remove(tint)
+                    scale.set('tintColor','#222A29')
+            a=render(subtree=expected,**options);b=render(subtree=self.root,**options)
             diff=ImageChops.difference(a,b)
             # Exact at native size: no new clipping, resampling or raster assets.
             self.assertEqual(max(v for lo,v in diff.getextrema()),0,options)

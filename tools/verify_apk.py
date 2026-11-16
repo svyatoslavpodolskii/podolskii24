@@ -76,7 +76,7 @@ def verify(path):
             tint=part.find('Transform[@target="tintColor"]')
             for background in BACKGROUNDS:
                 inks.add(evaluate(tint.get('value'),{'background':background,'DialTone':'original'},12,0) if tint is not None else part.get('tintColor'))
-        assert scales and inks=={'#E47D38','#A34B24','#222A29','#F0F0E7'}
+        assert scales and inks=={'#E47D38','#222A29','#F0F0E7'}
         for bg in BACKGROUNDS:
             face=xml.find(f'.//Group[@name="dial_instrument_classic_{bg}"]')
             if face is None and bg=='ivory':face=xml.find('.//Group[@name="dial_instrument_classic_white"]')

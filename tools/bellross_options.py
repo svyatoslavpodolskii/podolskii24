@@ -38,14 +38,18 @@ def artwork():
                 records[part,layer]=(name,cropped_asset(im,master.rectangle(part),name))
                 if layer=='base':
                     light=copy.deepcopy(svg)
-                    for child in light:
-                        for attr in ('fill','stroke'):
-                            if child.get(attr) in ('#101414','#333B38'):child.set(attr,'#4B4333')
-                            elif child.get(attr)=='#C5CCC4':child.set(attr,'#272D25')
-                    name=f'br_shared_{part}_light';path=out/(name+'.svg')
-                    E.ElementTree(light).write(path,encoding='utf-8',xml_declaration=True)
-                    im=master.raster(path);im=im.resize((im.width//3*2,im.height//3*2),Image.Resampling.BOX)
-                    records[part,'light']=(name,cropped_asset(im,master.rectangle(part),name))
+                    for background,fill in (('white','#FAFAF7'),('ivory','#E9E2CE')):
+                        light=copy.deepcopy(svg)
+                        for child in light:
+                            for attr in ('fill','stroke'):
+                                if child.get(attr) in ('#101414','#333B38'):child.set(attr,fill)
+                                elif child.get(attr)=='#C5CCC4':child.set(attr,'#363A34')
+                        name=f'br_shared_{part}_light' if background=='white' else f'br_shared_{part}_ivory'
+                        path=out/(name+'.svg')
+                        E.ElementTree(light).write(path,encoding='utf-8',xml_declaration=True)
+                        im=master.raster(path)
+                        im=im.resize((im.width//3*2,im.height//3*2),Image.Resampling.BOX)
+                        records[part,background]=(name,cropped_asset(im,master.rectangle(part),name))
     finally:del master.PALETTES['custom']
     return records
 
@@ -68,14 +72,13 @@ def apply(root):
             node(branch,'Transform',target='alpha',value='[CONFIGURATION.HandColor] == "original" ? 0 : 255')
             for layer in ('base','accent') if kind!='hub' else ('base',):
                 light=resource.endswith(('_white','_ivory'))
-                name,(x,y,w,h)=records[kind,'light' if layer=='base' and light else layer]
+                name,(x,y,w,h)=records[kind,('white' if resource.endswith('_white') else 'ivory') if layer=='base' and light else layer]
                 attrs={k:v for k,v in part.attrib.items() if k not in ('x','y','width','height','pivotX','pivotY','name')}
                 p=node(branch,'PartImage',x=x,y=y,width=w,height=h,pivotX=(216-x)/w,pivotY=(216-y)/h,name=f'br_{kind}_{layer}',**attrs)
                 for t in part.findall('Transform'):
                     if t.get('target')!='alpha':p.append(copy.deepcopy(t))
                 node(p,'Image',resource=name)
                 if layer=='accent':node(p,'Transform',target='tintColor',value=ACCENT)
-                elif light and kind!='hub':node(p,'Transform',target='tintColor',value='[CONFIGURATION.background] == "white" ? #655333 : #40331F')
     scene=root.find('Scene')
     for sid in ('1','2'):
         container=scene.find(f'ComplicationSlot[@slotId="{sid}"]')
@@ -130,20 +133,23 @@ def apply(root):
     clock=scene.find('.//Group[@name="digital_time"]')
     t=clock.find('Transform[@target="y"]');t.set('value',f'({LAYOUT}) ? 260 : '+t.get('value'))
     brand=condition(scene,LAYOUT)
+    brand_layer=list(scene)[-1]
+    # Scene order is painter order: dial lettering belongs below moving hands.
+    scene.remove(brand_layer)
+    scene.insert(list(scene).index(scene.find('Group[@name="interactive_hands"]')),brand_layer)
     parent=node(brand,'Group',name='dial_brand',x=0,y=0,width=432,height=432)
     node(parent,'Variant',mode='AMBIENT',target='alpha',value=0)
-    ink='[CONFIGURATION.background] == "black" ? #E8E9DC : #403A2C'
+    from complication_theme import INK
+    from dial_wordmark import artwork as wordmarks
+    lettering=wordmarks()
+    ink=INK
     for text,ids in (('Podolskii',('br_round_podolskii','br_square_podolskii')),('BelOrus',('br_round_belorus','br_square_belorus'))):
         g=condition(parent,' || '.join(f'[CONFIGURATION.Layout] == "{v}"' for v in ids))
-        from generate import text as label
-        for cx,word,width in ((191,'Bel',36),(216,'O',16),(241,'rus',36)) if text=='BelOrus' else ((216,text,110),):
-            p=label(g,cx,132,word,'#E8E9DC',17,family='barlow_regular',w=width,h=24)
-            node(p.find('Text/Font'),'Transform',target='color',value=ink)
-        if text=='BelOrus':
-            d=node(g,'PartDraw',x=206,y=122,width=20,height=20)
-            e=node(d,'Ellipse',x=1,y=1,width=18,height=18)
-            node(e,'Stroke',color='#E8E9DC',thickness=.6)
-            node(d,'Transform',target='tintColor',value=ink)
+        resource,width=lettering[text]
+        width=2*round(width/2)
+        p=node(g,'PartImage',x=216-width//2,y=120,width=width,height=24)
+        node(p,'Image',resource=resource)
+        node(p,'Transform',target='tintColor',value=ink)
 
 def scale_palette(root):
     """Called after sharing scales. Original and sector palettes are preserved."""
@@ -153,7 +159,7 @@ def scale_palette(root):
         if p.get('name')!='instrument_classic_custom_scale':continue
         old=p.find('Transform[@target="tintColor"]')
         fallback=old.get('value') if old is not None else p.get('tintColor','#E47D38')
-        expr='[CONFIGURATION.DialTone] == "mono_dial" && [CONFIGURATION.background] == "black" ? #F0F2E9 : [CONFIGURATION.DialTone] == "mono_dial" ? #202824 : [CONFIGURATION.DialTone] == "amber_dial" && [CONFIGURATION.background] == "black" ? #FFC027 : [CONFIGURATION.DialTone] == "amber_dial" ? #805600 : '+fallback
+        expr='[CONFIGURATION.background] != "black" ? #222A29 : [CONFIGURATION.DialTone] == "mono_dial" ? #F0F2E9 : [CONFIGURATION.DialTone] == "amber_dial" ? #FFC027 : '+fallback
         if old is None:node(p,'Transform',target='tintColor',value=expr)
         else:old.set('value',expr)
     # All these branches contain only colored hour scales; backgrounds, sector

@@ -1,6 +1,6 @@
 ﻿# Podolskii24
 
-Текущая проверочная версия **5.6**: [изменения и проверки](docs/optimization/REPORT-5.6.md). [Как продолжить разработку на другом ПК](docs/DEVELOPMENT.md). Основой остаётся оригинальный проект TwentyFour. Работа новой версии и скорость редактора ещё требуют проверки на часах.
+Текущая проверочная версия **5.6.1**: [изменения и проверки](docs/optimization/REPORT-5.6.1.md). [Как продолжить разработку на другом ПК](docs/DEVELOPMENT.md). Основой остаётся оригинальный проект TwentyFour. Работа новой версии и скорость редактора ещё требуют проверки на часах.
 
 Нативный 24-часовой циферблат для Wear OS 6+ (WFF v4). Один оборот за сутки: 12 сверху, 6 слева, 18 справа, 24 снизу.
 
@@ -8,14 +8,14 @@
 
 ## Скачать
 
-[Проверочный APK 5.6](https://github.com/svyatoslavpodolskii/podolskii24/releases/tag/v5.6).
+[Проверочный APK 5.6.1](https://github.com/svyatoslavpodolskii/podolskii24/releases/tag/v5.6.1).
 Требуется Wear OS 6 / API 36+. На Galaxy Watch 6 проверьте установленную версию ОС.
 
 Установка на часы через ADB:
 
 ```sh
 adb connect IP:PORT
-adb install -r Podolskii24-5.6.apk
+adb install -r Podolskii24-5.6.1.apk
 ```
 
 Выберите **Podolskii24** в списке циферблатов. Настройки: удержание циферблата → Настроить.
