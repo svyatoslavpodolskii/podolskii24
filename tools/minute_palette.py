@@ -5,7 +5,7 @@ COLORS = ('#222A29', '#F0F0E7', '#8C332A', '#F29883', '#A34B16', '#F08A35')
 PALETTES = {
     'original': COLORS,
     'neutral': ('#222A29', '#F0F0E7') * 3,
-    'orange': ('#A34B16', '#F08A35') * 3,
+    'orange': ('#222A29', '#F08A35') * 3,
     'green': ('#205B39', '#83D79B') * 3,
     'blue': ('#244E78', '#9BCBF0') * 3,
 }

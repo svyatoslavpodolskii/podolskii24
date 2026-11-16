@@ -167,7 +167,7 @@ def flat_palettes(flat):
             inner=copy.deepcopy(part);inner.find('Image').set('resource',name)
             # Flat color replaces every pixel, so the source RGB never matters.
             node(part,'Transform',target='tintColor',value='[CONFIGURATION.HandColor] == "black" ? #F0F0E7 : #222A29')
-            node(inner,'Transform',target='tintColor',value='[CONFIGURATION.HandColor] == "adaptive" && [CONFIGURATION.background] == "white" ? #FAFAF7 : [CONFIGURATION.HandColor] == "adaptive" && [CONFIGURATION.background] == "ivory" ? #E9E2CE : [CONFIGURATION.HandColor] == "adaptive" ? #EEEBD9 : [CONFIGURATION.HandColor] == "white" ? #F0F0E7 : [CONFIGURATION.HandColor] == "black" ? #222A29 : [CONFIGURATION.HandColor] == "orange" ? #EE923E : #91DB9B')
+            node(inner,'Transform',target='tintColor',value='[CONFIGURATION.HandColor] == "adaptive" && [CONFIGURATION.background] == "white" ? #FAFAF7 : [CONFIGURATION.HandColor] == "adaptive" && [CONFIGURATION.background] == "ivory" ? #E9E2CE : [CONFIGURATION.HandColor] == "adaptive" ? #EEEBD9 : [CONFIGURATION.HandColor] == "white" ? #F0F0E7 : [CONFIGURATION.HandColor] == "black" ? #222A29 : [CONFIGURATION.HandColor] == "orange" ? #F08A35 : #91DB9B')
             wrapper=E.Element('Group',name='flat_blade',x='0',y='0',width='432',height='432')
             index=list(parent).index(part);parent.remove(part)
             wrapper.append(part);wrapper.append(inner);parent.insert(index,wrapper)

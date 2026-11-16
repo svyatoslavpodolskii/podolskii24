@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='utf-8'?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 28" width="28" height="28">
   <title>Instrument Classic / hub / custom; pivot 14,14</title>
-  <circle cx="14" cy="14" r="12.6" fill="#E9E2CE" stroke="#363A34" stroke-width="0.65" />
+  <circle cx="14" cy="14" r="12.6" fill="#E9E2CE" stroke="#535950" stroke-width="0.65" />
   <circle cx="14" cy="14" r="10.5" fill="#E9E2CE" />
   <circle cx="14" cy="14" r="8.9" fill="#E9E2CE" />
-  <circle cx="14" cy="14" r="1.5" fill="#D0D5CA" />
+  <circle cx="14" cy="14" r="1.5" fill="#A9B0A5" />
   <circle cx="14.25" cy="14.25" r="0.65" fill="#E9E2CE" />
 </svg>

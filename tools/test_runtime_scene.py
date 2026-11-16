@@ -1,6 +1,7 @@
 """Contracts on the actual shipped tree, independent of legacy expansion."""
 import json
 import unittest
+import copy
 import xml.etree.ElementTree as E
 from PIL import ImageChops,ImageStat
 from generate import RES,ROOT,VISIBLE_HAND_STYLES,STYLES
@@ -56,13 +57,15 @@ class RuntimeSceneTest(unittest.TestCase):
                 options=dict(style=style,background=background,sectors=('none','lines','labels','color')[(i+j)%4],
                     boundaries=('quarter','shifted_back_1_hour')[j%2],dividers=('micro','radial','full','arc','classic')[(i+j)%5],
                     minute_track='InstrumentRing' if j%2 else 'None',minute=True,output_size=216,digital_time=False,minute_color='original',component='scale',scale_inset='original')
-                if style=='instrument_classic' and background!='black' and options['sectors']!='color':
+                expected=before
+                if style=='instrument_classic' and options['sectors']!='color':
+                    expected=copy.deepcopy(before)
                     # The pale regular scale intentionally changed ink in 5.6.1;
                     # retain the old geometry while comparing the new paint.
-                    for scale in before.findall('.//PartImage[@name="instrument_classic_custom_scale"]'):
+                    for scale in expected.findall('.//PartImage[@name="instrument_classic_custom_scale"]'):
                         resource=scale.find('Image').get('resource','')
-                        if resource.endswith(('_brown','_ink')):scale.set('tintColor','#222A29')
-                old=render(subtree=before,**options)
+                        scale.set('tintColor','#F08A35' if background=='black' else '#222A29')
+                old=render(subtree=expected,**options)
                 new=render(subtree=self.root,**options)
                 diff=ImageChops.difference(old,new)
                 maximum=max(high for low,high in diff.getextrema())

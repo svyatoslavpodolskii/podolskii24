@@ -1,8 +1,9 @@
 """One shared foreground tint per complication, preserving provider photos."""
 import xml.etree.ElementTree as E
 
-INK='[CONFIGURATION.DialTone] == "amber_dial" && [CONFIGURATION.background] == "black" ? #FFC027 : [CONFIGURATION.DialTone] == "amber_dial" ? #805600 : [CONFIGURATION.DialTone] == "brown" && [CONFIGURATION.background] == "black" ? #ED923F : [CONFIGURATION.DialTone] == "mono_dial" && [CONFIGURATION.background] == "black" ? #F0F2E9 : [CONFIGURATION.background] == "black" && ([CONFIGURATION.style] == "instrument_classic" || [CONFIGURATION.style] == "aviator") ? #EE923E : [CONFIGURATION.background] == "black" ? #F0F0E7 : [CONFIGURATION.background] == "ivory" ? #403A2C : #222A29'
-DATE_INK='[CONFIGURATION.DialTone] == "amber_dial" ? #FFC027 : [CONFIGURATION.DialTone] == "brown" ? #ED923F : [CONFIGURATION.DialTone] == "mono_dial" ? #F0F2E9 : [CONFIGURATION.style] == "instrument_classic" ? #EE923E : #F0F0E7'
+from design_palette import ACCENT, INK as INSTRUMENT_INK
+INK='[CONFIGURATION.background] != "black" ? #222A29 : [CONFIGURATION.style] != "instrument_classic" && [CONFIGURATION.HandColor] != "orange" ? #F0F0E7 : '+ACCENT
+DATE_INK='[CONFIGURATION.style] != "instrument_classic" && [CONFIGURATION.HandColor] != "orange" ? #F0F0E7 : '+ACCENT
 
 def background_expression():
     pairs={'charcoal':('#303128','#E6E4D9'),'navy':('#142331','#E2EBEE'),

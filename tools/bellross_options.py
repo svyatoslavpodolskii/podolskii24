@@ -9,14 +9,14 @@ from generate import ROOT,RES
 
 NEW='[CONFIGURATION.HandColor] == "br_orange" || [CONFIGURATION.HandColor] == "br_amber" || [CONFIGURATION.HandColor] == "br_mono"'
 LAYOUT='subText([CONFIGURATION.Layout], 0, 3) == "br_"'
-ACCENT='[CONFIGURATION.HandColor] == "br_mono" ? #F0F2E9 : [CONFIGURATION.HandColor] == "br_amber" ? #FFC027 : #FF992B'
+from design_palette import ACCENT
 
 def artwork():
     import instrument_classic as master
     from hand_updates import cropped_asset
     out=ROOT/'docs/hand-masters/bellross-palettes';out.mkdir(parents=True,exist_ok=True)
     records={}
-    master.PALETTES['custom']=dict(body='#101414',edge='#C5CCC4',orange='#FF992B',orange_edge='#FF992B',ring='#333B38',disk='#101414',pin='#D0D5CA')
+    master.PALETTES['custom']=dict(body='#101414',edge='#8A9086',orange='#FF992B',orange_edge='#FF992B',ring='#333B38',disk='#101414',pin='#A9B0A5')
     try:
         for part in ('hour','minute','hub'):
             source=master.svg(part,'custom')
@@ -43,7 +43,7 @@ def artwork():
                         for child in light:
                             for attr in ('fill','stroke'):
                                 if child.get(attr) in ('#101414','#333B38'):child.set(attr,fill)
-                                elif child.get(attr)=='#C5CCC4':child.set(attr,'#363A34')
+                                elif child.get(attr)=='#8A9086':child.set(attr,'#535950')
                         name=f'br_shared_{part}_light' if background=='white' else f'br_shared_{part}_ivory'
                         path=out/(name+'.svg')
                         E.ElementTree(light).write(path,encoding='utf-8',xml_declaration=True)
@@ -159,7 +159,8 @@ def scale_palette(root):
         if p.get('name')!='instrument_classic_custom_scale':continue
         old=p.find('Transform[@target="tintColor"]')
         fallback=old.get('value') if old is not None else p.get('tintColor','#E47D38')
-        expr='[CONFIGURATION.background] != "black" ? #222A29 : [CONFIGURATION.DialTone] == "mono_dial" ? #F0F2E9 : [CONFIGURATION.DialTone] == "amber_dial" ? #FFC027 : '+fallback
+        from design_palette import INK
+        expr=INK
         if old is None:node(p,'Transform',target='tintColor',value=expr)
         else:old.set('value',expr)
     # All these branches contain only colored hour scales; backgrounds, sector

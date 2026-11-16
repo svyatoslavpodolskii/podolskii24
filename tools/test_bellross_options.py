@@ -76,8 +76,8 @@ class BellrossOptionsTest(unittest.TestCase):
 
     def test_complication_theme_uses_shared_ink_and_preserves_photos(self):
         from complication_theme import INK, background_expression
-        for tone,expected in [('amber_dial','#FFC027'),('brown','#ED923F'),('mono_dial','#F0F2E9')]:
-            config={'DialTone':tone,'background':'black','style':'instrument_classic'}
+        for tone,expected in [('amber_dial','#FFC027'),('brown','#F08A35'),('mono_dial','#F0F2E9')]:
+            config={'DialTone':tone,'background':'black','style':'instrument_classic','HandColor':'original'}
             self.assertEqual(evaluate(INK,config,10,8),expected)
         self.assertEqual(evaluate(background_expression(),{'DialTone':'brown','background':'black'},10,8),'#35302B')
         groups=self.root.findall('.//Group[@name="provider_foreground"]')
@@ -85,6 +85,15 @@ class BellrossOptionsTest(unittest.TestCase):
         for group in groups:
             self.assertEqual(group.find('Transform[@target="tintColor"]').get('value'),INK)
             self.assertFalse(group.findall('.//Image[@resource="[COMPLICATION.SMALL_IMAGE]"]'))
+
+    def test_instrument_sets_use_identical_accent_across_all_foregrounds(self):
+        from design_palette import ACCENT, INK as SCALE_INK
+        from complication_theme import INK, DATE_INK
+        for selection,color in (('br_orange','#F08A35'),('br_amber','#FFC027'),('br_mono','#F0F2E9')):
+            for tone in ('original','brown','amber_dial','mono_dial'):
+                config={'HandColor':selection,'DialTone':tone,'background':'black','style':'instrument_classic'}
+                for expression in (ACCENT,SCALE_INK,INK,DATE_INK):
+                    self.assertEqual(evaluate(expression,config,10,8),color)
 
     def test_brand_variants_only_change_top_label(self):
         from PIL import ImageChops
