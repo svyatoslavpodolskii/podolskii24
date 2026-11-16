@@ -117,12 +117,12 @@ def apply(root):
         for g in slot.findall('.//Group'):
             if not g.get('name','').startswith('slot'):continue
             if slot.get('slotId')=='3':
-                node(g,'Transform',target='y',value='[CONFIGURATION.Layout] == "top" ? 30 : 10')
+                node(g,'Transform',target='y',value='[CONFIGURATION.Layout] == "top" ? 30 : 16')
             for axis in ('scaleX','scaleY'):
                 node(g,'Transform',target=axis,value='[CONFIGURATION.ComplicationSize] == "compact" ? 0.857142857 : [CONFIGURATION.Layout] == "top" && [CONFIGURATION.ComplicationSize] == "large" ? 1.035714286 : [CONFIGURATION.Layout] == "top" ? 0.964285714 : [CONFIGURATION.ComplicationSize] == "large" ? 0.928571429 : 0.892857143')
     clock=scene.find('.//Group[@name="digital_time"]')
-    clock.set('y','291')
-    node(clock,'Transform',target='y',value='[CONFIGURATION.Layout] == "top" ? 154 : 291')
+    clock.set('y','299')
+    node(clock,'Transform',target='y',value='[CONFIGURATION.Layout] == "top" ? 154 : 299')
     for axis in ('scaleX','scaleY'):
         node(clock,'Transform',target=axis,value='[CONFIGURATION.DigitalSize] == "compact" ? 1.0 : [CONFIGURATION.DigitalSize] == "large" ? 1.18 : 1.06')
     native_selectors(root)

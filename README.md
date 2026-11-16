@@ -1,6 +1,6 @@
 ﻿# Podolskii24
 
-Текущая проверочная версия **5.5.1**: [изменения и проверки](docs/optimization/REPORT-5.5.1.md). [Как продолжить разработку на другом ПК](docs/DEVELOPMENT.md). Основой остаётся оригинальный проект TwentyFour. Работа новой версии и скорость редактора ещё требуют проверки на часах.
+Текущая проверочная версия **5.5.2**: [изменения и проверки](docs/optimization/REPORT-5.5.2.md). [Как продолжить разработку на другом ПК](docs/DEVELOPMENT.md). Основой остаётся оригинальный проект TwentyFour. Работа новой версии и скорость редактора ещё требуют проверки на часах.
 
 Нативный 24-часовой циферблат для Wear OS 6+ (WFF v4). Один оборот за сутки: 12 сверху, 6 слева, 18 справа, 24 снизу.
 
@@ -8,14 +8,14 @@
 
 ## Скачать
 
-[Проверочный APK 5.5.1](https://github.com/svyatoslavpodolskii/podolskii24/releases/tag/v5.5.1).
+[Проверочный APK 5.5.2](https://github.com/svyatoslavpodolskii/podolskii24/releases/tag/v5.5.2).
 Требуется Wear OS 6 / API 36+. На Galaxy Watch 6 проверьте установленную версию ОС.
 
 Установка на часы через ADB:
 
 ```sh
 adb connect IP:PORT
-adb install -r Podolskii24-5.5.1.apk
+adb install -r Podolskii24-5.5.2.apk
 ```
 
 Выберите **Podolskii24** в списке циферблатов. Настройки: удержание циферблата → Настроить.
@@ -37,8 +37,8 @@ adb install -r Podolskii24-5.5.1.apk
 - Простые контрастные палитры стрелок, оттенки фона, размеры дополнений и времени.
 - Регулируемые отступы Instrument Classic и внешней минутной дорожки.
 
-[Актуальный лист стрелок с номерами](docs/previews/hand-selection-numbered-5.5.1.jpg).
-Номера 01–14 соответствуют меню. [Цветовые сочетания](docs/previews/personalization-5.5.1.jpg), [обычный режим и AOD](docs/previews/active-aod-5.5.1.jpg).
+[Актуальный лист стрелок с номерами](docs/previews/hand-selection-numbered-5.5.2.jpg).
+Номера 01–14 соответствуют меню. [Цветовые сочетания](docs/previews/personalization-5.5.2.jpg), [обычный режим и AOD](docs/previews/active-aod-5.5.2.jpg).
 
 ## Версия 5.0
 

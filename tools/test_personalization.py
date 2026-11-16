@@ -21,7 +21,9 @@ class PersonalizationTest(unittest.TestCase):
                         self.assertLessEqual(radius,29.001)
                         if slot.get('slotId')=='3':
                             center=float(slot.get('y'))+evaluate(g.find('Transform[@target="y"]').get('value'),config,10,8)+28
-                            if layout=='bottom':self.assertLess(center+radius,285)
+                            if layout=='bottom':
+                                self.assertEqual(center,264)
+                                self.assertLess(center+radius,291)
                             else:self.assertLess(center+radius,308)
         clock=root.find('.//Group[@name="digital_time"]')
         self.assertEqual(evaluate(clock.find('Transform[@target="y"]').get('value'),{'Layout':'top'},10,8),154)
