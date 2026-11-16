@@ -12,7 +12,7 @@ class CollectionTest(unittest.TestCase):
         for _,recipe in RECIPES:
             self.assertNotEqual(recipe.get('layout'),'top')
             if recipe.get('sectors')=='color':self.assertEqual(recipe.get('hand_color'),'white')
-        self.assertEqual(options(RECIPES[8][1])['digital_size'],'c_outline')
+        self.assertEqual(options(RECIPES[8][1])['digital_size'],'c_plain')
 
     def test_ninth_recipe_time_has_clearance_from_lower_arc(self):
         root=E.parse(RES/'raw/watchface.xml').getroot()

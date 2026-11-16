@@ -9,8 +9,8 @@ LISTS = {
     'ScaleInset': ('wide', ('original','wide')),
     'MinuteInset': ('wide', ('wide','inset')),
     'ComplicationSize': ('normal', ('compact','normal','large','huge','compact_wide','normal_wide','large_wide','huge_wide')),
-    'DigitalSize': ('n_outline', ('compact','normal','large')+tuple(f'{size}_{mode}' for size in ('c','n','l') for mode in ('plain','outline','frame','box'))),
-    'Layout': ('bottom', ('bottom','top','br_round','br_square','br_round_belorus','br_round_podolskii','br_square_belorus','br_square_podolskii')),
+    'DigitalSize': ('n_plain', ('compact','normal','large')+tuple(f'{size}_{mode}' for size in ('c','n','l') for mode in ('plain','outline','frame','box'))),
+    'Layout': ('bottom', ('bottom','top','trio','br_round','br_square','br_round_belorus','br_round_podolskii','br_square_belorus','br_square_podolskii')),
 }
 LABELS = {
     'adaptive':'Авто — тёплые тёмные / светлые',
@@ -31,6 +31,7 @@ LABELS = {
 }
 
 LABELS.update({'DigitalSize':'Размер и оформление времени','ComplicationSize':'Размер и расстояние дополнений',
+ 'trio':'Три равных круга — время сверху или выключено',
  'huge':'Очень крупные','compact_wide':'Малые — дальше от центра','normal_wide':'Средние — дальше от центра',
  'large_wide':'Крупные — дальше от центра','huge_wide':'Очень крупные — дальше от центра'})
 for code,size in (('c','Малое'),('n','Среднее'),('l','Крупное')):

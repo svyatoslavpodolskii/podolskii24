@@ -112,11 +112,28 @@ def apply(root):
     for group in scene.findall('ComplicationSlot/Complication/Group'):
         backdrop=group.find('PartDraw/Transform[@target="tintColor"]')
         if backdrop is not None:backdrop.set('value',complication_surface())
+    # An equilateral three-circle composition, with the SAME diameter in all
+    # native slots. Use existing transforms, not another copy of provider trees.
+    trio='[CONFIGURATION.Layout] == "trio"'
+    diameter='subText([CONFIGURATION.ComplicationSize], 0, 1) == "c" ? 1.285714286 : subText([CONFIGURATION.ComplicationSize], 0, 1) == "l" ? 1.571428571 : subText([CONFIGURATION.ComplicationSize], 0, 1) == "h" ? 1.714285714 : 1.428571429'
+    for container in scene.findall('ComplicationSlot'):
+        sid=container.get('slotId')
+        for g in container.findall('Complication/Group'):
+            for axis in ('scaleX','scaleY'):
+                t=g.find(f'Transform[@target="{axis}"]')
+                t.set('value',f'({trio}) ? ({diameter}) : '+t.get('value'))
+            axis='y' if sid=='3' else 'x'
+            t=g.find(f'Transform[@target="{axis}"]')
+            pos='[CONFIGURATION.style] == "instrument_classic" ? 24 : [CONFIGURATION.MinuteTrackStyle] == "None" ? 58 : 48' if sid=='3' else ('[CONFIGURATION.style] == "instrument_classic" ? 100 : 112' if sid=='1' else '[CONFIGURATION.style] == "instrument_classic" ? 52 : 40')
+            t.set('value',f'({trio}) ? ({pos}) : '+t.get('value'))
+            if sid!='3':
+                t=g.find('Transform[@target="y"]')
+                t.set('value',f'({trio}) ? ([CONFIGURATION.style] == "instrument_classic" ? 28 : [CONFIGURATION.MinuteTrackStyle] == "None" ? 46 : 36) : '+t.get('value'))
     # The provider remains slot 3, so an existing user selection survives.
     slot=scene.find('ComplicationSlot[@slotId="3"]')
-    slot.set('width','176');slot.set('height','128')
+    slot.set('width','176');slot.set('height','144')
     bounds=slot.find('BoundingOval');bounds.tag='BoundingBox'
-    bounds.attrib.update(x='14',y='40',width='158',height='86')
+    bounds.attrib.update(x='0',y='0',width='176',height='144')
     # WFF v4 bounds cannot move with configuration: this fixed lower strip
     # includes both valid locations without overlapping the upper two slots.
     for comp in slot.findall('Complication'):
@@ -152,7 +169,7 @@ def apply(root):
                 image.set('tintColor','#F1F1E6');node(image,'Transform',target='tintColor',value=DATE_INK)
             node(image,'Image',resource=f'[COMPLICATION.{key}]')
     clock=scene.find('.//Group[@name="digital_time"]')
-    t=clock.find('Transform[@target="y"]');t.set('value',f'({LAYOUT}) ? 274 : '+t.get('value'))
+    t=clock.find('Transform[@target="y"]');t.set('value',f'({trio}) ? ([CONFIGURATION.style] == "instrument_classic" ? 136 : 116) : ({LAYOUT}) ? 274 : '+t.get('value'))
     brand=condition(scene,LAYOUT)
     brand_layer=list(scene)[-1]
     # Scene order is painter order: dial lettering belongs below moving hands.
@@ -197,7 +214,7 @@ def scale_palette(root):
     # One small mathematical mask per scale layer, not per design/background.
     # The two side-number holes only open in the new chronograph composition.
     for group in (scales,colored):
-        mask=node(condition(group,LAYOUT),'PartDraw',x=0,y=0,width=432,height=432,renderMode='MASK',name='subdial_number_mask')
+        mask=node(condition(group,LAYOUT+' || ([CONFIGURATION.Layout] == "trio" && [CONFIGURATION.style] == "instrument_classic")'),'PartDraw',x=0,y=0,width=432,height=432,renderMode='MASK',name='subdial_number_mask')
         # Clear the adjacent 8/16 and 4/20 positions as well: wide subdials
         # otherwise graze these numerals, particularly with an outer minute ring.
         for x,y,w,h in ((0,0,432,110),(0,322,432,110),

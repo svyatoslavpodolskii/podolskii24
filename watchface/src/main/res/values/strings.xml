@@ -107,6 +107,7 @@
   <string name="p_compact">Компактный</string>
   <string name="p_normal">Средний</string>
   <string name="p_large">Крупный</string>
+  <string name="p_trio">Три равных круга — время сверху или выключено</string>
   <string name="p_huge">Очень крупные</string>
   <string name="p_compact_wide">Малые — дальше от центра</string>
   <string name="p_normal_wide">Средние — дальше от центра</string>

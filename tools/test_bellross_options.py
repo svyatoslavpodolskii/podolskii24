@@ -20,7 +20,7 @@ class BellrossOptionsTest(unittest.TestCase):
     def test_large_circles_are_centered_separate_and_inside_slot(self):
         for style,layout,size in itertools.product(STYLES,('br_round','br_square'),('compact','normal','large')):
             diameter={'compact':120,'normal':136,'large':152}[size]
-            cfg={'style':style,'Layout':layout,'ComplicationSize':size}
+            cfg={'style':style,'Layout':layout,'ComplicationSize':size,'MinuteTrackStyle':'None'}
             for sid,xcenter in (('1',114),('2',318)):
                 slot=self.root.find(f'Scene/ComplicationSlot[@slotId="{sid}"]')
                 g=slot.find('Complication/Group')

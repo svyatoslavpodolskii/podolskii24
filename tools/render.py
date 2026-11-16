@@ -38,6 +38,7 @@ def evaluate(expr,config,hour,minute,data=None):
         values['REFERENCE.themeSurface']=evaluate(background_expression(),config,hour,minute,data)
     expr=re.sub(r'\[([^]]+)\]',lambda m:values[m[1]] if m[1].startswith('REFERENCE.') else repr(values[m[1]]),expr)
     expr=expr.replace('&&',' and ').replace('||',' or ')
+    expr=re.sub(r'!(?!=)', ' not ', expr)
     def ternary(value):
         # Process nested expressions and preserve quoted provider strings.
         out='';i=0
