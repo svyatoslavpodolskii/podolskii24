@@ -28,7 +28,9 @@ def digital_decoration(clock):
         align=text.attrib.pop('align','CENTER');content=node(text,'Text',align=align);content.append(font)
         rim=node(font,'Outline',color='#222A29' if font.get('color')=='#F0F0E7' else '#F0F0E7',width=.35)
         # Read the actual sector under the lower clock, not the base background.
-        node(font,'Transform',target='color',value=f'({SPLIT}) ? '+('#F0F0E7' if pale else '#222A29')+' : [CONFIGURATION.sectors] == "color" && [CONFIGURATION.Layout] == "bottom" ? #F0F0E7 : '+font.get('color'))
+        from design_palette import DIGITAL_DARK_INK
+        fallback=DIGITAL_DARK_INK if pale else font.get('color')
+        node(font,'Transform',target='color',value=f'({SPLIT}) ? '+('#F0F0E7' if pale else '#222A29')+' : [CONFIGURATION.sectors] == "color" && [CONFIGURATION.Layout] == "bottom" ? #F0F0E7 : '+fallback)
         template=node(rim,'Template');template.text='%02d:%02d'
         node(template,'Parameter',expression='[HOUR_0_23]')
         node(template,'Parameter',expression='[MINUTE]')

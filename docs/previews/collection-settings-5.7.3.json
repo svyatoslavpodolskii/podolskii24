@@ -1,0 +1,359 @@
+[
+  {
+    "name": "01 Copper / Instrument Classic",
+    "settings": {
+      "minute": true,
+      "complications": true,
+      "digital_time": true,
+      "hand_color": "br_orange",
+      "seconds": false,
+      "second": 40,
+      "aod_minute": true,
+      "digital_size": "l_plain",
+      "style": "instrument_classic",
+      "background": "black",
+      "dial_tone": "brown",
+      "layout": "br_round_podolskii",
+      "complication_size": "large"
+    }
+  },
+  {
+    "name": "02 Porcelain / Instrument Classic",
+    "settings": {
+      "minute": true,
+      "complications": true,
+      "digital_time": true,
+      "hand_color": "br_mono",
+      "seconds": false,
+      "second": 40,
+      "aod_minute": true,
+      "digital_size": "l_plain",
+      "style": "instrument_classic",
+      "background": "black",
+      "dial_tone": "mono_dial",
+      "layout": "br_square",
+      "complication_size": "normal"
+    }
+  },
+  {
+    "name": "03 Amber / Instrument Classic",
+    "settings": {
+      "minute": true,
+      "complications": true,
+      "digital_time": true,
+      "hand_color": "br_amber",
+      "seconds": false,
+      "second": 40,
+      "aod_minute": true,
+      "digital_size": "l_plain",
+      "style": "instrument_classic",
+      "background": "black",
+      "dial_tone": "amber_dial",
+      "layout": "br_round",
+      "complication_size": "normal"
+    }
+  },
+  {
+    "name": "04 Ivory / Classic",
+    "settings": {
+      "minute": true,
+      "complications": true,
+      "digital_time": true,
+      "hand_color": "black",
+      "seconds": false,
+      "second": 40,
+      "aod_minute": true,
+      "digital_size": "l_plain",
+      "style": "classic",
+      "background": "ivory",
+      "hand_style": "legacy_classic",
+      "layout": "trio",
+      "complication_size": "normal",
+      "dividers": "classic",
+      "sectors": "none",
+      "minute_track": "None"
+    }
+  },
+  {
+    "name": "05 Silver / Classic",
+    "settings": {
+      "minute": true,
+      "complications": true,
+      "digital_time": false,
+      "hand_color": "black",
+      "seconds": false,
+      "second": 40,
+      "aod_minute": true,
+      "digital_size": "l_plain",
+      "style": "classic",
+      "background": "white",
+      "hand_style": "sword",
+      "layout": "trio",
+      "minute_track": "FiveMinuteLabels",
+      "complication_size": "large"
+    }
+  },
+  {
+    "name": "06 Midnight / Classic",
+    "settings": {
+      "minute": true,
+      "complications": true,
+      "digital_time": true,
+      "hand_color": "white",
+      "seconds": false,
+      "second": 40,
+      "aod_minute": true,
+      "digital_size": "l_plain",
+      "style": "classic",
+      "background": "black",
+      "dial_tone": "navy",
+      "hand_style": "legacy_classic",
+      "layout": "br_round",
+      "complication_size": "huge_wide",
+      "minute_track": "TicksOnly"
+    }
+  },
+  {
+    "name": "07 Paper / Minimal",
+    "settings": {
+      "minute": true,
+      "complications": false,
+      "digital_time": false,
+      "hand_color": "black",
+      "seconds": false,
+      "second": 40,
+      "aod_minute": true,
+      "digital_size": "l_plain",
+      "style": "minimal",
+      "background": "white",
+      "hand_style": "legacy_minimal",
+      "minute_track": "None"
+    }
+  },
+  {
+    "name": "08 Obsidian / Minimal",
+    "settings": {
+      "minute": true,
+      "complications": true,
+      "digital_time": true,
+      "hand_color": "white",
+      "seconds": false,
+      "second": 40,
+      "aod_minute": true,
+      "digital_size": "l_plain",
+      "style": "minimal",
+      "background": "black",
+      "dial_tone": "original",
+      "hand_style": "sword",
+      "layout": "trio",
+      "complication_size": "normal",
+      "minute_track": "TicksOnly"
+    }
+  },
+  {
+    "name": "09 Quiet hours / Minimal",
+    "settings": {
+      "minute": true,
+      "complications": true,
+      "digital_time": true,
+      "hand_color": "black",
+      "seconds": false,
+      "second": 40,
+      "aod_minute": true,
+      "digital_size": "l_plain",
+      "style": "minimal",
+      "background": "ivory",
+      "hand_style": "sword",
+      "layout": "bottom",
+      "complication_size": "compact",
+      "sectors": "lines",
+      "dividers": "arc",
+      "minute_track": "None"
+    }
+  },
+  {
+    "name": "10 Quarter / Sputnik",
+    "settings": {
+      "minute": true,
+      "complications": true,
+      "digital_time": true,
+      "hand_color": "white",
+      "seconds": false,
+      "second": 40,
+      "aod_minute": true,
+      "digital_size": "n_plain",
+      "style": "sputnik",
+      "background": "ivory",
+      "hand_style": "legacy_sputnik",
+      "sectors": "color",
+      "boundaries": "quarter",
+      "dividers": "classic",
+      "minute_track": "SputnikRing",
+      "layout": "bottom",
+      "complication_size": "compact"
+    }
+  },
+  {
+    "name": "11 Expedition / Sputnik",
+    "settings": {
+      "minute": true,
+      "complications": true,
+      "digital_time": true,
+      "hand_color": "white",
+      "seconds": false,
+      "second": 40,
+      "aod_minute": true,
+      "digital_size": "n_plain",
+      "style": "sputnik",
+      "background": "white",
+      "hand_style": "legacy_sputnik",
+      "sectors": "color",
+      "boundaries": "shifted_back_1_hour",
+      "dividers": "radial",
+      "minute_track": "SputnikRing",
+      "layout": "bottom",
+      "complication_size": "large_wide"
+    }
+  },
+  {
+    "name": "12 Polar night / Sputnik",
+    "settings": {
+      "minute": true,
+      "complications": true,
+      "digital_time": true,
+      "hand_color": "white",
+      "seconds": false,
+      "second": 40,
+      "aod_minute": true,
+      "digital_size": "n_plain",
+      "style": "sputnik",
+      "background": "black",
+      "hand_style": "legacy_sputnik",
+      "sectors": "color",
+      "dividers": "micro",
+      "minute_track": "SputnikRing",
+      "layout": "bottom",
+      "complication_size": "huge_wide"
+    }
+  },
+  {
+    "name": "13 Flight / Instrument",
+    "settings": {
+      "minute": true,
+      "complications": true,
+      "digital_time": true,
+      "hand_color": "white",
+      "seconds": false,
+      "second": 40,
+      "aod_minute": true,
+      "digital_size": "l_plain",
+      "style": "instrument",
+      "background": "black",
+      "hand_style": "instrument_refined",
+      "minute_track": "InstrumentRing",
+      "minute_color": "neutral",
+      "layout": "br_round",
+      "complication_size": "compact"
+    }
+  },
+  {
+    "name": "14 Technical / Instrument",
+    "settings": {
+      "minute": true,
+      "complications": true,
+      "digital_time": true,
+      "hand_color": "black",
+      "seconds": false,
+      "second": 40,
+      "aod_minute": true,
+      "digital_size": "l_plain",
+      "style": "instrument",
+      "background": "white",
+      "hand_style": "instrument_white",
+      "minute_track": "InstrumentRing",
+      "minute_color": "neutral",
+      "layout": "br_square",
+      "complication_size": "large_wide"
+    }
+  },
+  {
+    "name": "15 Field / Instrument",
+    "settings": {
+      "minute": true,
+      "complications": true,
+      "digital_time": true,
+      "hand_color": "white",
+      "seconds": false,
+      "second": 40,
+      "aod_minute": true,
+      "digital_size": "l_plain",
+      "style": "instrument",
+      "background": "black",
+      "dial_tone": "forest",
+      "hand_style": "instrument_white",
+      "minute_track": "TicksOnly",
+      "layout": "br_round",
+      "complication_size": "compact"
+    }
+  },
+  {
+    "name": "16 Cockpit / Aviator",
+    "settings": {
+      "minute": true,
+      "complications": true,
+      "digital_time": false,
+      "hand_color": "orange",
+      "seconds": false,
+      "second": 40,
+      "aod_minute": true,
+      "digital_size": "l_plain",
+      "style": "aviator",
+      "background": "black",
+      "hand_style": "instrument_refined",
+      "minute_track": "InstrumentRing",
+      "minute_color": "orange",
+      "layout": "trio",
+      "complication_size": "normal"
+    }
+  },
+  {
+    "name": "17 Silver / Aviator",
+    "settings": {
+      "minute": true,
+      "complications": true,
+      "digital_time": false,
+      "hand_color": "black",
+      "seconds": false,
+      "second": 40,
+      "aod_minute": true,
+      "digital_size": "l_plain",
+      "style": "aviator",
+      "background": "white",
+      "hand_style": "instrument_white",
+      "sectors": "none",
+      "layout": "trio",
+      "complication_size": "large"
+    }
+  },
+  {
+    "name": "18 Night panel / Aviator",
+    "settings": {
+      "minute": true,
+      "complications": true,
+      "digital_time": true,
+      "hand_color": "orange",
+      "seconds": false,
+      "second": 40,
+      "aod_minute": true,
+      "digital_size": "l_plain",
+      "style": "aviator",
+      "background": "black",
+      "dial_tone": "navy",
+      "hand_style": "instrument_white",
+      "minute_track": "TicksOnly",
+      "minute_color": "orange",
+      "layout": "br_square",
+      "complication_size": "huge_wide"
+    }
+  }
+]

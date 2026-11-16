@@ -46,4 +46,20 @@ class CollectionTest(unittest.TestCase):
             color=next(iter(colors));background='#35302B' if r['dial_tone']=='brown' else '#101212'
             self.assertGreater((luminance(color)+.05)/(luminance(background)+.05),4.5)
 
+    def test_digital_time_matches_regular_hour_scale_palette(self):
+        from design_palette import DIGITAL_DARK_INK
+        root=E.parse(RES/'raw/watchface.xml').getroot()
+        fonts=root.findall('.//Group[@name="digital_readout"]/PartText/Text/Font')
+        self.assertEqual(sum(f.find('Transform[@target="color"]').get('value').endswith(DIGITAL_DARK_INK) for f in fonts),1)
+        for number in (1,2,3,16,18):
+            r=options(RECIPES[number-1][1])
+            cfg=dict(style=r['style'],background=r['background'],sectors=r.get('sectors','none'),
+                HandColor=r['hand_color'],DialTone=r.get('dial_tone','original'))
+            self.assertEqual(evaluate(DIGITAL_DARK_INK,cfg,10,8),evaluate(ACCENT,cfg,10,8))
+        for style in ('classic','minimal','sputnik','instrument'):
+            cfg=dict(style=style,sectors='none',HandColor='orange',DialTone='original')
+            self.assertEqual(evaluate(DIGITAL_DARK_INK,cfg,10,8),'#F0F0E7')
+        cfg=dict(style='instrument_classic',sectors='color',HandColor='br_orange',DialTone='brown')
+        self.assertEqual(evaluate(DIGITAL_DARK_INK,cfg,10,8),'#F0F0E7')
+
 if __name__=='__main__':unittest.main()

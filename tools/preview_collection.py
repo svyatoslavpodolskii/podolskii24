@@ -34,18 +34,18 @@ if __name__=='__main__':
     for title,recipe in RECIPES:
         config=options(recipe)
         image=render(**config)
-        image.save(out/(title[:2]+'-collection-5.7.2.png'))
+        image.save(out/(title[:2]+'-collection-5.7.3.png'))
         panels.append((title,image));records.append(dict(name=title,settings=config))
-    sheet(panels,out/'collection-18-5.7.2.jpg',columns=3,tile=432)
+    sheet(panels,out/'collection-18-5.7.3.jpg',columns=3,tile=432)
     for i in range(0,18,3):
-        sheet(panels[i:i+3],out/f'collection-{i+1:02}-{i+3:02}-5.7.2.jpg',columns=3,tile=432)
+        sheet(panels[i:i+3],out/f'collection-{i+1:02}-{i+3:02}-5.7.3.jpg',columns=3,tile=432)
     selected=[0,3,7,9,12,15]
-    sheet([panels[i] for i in selected],out/'collection-selected-5.7.2.jpg',columns=3,tile=432)
+    sheet([panels[i] for i in selected],out/'collection-selected-5.7.3.jpg',columns=3,tile=432)
     sheet([(RECIPES[i][0],render(**dict(options(RECIPES[i][1]),ambient=True))) for i in selected],
-          out/'collection-aod-5.7.2.jpg',columns=3,tile=432)
-    (out/'collection-settings-5.7.2.json').write_text(json.dumps(records,indent=2),encoding='utf-8')
+          out/'collection-aod-5.7.3.jpg',columns=3,tile=432)
+    (out/'collection-settings-5.7.3.json').write_text(json.dumps(records,indent=2),encoding='utf-8')
     comparison=[]
     for number in (1,9,10):
-        for version,label in (('5.6.2','Before'),('5.7.2','After')):
+        for version,label in (('5.6.2','Before'),('5.7.3','After')):
             comparison.append((f'{number:02} / {label}',Image.open(out/f'{number:02}-collection-{version}.png').convert('RGBA')))
-    sheet(comparison,out/'layout-corrections-5.7.2.jpg',columns=2,tile=432)
+    sheet(comparison,out/'layout-corrections-5.7.3.jpg',columns=2,tile=432)
