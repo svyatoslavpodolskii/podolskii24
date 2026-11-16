@@ -109,13 +109,15 @@ def apply(root):
                 t=group.find(f'Transform[@target="{axis}"]')
                 # Two subdials can be slightly larger than the three-dial layout.
                 t.set('value',f'({LAYOUT}) && subText([CONFIGURATION.ComplicationSize], 0, 1) == "h" ? 3 : ({LAYOUT}) && subText([CONFIGURATION.ComplicationSize], 0, 1) == "c" ? 2.142857143 : ({LAYOUT}) && subText([CONFIGURATION.ComplicationSize], 0, 1) == "l" ? 2.714285714 : ({LAYOUT}) ? 2.428571429 : '+t.get('value'))
-    for group in scene.findall('ComplicationSlot/Complication/Group'):
-        backdrop=group.find('PartDraw/Transform[@target="tintColor"]')
-        if backdrop is not None:backdrop.set('value',complication_surface())
-    # An equilateral three-circle composition, with the SAME diameter in all
+    for container in scene.findall('ComplicationSlot'):
+        for group in container.findall('Complication/Group'):
+            backdrop=group.find('PartDraw/Transform[@target="tintColor"]')
+            if backdrop is not None:backdrop.set('value',complication_surface(container.get('slotId')))
+    # Three circles at equal radii from the hand axis, with the SAME diameter in all
     # native slots. Use existing transforms, not another copy of provider trees.
     trio='[CONFIGURATION.Layout] == "trio"'
     diameter='subText([CONFIGURATION.ComplicationSize], 0, 1) == "c" ? 1.285714286 : subText([CONFIGURATION.ComplicationSize], 0, 1) == "l" ? 1.571428571 : subText([CONFIGURATION.ComplicationSize], 0, 1) == "h" ? 1.714285714 : 1.428571429'
+    diameter='('+diameter+') - ([CONFIGURATION.style] == "instrument_classic" || [CONFIGURATION.style] == "aviator" ? 0.142857143 : 0)'
     for container in scene.findall('ComplicationSlot'):
         sid=container.get('slotId')
         for g in container.findall('Complication/Group'):
@@ -124,11 +126,11 @@ def apply(root):
                 t.set('value',f'({trio}) ? ({diameter}) : '+t.get('value'))
             axis='y' if sid=='3' else 'x'
             t=g.find(f'Transform[@target="{axis}"]')
-            pos='[CONFIGURATION.style] == "instrument_classic" ? 24 : [CONFIGURATION.MinuteTrackStyle] == "None" ? 58 : 48' if sid=='3' else ('[CONFIGURATION.style] == "instrument_classic" ? 100 : 112' if sid=='1' else '[CONFIGURATION.style] == "instrument_classic" ? 52 : 40')
+            pos='[CONFIGURATION.style] == "instrument_classic" ? 36 : [CONFIGURATION.style] == "aviator" ? 44 : 52' if sid=='3' else ('[CONFIGURATION.style] == "instrument_classic" ? 106 : [CONFIGURATION.style] == "aviator" ? 98 : 90' if sid=='1' else '[CONFIGURATION.style] == "instrument_classic" ? 46 : [CONFIGURATION.style] == "aviator" ? 54 : 62')
             t.set('value',f'({trio}) ? ({pos}) : '+t.get('value'))
             if sid!='3':
                 t=g.find('Transform[@target="y"]')
-                t.set('value',f'({trio}) ? ([CONFIGURATION.style] == "instrument_classic" ? 28 : [CONFIGURATION.MinuteTrackStyle] == "None" ? 46 : 36) : '+t.get('value'))
+                t.set('value',f'({trio}) ? 64 : '+t.get('value'))
     # The provider remains slot 3, so an existing user selection survives.
     slot=scene.find('ComplicationSlot[@slotId="3"]')
     slot.set('width','176');slot.set('height','144')

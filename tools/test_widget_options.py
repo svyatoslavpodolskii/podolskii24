@@ -31,11 +31,13 @@ class WidgetOptionsTest(unittest.TestCase):
         self.assertGreaterEqual(326-106-168,52)
 
     def test_trio_equal_diameters_clearance_and_native_bounds(self):
-        import math
-        for track in ('None','TicksOnly'):
+        import math,itertools
+        from generate import STYLES
+        for style,track in itertools.product(STYLES,('None','TicksOnly')):
             for size,diameter in (('compact',72),('normal',80),('large',88),('huge',96)):
+                if style in ('instrument_classic','aviator'):diameter-=8
                 centers=[]
-                cfg=dict(style='instrument_classic',Layout='trio',ComplicationSize=size,MinuteTrackStyle=track)
+                cfg=dict(style=style,Layout='trio',ComplicationSize=size,MinuteTrackStyle=track)
                 for slot in self.root.findall('Scene/ComplicationSlot'):
                     group=slot.find('Complication/Group')
                     def val(axis):
@@ -49,16 +51,35 @@ class WidgetOptionsTest(unittest.TestCase):
                         self.assertLessEqual(center+diameter/2,limit)
                     centers.append((float(slot.get('x'))+x,float(slot.get('y'))+y))
                 distances=[math.dist(centers[a],centers[b]) for a,b in ((0,1),(0,2),(1,2))]
-                # Instrument Classic needs a broader triangle to clear its
-                # oversized 12/24; the other five faces use equal distances.
-                self.assertLess(max(distances)-min(distances),30)
-                self.assertGreater(min(distances)-diameter,18)
+                self.assertEqual(centers[0][0]+centers[1][0],432)
+                self.assertEqual(centers[0][1],centers[1][1])
+                self.assertEqual(centers[2][0],216)
+                radii=[math.dist(c,(216,216)) for c in centers]
+                self.assertLess(max(radii)-min(radii),.0001)
+                self.assertEqual(radii[0],68 if style=='instrument_classic' else 76 if style=='aviator' else 84)
+                self.assertGreater(min(distances)-diameter,8)
 
     def test_frame_does_not_outline_glyphs(self):
         cfg=dict(DigitalSize='c_frame')
         for rim in self.root.findall('.//Group[@name="digital_readout"]//Outline'):
             expression=rim.find('Transform').get('value')
             self.assertEqual(evaluate(expression,cfg,10,8),'#00000000')
+
+    def test_sector_widget_palette_and_dimmed_text_remain_readable(self):
+        from complication_theme import complication_surface,complication_ink
+        from generate import palette,contrast
+        for bg in ('white','ivory','black'):
+            for boundaries in ('quarter','shifted_back_1_hour'):
+                cfg=dict(style='sputnik',background=bg,sectors='color',boundaries=boundaries,
+                    HandColor='white',DialTone='original')
+                for slot in ('1','2','3'):
+                    surface=evaluate(complication_surface(slot),cfg,10,8)
+                    ink=evaluate(complication_ink(slot),cfg,10,8)
+                    self.assertIn(surface,palette('sputnik',bg))
+                    a=(205 if bg=='black' else 230)/255
+                    rgb=[round(int(ink[i:i+2],16)*a+int(surface[i:i+2],16)*(1-a)) for i in (1,3,5)]
+                    effective='#'+''.join(f'{v:02X}' for v in rgb)
+                    self.assertGreaterEqual(contrast(surface,effective),4.5)
 
     def test_quarter_time_uses_exact_light_dark_halves_without_outline(self):
         clock=self.root.find('.//Group[@name="digital_time"]')

@@ -82,9 +82,11 @@ class BellrossOptionsTest(unittest.TestCase):
         self.assertEqual(evaluate(background_expression(),{'DialTone':'brown','background':'black'},10,8),'#35302B')
         groups=self.root.findall('.//Group[@name="provider_foreground"]')
         self.assertTrue(groups)
-        for group in groups:
-            self.assertEqual(group.find('Transform[@target="tintColor"]').get('value'),INK)
-            self.assertFalse(group.findall('.//Image[@resource="[COMPLICATION.SMALL_IMAGE]"]'))
+        from complication_theme import complication_ink
+        for slot in self.root.findall('Scene/ComplicationSlot'):
+            for group in slot.findall('.//Group[@name="provider_foreground"]'):
+                self.assertEqual(group.find('Transform[@target="tintColor"]').get('value'),complication_ink(slot.get('slotId')))
+                self.assertFalse(group.findall('.//Image[@resource="[COMPLICATION.SMALL_IMAGE]"]'))
 
     def test_instrument_sets_use_identical_accent_across_all_foregrounds(self):
         from design_palette import ACCENT, INK as SCALE_INK

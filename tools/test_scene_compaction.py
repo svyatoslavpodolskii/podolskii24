@@ -46,7 +46,8 @@ class GlobalCompactionTest(unittest.TestCase):
                     if draw is None:continue
                     backing=draw.find('Transform[@target="tintColor"]')
                     if backing is None:backing=E.SubElement(draw,'Transform',target='tintColor')
-                    backing.set('value',complication_surface())
+                    slot=next(s for s in expected.findall('ComplicationSlot') if comp in list(s))
+                    backing.set('value',complication_surface(slot.get('slotId')))
             if style=='instrument_classic' and mode!='color':
                 # 5.6.1 intentionally replaces the regular pale-dial rust ink.
                 # Compare optimization against that explicit design change.

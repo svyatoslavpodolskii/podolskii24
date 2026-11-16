@@ -154,11 +154,11 @@ def apply(root):
     # Keep the angle geometry and move the ring inside that text's clear space.
     for ring in active.findall('.//Group[@name="period_dividers_arc"]'):
         for axis in ('scaleX','scaleY'):
-            node(ring,'Transform',target=axis,value='[CONFIGURATION.DigitalTime] == "TRUE" ? 0.83 : 1')
+            node(ring,'Transform',target=axis,value='[CONFIGURATION.DigitalTime] == "TRUE" ? 0.80 : 1')
     clock.set('y','299')
     node(clock,'Transform',target='y',value='[CONFIGURATION.Layout] == "top" ? 154 : [CONFIGURATION.style] == "instrument_classic" ? 299 : [CONFIGURATION.MinuteTrackStyle] != "None" ? 312 : 326')
     for axis in ('scaleX','scaleY'):
-        node(clock,'Transform',target=axis,value='subText([CONFIGURATION.DigitalSize], 0, 1) == "c" ? 1.0 : [CONFIGURATION.style] != "instrument_classic" && subText([CONFIGURATION.DigitalSize], 0, 1) == "l" ? 1.45 : [CONFIGURATION.style] != "instrument_classic" ? 1.2 : subText([CONFIGURATION.DigitalSize], 0, 1) == "l" ? 1.18 : 1.06')
+        node(clock,'Transform',target=axis,value='subText([CONFIGURATION.DigitalSize], 0, 1) == "c" ? 1.0 : subText([CONFIGURATION.DigitalSize], 0, 1) == "l" ? 1.65 : 1.35')
     from complication_theme import apply as theme_complications
     theme_complications(root)
     native_selectors(root)

@@ -11,8 +11,19 @@ def background_expression():
            'amber_dial':('#101212','#ECE8DB'),'mono_dial':('#101212','#F0F0E9')}
     return ''.join(f'[CONFIGURATION.DialTone] == "{key}" && [CONFIGURATION.background] == "black" ? {dark} : [CONFIGURATION.DialTone] == "{key}" ? {light} : ' for key,(dark,light) in pairs.items())+'[CONFIGURATION.background] == "black" ? #000000 : [CONFIGURATION.background] == "ivory" ? #E9E2CE : #FAFAF7'
 
-def complication_surface():
-    return '[CONFIGURATION.sectors] == "color" && [CONFIGURATION.background] == "black" ? #18221E : [CONFIGURATION.sectors] == "color" && [CONFIGURATION.background] == "ivory" ? #B8BAAC : [CONFIGURATION.sectors] == "color" ? #C2C6BE : '+background_expression()
+def complication_surface(slot='1'):
+    # Use the actual period palette, rather than a fourth unrelated panel color.
+    colors={'1':('#202723','#DDDCBC','#EBEAD9'),'2':('#151C20','#E9E2CE','#FAFAF7'),'3':('#080D11','#26332F','#253230')}
+    dark,ivory,white=colors[str(slot)]
+    if str(slot)=='2':
+        dark='([CONFIGURATION.boundaries] == "shifted_back_1_hour" ? #292522 : #151C20)'
+        ivory='([CONFIGURATION.boundaries] == "shifted_back_1_hour" ? #B9B3A5 : #E9E2CE)'
+        white='([CONFIGURATION.boundaries] == "shifted_back_1_hour" ? #C6C5BD : #FAFAF7)'
+    return f'[CONFIGURATION.sectors] == "color" && [CONFIGURATION.background] == "black" ? {dark} : [CONFIGURATION.sectors] == "color" && [CONFIGURATION.background] == "ivory" ? {ivory} : [CONFIGURATION.sectors] == "color" ? {white} : '+background_expression()
+
+def complication_ink(slot):
+    sector='#BBC3B8' if str(slot)=='3' else '#222A29'
+    return '[CONFIGURATION.sectors] == "color" && [CONFIGURATION.background] == "black" ? #AAB4A8 : [CONFIGURATION.sectors] == "color" ? '+sector+' : '+INK
 
 def apply(root):
     from generate import node
@@ -23,7 +34,7 @@ def apply(root):
             for group in comp.findall('Condition/Compare/Group'):
                 backing=group.find('PartDraw')
                 foreground=node(group,'Group',name='provider_foreground',x=0,y=0,width=56,height=56)
-                node(foreground,'Transform',target='tintColor',value=INK)
+                node(foreground,'Transform',target='tintColor',value=complication_ink(slot.get('slotId')))
                 node(foreground,'Transform',target='alpha',value='[CONFIGURATION.background] == "black" && [CONFIGURATION.style] != "instrument_classic" ? 205 : 230')
                 border=node(foreground,'PartDraw',x=0,y=0,width=56,height=56)
                 for shape in list(backing):
