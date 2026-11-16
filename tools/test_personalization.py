@@ -12,7 +12,7 @@ class PersonalizationTest(unittest.TestCase):
         root=E.parse(RES/'raw/watchface.xml').getroot()
         for layout in ('bottom','top'):
             for size in ('compact','normal','large'):
-                config={'Layout':layout,'ComplicationSize':size}
+                config={'Layout':layout,'ComplicationSize':size,'style':'instrument_classic'}
                 for slot in root.findall('Scene/ComplicationSlot'):
                     for g in slot.findall('Complication/Group'):
                         self.assertEqual(g.get('pivotX'),'0.5')
@@ -26,7 +26,28 @@ class PersonalizationTest(unittest.TestCase):
                                 self.assertLess(center+radius,291)
                             else:self.assertLess(center+radius,308)
         clock=root.find('.//Group[@name="digital_time"]')
-        self.assertEqual(evaluate(clock.find('Transform[@target="y"]').get('value'),{'Layout':'top'},10,8),154)
+        self.assertEqual(evaluate(clock.find('Transform[@target="y"]').get('value'),{'Layout':'top','style':'instrument_classic'},10,8),154)
+
+    def test_regular_dials_keep_roomier_layout(self):
+        root=E.parse(RES/'raw/watchface.xml').getroot()
+        for style in STYLES:
+            if style=='instrument_classic':continue
+            for size,diameter in (('compact',48),('normal',56),('large',64)):
+                config={'style':style,'Layout':'bottom','ComplicationSize':size,'DigitalSize':'large'}
+                centers=[]
+                for slot in root.findall('Scene/ComplicationSlot'):
+                    g=slot.find('Complication/Group')
+                    radius=28*evaluate(g.find('Transform[@target="scaleX"]').get('value'),config,10,8)
+                    self.assertAlmostEqual(radius*2,diameter,places=5)
+                    coords=[]
+                    for axis in ('x','y'):
+                        t=g.find(f'Transform[@target="{axis}"]')
+                        local=evaluate(t.get('value'),config,10,8) if t is not None else float(g.get(axis))
+                        coords.append(float(slot.get(axis))+local+28)
+                    centers.append(coords)
+                self.assertEqual(centers,[[154,216],[278,216],[216,282]])
+                clock=root.find('.//Group[@name="digital_time"]')
+                self.assertEqual(evaluate(clock.find('Transform[@target="y"]').get('value'),config,10,8),326)
 
     def test_factored_guards_truth_table(self):
         guards=[f'([CONFIGURATION.style] == "{s}" && [CONFIGURATION.background] == "{b}") && ([CONFIGURATION.boundaries] == "{p}" && [CONFIGURATION.sectors] == "{m}")'

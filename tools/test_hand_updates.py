@@ -52,7 +52,7 @@ class HandUpdatesTest(unittest.TestCase):
             box=ImageChops.difference(on,off).convert('RGB').getbbox()
             self.assertIsNotNone(box)
             # Final output filtering may add a faint fringe of up to 3 pixels.
-            self.assertGreaterEqual(box[0],177);self.assertGreaterEqual(box[1],283)
-            self.assertLessEqual(box[2],255);self.assertLessEqual(box[3],324)
+            self.assertGreaterEqual(box[0],177);self.assertGreaterEqual(box[1],323)
+            self.assertLessEqual(box[2],255);self.assertLessEqual(box[3],352)
 
 if __name__=='__main__':unittest.main()

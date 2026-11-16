@@ -111,20 +111,23 @@ def apply(root):
         if slot.get('slotId')=='2':slot.set('x','220');slot.set('y','168')
         if slot.get('slotId')=='3':
             slot.set('y','220')
-        slot.find('BoundingOval').attrib.update(x='14',y='14',width='68',height='68')
+        slot.find('BoundingOval').attrib.update(x='4',y='4',width='88',height='88')
         if slot.get('slotId')=='3':
-            slot.find('BoundingOval').attrib.update(y='4',height='88')
+            slot.find('BoundingOval').attrib.update(y='4',height='92')
         for g in slot.findall('.//Group'):
             if not g.get('name','').startswith('slot'):continue
             if slot.get('slotId')=='3':
-                node(g,'Transform',target='y',value='[CONFIGURATION.Layout] == "top" ? 30 : 16')
+                node(g,'Transform',target='y',value='[CONFIGURATION.Layout] == "top" ? 30 : [CONFIGURATION.style] == "instrument_classic" ? 16 : 34')
+            else:
+                offset=10 if slot.get('slotId')=='1' else 30
+                node(g,'Transform',target='x',value=f'[CONFIGURATION.style] == "instrument_classic" ? 20 : {offset}')
             for axis in ('scaleX','scaleY'):
-                node(g,'Transform',target=axis,value='[CONFIGURATION.ComplicationSize] == "compact" ? 0.857142857 : [CONFIGURATION.Layout] == "top" && [CONFIGURATION.ComplicationSize] == "large" ? 1.035714286 : [CONFIGURATION.Layout] == "top" ? 0.964285714 : [CONFIGURATION.ComplicationSize] == "large" ? 0.928571429 : 0.892857143')
+                node(g,'Transform',target=axis,value='[CONFIGURATION.ComplicationSize] == "compact" ? 0.857142857 : [CONFIGURATION.style] != "instrument_classic" && [CONFIGURATION.ComplicationSize] == "large" ? 1.142857143 : [CONFIGURATION.style] != "instrument_classic" ? 1.0 : [CONFIGURATION.Layout] == "top" && [CONFIGURATION.ComplicationSize] == "large" ? 1.035714286 : [CONFIGURATION.Layout] == "top" ? 0.964285714 : [CONFIGURATION.ComplicationSize] == "large" ? 0.928571429 : 0.892857143')
     clock=scene.find('.//Group[@name="digital_time"]')
     clock.set('y','299')
-    node(clock,'Transform',target='y',value='[CONFIGURATION.Layout] == "top" ? 154 : 299')
+    node(clock,'Transform',target='y',value='[CONFIGURATION.Layout] == "top" ? 154 : [CONFIGURATION.style] == "instrument_classic" ? 299 : 326')
     for axis in ('scaleX','scaleY'):
-        node(clock,'Transform',target=axis,value='[CONFIGURATION.DigitalSize] == "compact" ? 1.0 : [CONFIGURATION.DigitalSize] == "large" ? 1.18 : 1.06')
+        node(clock,'Transform',target=axis,value='[CONFIGURATION.DigitalSize] == "compact" ? 1.0 : [CONFIGURATION.style] != "instrument_classic" && [CONFIGURATION.DigitalSize] == "large" ? 1.45 : [CONFIGURATION.style] != "instrument_classic" ? 1.2 : [CONFIGURATION.DigitalSize] == "large" ? 1.18 : 1.06')
     native_selectors(root)
 
 def flat_palettes(flat):

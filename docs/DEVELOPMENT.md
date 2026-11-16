@@ -1,4 +1,4 @@
-Current patch: 5.5.2 / versionCode 18. See optimization/REPORT-5.5.2.md and tools/preview_layout.py.
+Current patch: 5.5.3 / versionCode 19. See optimization/REPORT-5.5.3.md and tools/preview_layout.py.
 
 # Продолжение разработки Podolskii24 на другом ПК
 

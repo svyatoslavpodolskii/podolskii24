@@ -2840,7 +2840,7 @@
 <Variant mode="AMBIENT" target="tintColor" value="#87998D" />
 </Group>
 <ComplicationSlot slotId="1" displayName="slot_1" x="116" y="168" width="96" height="96" supportedTypes="SHORT_TEXT MONOCHROMATIC_IMAGE SMALL_IMAGE RANGED_VALUE EMPTY" isCustomizable="TRUE"><Variant mode="AMBIENT" target="alpha" value="0" />
-<BoundingOval x="14" y="14" width="68" height="68" />
+<BoundingOval x="4" y="4" width="88" height="88" />
 <DefaultProviderPolicy defaultSystemProvider="EMPTY" defaultSystemProviderType="EMPTY" />
 <Complication type="EMPTY" />
 <Complication type="SHORT_TEXT"><Group name="slot1_SHORT_TEXT_shared" x="20" y="20" width="56" height="56" pivotX="0.5" pivotY="0.5"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
@@ -2866,8 +2866,9 @@
 </Text>
 <Transform target="y" value="([COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != &quot;&quot;) ? 28 : 17" />
 </PartText>
-<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
-<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
+<Transform target="x" value="[CONFIGURATION.style] == &quot;instrument_classic&quot; ? 20 : 10" />
+<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.style] != &quot;instrument_classic&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.142857143 : [CONFIGURATION.style] != &quot;instrument_classic&quot; ? 1.0 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
+<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.style] != &quot;instrument_classic&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.142857143 : [CONFIGURATION.style] != &quot;instrument_classic&quot; ? 1.0 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
 </Group>
 </Complication>
 <Complication type="MONOCHROMATIC_IMAGE"><Group name="slot1_MONOCHROMATIC_IMAGE_shared" x="20" y="20" width="56" height="56" pivotX="0.5" pivotY="0.5"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
@@ -2881,8 +2882,9 @@
 <PartImage x="12" y="12" width="32" height="32" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
 <Transform target="tintColor" value="[CONFIGURATION.background] == &quot;white&quot; ? #222A29 : [CONFIGURATION.background] == &quot;ivory&quot; ? #222A29 : #F0F0E7" />
 </PartImage>
-<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
-<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
+<Transform target="x" value="[CONFIGURATION.style] == &quot;instrument_classic&quot; ? 20 : 10" />
+<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.style] != &quot;instrument_classic&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.142857143 : [CONFIGURATION.style] != &quot;instrument_classic&quot; ? 1.0 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
+<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.style] != &quot;instrument_classic&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.142857143 : [CONFIGURATION.style] != &quot;instrument_classic&quot; ? 1.0 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
 </Group>
 </Complication>
 <Complication type="SMALL_IMAGE"><Group name="slot1_SMALL_IMAGE_shared" x="20" y="20" width="56" height="56" pivotX="0.5" pivotY="0.5"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
@@ -2899,8 +2901,9 @@
 <PartImage x="7" y="7" width="42" height="42"><Image resource="[COMPLICATION.SMALL_IMAGE]" />
 </PartImage>
 </Group>
-<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
-<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
+<Transform target="x" value="[CONFIGURATION.style] == &quot;instrument_classic&quot; ? 20 : 10" />
+<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.style] != &quot;instrument_classic&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.142857143 : [CONFIGURATION.style] != &quot;instrument_classic&quot; ? 1.0 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
+<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.style] != &quot;instrument_classic&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.142857143 : [CONFIGURATION.style] != &quot;instrument_classic&quot; ? 1.0 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
 </Group>
 </Complication>
 <Complication type="RANGED_VALUE"><Group name="slot1_RANGED_VALUE_shared" x="20" y="20" width="56" height="56" pivotX="0.5" pivotY="0.5"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
@@ -2930,13 +2933,14 @@
 </Text>
 <Transform target="y" value="([COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != &quot;&quot;) ? 28 : 17" />
 </PartText>
-<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
-<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
+<Transform target="x" value="[CONFIGURATION.style] == &quot;instrument_classic&quot; ? 20 : 10" />
+<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.style] != &quot;instrument_classic&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.142857143 : [CONFIGURATION.style] != &quot;instrument_classic&quot; ? 1.0 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
+<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.style] != &quot;instrument_classic&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.142857143 : [CONFIGURATION.style] != &quot;instrument_classic&quot; ? 1.0 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
 </Group>
 </Complication>
 </ComplicationSlot>
 <ComplicationSlot slotId="2" displayName="slot_2" x="220" y="168" width="96" height="96" supportedTypes="SHORT_TEXT MONOCHROMATIC_IMAGE SMALL_IMAGE RANGED_VALUE EMPTY" isCustomizable="TRUE"><Variant mode="AMBIENT" target="alpha" value="0" />
-<BoundingOval x="14" y="14" width="68" height="68" />
+<BoundingOval x="4" y="4" width="88" height="88" />
 <DefaultProviderPolicy defaultSystemProvider="EMPTY" defaultSystemProviderType="EMPTY" />
 <Complication type="EMPTY" />
 <Complication type="SHORT_TEXT"><Group name="slot2_SHORT_TEXT_shared" x="20" y="20" width="56" height="56" pivotX="0.5" pivotY="0.5"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
@@ -2962,8 +2966,9 @@
 </Text>
 <Transform target="y" value="([COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != &quot;&quot;) ? 28 : 17" />
 </PartText>
-<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
-<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
+<Transform target="x" value="[CONFIGURATION.style] == &quot;instrument_classic&quot; ? 20 : 30" />
+<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.style] != &quot;instrument_classic&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.142857143 : [CONFIGURATION.style] != &quot;instrument_classic&quot; ? 1.0 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
+<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.style] != &quot;instrument_classic&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.142857143 : [CONFIGURATION.style] != &quot;instrument_classic&quot; ? 1.0 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
 </Group>
 </Complication>
 <Complication type="MONOCHROMATIC_IMAGE"><Group name="slot2_MONOCHROMATIC_IMAGE_shared" x="20" y="20" width="56" height="56" pivotX="0.5" pivotY="0.5"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
@@ -2977,8 +2982,9 @@
 <PartImage x="12" y="12" width="32" height="32" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
 <Transform target="tintColor" value="[CONFIGURATION.background] == &quot;white&quot; ? #222A29 : [CONFIGURATION.background] == &quot;ivory&quot; ? #222A29 : #F0F0E7" />
 </PartImage>
-<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
-<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
+<Transform target="x" value="[CONFIGURATION.style] == &quot;instrument_classic&quot; ? 20 : 30" />
+<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.style] != &quot;instrument_classic&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.142857143 : [CONFIGURATION.style] != &quot;instrument_classic&quot; ? 1.0 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
+<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.style] != &quot;instrument_classic&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.142857143 : [CONFIGURATION.style] != &quot;instrument_classic&quot; ? 1.0 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
 </Group>
 </Complication>
 <Complication type="SMALL_IMAGE"><Group name="slot2_SMALL_IMAGE_shared" x="20" y="20" width="56" height="56" pivotX="0.5" pivotY="0.5"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
@@ -2995,8 +3001,9 @@
 <PartImage x="7" y="7" width="42" height="42"><Image resource="[COMPLICATION.SMALL_IMAGE]" />
 </PartImage>
 </Group>
-<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
-<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
+<Transform target="x" value="[CONFIGURATION.style] == &quot;instrument_classic&quot; ? 20 : 30" />
+<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.style] != &quot;instrument_classic&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.142857143 : [CONFIGURATION.style] != &quot;instrument_classic&quot; ? 1.0 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
+<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.style] != &quot;instrument_classic&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.142857143 : [CONFIGURATION.style] != &quot;instrument_classic&quot; ? 1.0 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
 </Group>
 </Complication>
 <Complication type="RANGED_VALUE"><Group name="slot2_RANGED_VALUE_shared" x="20" y="20" width="56" height="56" pivotX="0.5" pivotY="0.5"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
@@ -3026,13 +3033,14 @@
 </Text>
 <Transform target="y" value="([COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != &quot;&quot;) ? 28 : 17" />
 </PartText>
-<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
-<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
+<Transform target="x" value="[CONFIGURATION.style] == &quot;instrument_classic&quot; ? 20 : 30" />
+<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.style] != &quot;instrument_classic&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.142857143 : [CONFIGURATION.style] != &quot;instrument_classic&quot; ? 1.0 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
+<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.style] != &quot;instrument_classic&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.142857143 : [CONFIGURATION.style] != &quot;instrument_classic&quot; ? 1.0 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
 </Group>
 </Complication>
 </ComplicationSlot>
 <ComplicationSlot slotId="3" displayName="slot_3" x="168" y="220" width="96" height="96" supportedTypes="SHORT_TEXT MONOCHROMATIC_IMAGE SMALL_IMAGE RANGED_VALUE EMPTY" isCustomizable="TRUE"><Variant mode="AMBIENT" target="alpha" value="0" />
-<BoundingOval x="14" y="4" width="68" height="88" />
+<BoundingOval x="4" y="4" width="88" height="92" />
 <DefaultProviderPolicy defaultSystemProvider="EMPTY" defaultSystemProviderType="EMPTY" />
 <Complication type="EMPTY" />
 <Complication type="SHORT_TEXT"><Group name="slot3_SHORT_TEXT_shared" x="20" y="20" width="56" height="56" pivotX="0.5" pivotY="0.5"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
@@ -3058,9 +3066,9 @@
 </Text>
 <Transform target="y" value="([COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != &quot;&quot;) ? 28 : 17" />
 </PartText>
-<Transform target="y" value="[CONFIGURATION.Layout] == &quot;top&quot; ? 30 : 16" />
-<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
-<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
+<Transform target="y" value="[CONFIGURATION.Layout] == &quot;top&quot; ? 30 : [CONFIGURATION.style] == &quot;instrument_classic&quot; ? 16 : 34" />
+<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.style] != &quot;instrument_classic&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.142857143 : [CONFIGURATION.style] != &quot;instrument_classic&quot; ? 1.0 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
+<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.style] != &quot;instrument_classic&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.142857143 : [CONFIGURATION.style] != &quot;instrument_classic&quot; ? 1.0 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
 </Group>
 </Complication>
 <Complication type="MONOCHROMATIC_IMAGE"><Group name="slot3_MONOCHROMATIC_IMAGE_shared" x="20" y="20" width="56" height="56" pivotX="0.5" pivotY="0.5"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
@@ -3074,9 +3082,9 @@
 <PartImage x="12" y="12" width="32" height="32" tintColor="#222A29"><Image resource="[COMPLICATION.MONOCHROMATIC_IMAGE]" />
 <Transform target="tintColor" value="[CONFIGURATION.background] == &quot;white&quot; ? #222A29 : [CONFIGURATION.background] == &quot;ivory&quot; ? #222A29 : #F0F0E7" />
 </PartImage>
-<Transform target="y" value="[CONFIGURATION.Layout] == &quot;top&quot; ? 30 : 16" />
-<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
-<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
+<Transform target="y" value="[CONFIGURATION.Layout] == &quot;top&quot; ? 30 : [CONFIGURATION.style] == &quot;instrument_classic&quot; ? 16 : 34" />
+<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.style] != &quot;instrument_classic&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.142857143 : [CONFIGURATION.style] != &quot;instrument_classic&quot; ? 1.0 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
+<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.style] != &quot;instrument_classic&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.142857143 : [CONFIGURATION.style] != &quot;instrument_classic&quot; ? 1.0 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
 </Group>
 </Complication>
 <Complication type="SMALL_IMAGE"><Group name="slot3_SMALL_IMAGE_shared" x="20" y="20" width="56" height="56" pivotX="0.5" pivotY="0.5"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
@@ -3093,9 +3101,9 @@
 <PartImage x="7" y="7" width="42" height="42"><Image resource="[COMPLICATION.SMALL_IMAGE]" />
 </PartImage>
 </Group>
-<Transform target="y" value="[CONFIGURATION.Layout] == &quot;top&quot; ? 30 : 16" />
-<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
-<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
+<Transform target="y" value="[CONFIGURATION.Layout] == &quot;top&quot; ? 30 : [CONFIGURATION.style] == &quot;instrument_classic&quot; ? 16 : 34" />
+<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.style] != &quot;instrument_classic&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.142857143 : [CONFIGURATION.style] != &quot;instrument_classic&quot; ? 1.0 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
+<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.style] != &quot;instrument_classic&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.142857143 : [CONFIGURATION.style] != &quot;instrument_classic&quot; ? 1.0 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
 </Group>
 </Complication>
 <Complication type="RANGED_VALUE"><Group name="slot3_RANGED_VALUE_shared" x="20" y="20" width="56" height="56" pivotX="0.5" pivotY="0.5"><PartDraw x="0" y="0" width="56" height="56"><Ellipse x="0" y="0" width="56" height="56"><Fill color="#FAFAF7" />
@@ -3125,9 +3133,9 @@
 </Text>
 <Transform target="y" value="([COMPLICATION.MONOCHROMATIC_IMAGE] != null &amp;&amp; [COMPLICATION.MONOCHROMATIC_IMAGE] != &quot;&quot;) ? 28 : 17" />
 </PartText>
-<Transform target="y" value="[CONFIGURATION.Layout] == &quot;top&quot; ? 30 : 16" />
-<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
-<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
+<Transform target="y" value="[CONFIGURATION.Layout] == &quot;top&quot; ? 30 : [CONFIGURATION.style] == &quot;instrument_classic&quot; ? 16 : 34" />
+<Transform target="scaleX" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.style] != &quot;instrument_classic&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.142857143 : [CONFIGURATION.style] != &quot;instrument_classic&quot; ? 1.0 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
+<Transform target="scaleY" value="[CONFIGURATION.ComplicationSize] == &quot;compact&quot; ? 0.857142857 : [CONFIGURATION.style] != &quot;instrument_classic&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.142857143 : [CONFIGURATION.style] != &quot;instrument_classic&quot; ? 1.0 : [CONFIGURATION.Layout] == &quot;top&quot; &amp;&amp; [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 1.035714286 : [CONFIGURATION.Layout] == &quot;top&quot; ? 0.964285714 : [CONFIGURATION.ComplicationSize] == &quot;large&quot; ? 0.928571429 : 0.892857143" />
 </Group>
 </Complication>
 </ComplicationSlot>
@@ -4043,9 +4051,9 @@
 </DigitalClock>
 </Compare>
 </Condition>
-<Transform target="y" value="[CONFIGURATION.Layout] == &quot;top&quot; ? 154 : 299" />
-<Transform target="scaleX" value="[CONFIGURATION.DigitalSize] == &quot;compact&quot; ? 1.0 : [CONFIGURATION.DigitalSize] == &quot;large&quot; ? 1.18 : 1.06" />
-<Transform target="scaleY" value="[CONFIGURATION.DigitalSize] == &quot;compact&quot; ? 1.0 : [CONFIGURATION.DigitalSize] == &quot;large&quot; ? 1.18 : 1.06" />
+<Transform target="y" value="[CONFIGURATION.Layout] == &quot;top&quot; ? 154 : [CONFIGURATION.style] == &quot;instrument_classic&quot; ? 299 : 326" />
+<Transform target="scaleX" value="[CONFIGURATION.DigitalSize] == &quot;compact&quot; ? 1.0 : [CONFIGURATION.style] != &quot;instrument_classic&quot; &amp;&amp; [CONFIGURATION.DigitalSize] == &quot;large&quot; ? 1.45 : [CONFIGURATION.style] != &quot;instrument_classic&quot; ? 1.2 : [CONFIGURATION.DigitalSize] == &quot;large&quot; ? 1.18 : 1.06" />
+<Transform target="scaleY" value="[CONFIGURATION.DigitalSize] == &quot;compact&quot; ? 1.0 : [CONFIGURATION.style] != &quot;instrument_classic&quot; &amp;&amp; [CONFIGURATION.DigitalSize] == &quot;large&quot; ? 1.45 : [CONFIGURATION.style] != &quot;instrument_classic&quot; ? 1.2 : [CONFIGURATION.DigitalSize] == &quot;large&quot; ? 1.18 : 1.06" />
 </Group>
 </Compare>
 </Condition>
