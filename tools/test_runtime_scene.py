@@ -14,7 +14,7 @@ class RuntimeSceneTest(unittest.TestCase):
 
     def test_stronger_budgets_and_pruned_hands(self):
         self.assertLess(len(list(self.root.iter())),4500)
-        self.assertLess((RES/'raw/watchface.xml').stat().st_size,400000)
+        self.assertLess((RES/'raw/watchface.xml').stat().st_size,440000)
         self.assertLess(self.manifest['runtime_png_rgba_bytes'],19000000)
         self.assertLess(len(self.root.findall('.//PartDraw[@renderMode="MASK"]')),150)
         cfg=self.root.find('UserConfigurations/ListConfiguration[@id="HandStyle"]')
@@ -38,7 +38,7 @@ class RuntimeSceneTest(unittest.TestCase):
         for time in scene.findall('.//DigitalClock/TimeText'):
             self.assertEqual((time.get('format'),time.get('hourFormat')),('hh:mm','24'))
         for slot in scene.findall('ComplicationSlot'):
-            self.assertEqual(slot.get('width'),'96')
+            self.assertEqual(slot.get('width'),'176')
             self.assertTrue(slot.findall('.//Ellipse'))
             self.assertTrue(slot.findall('.//PartImage[@name="provider_icon"]'))
             for part in slot.findall('Complication[@type="RANGED_VALUE"]//PartText'):

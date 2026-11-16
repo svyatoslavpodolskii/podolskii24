@@ -4,16 +4,22 @@ import copy
 import re
 
 LISTS = {
-    'DialTone': ('original', ('original','charcoal','navy','forest')),
-    'HandColor': ('original', ('original','white','black','orange','green')),
+    'DialTone': ('original', ('original','charcoal','navy','forest','brown','amber_dial','mono_dial')),
+    'HandColor': ('adaptive', ('adaptive','original','white','black','orange','green','br_orange','br_amber','br_mono')),
     'ScaleInset': ('wide', ('original','wide')),
     'MinuteInset': ('wide', ('wide','inset')),
     'ComplicationSize': ('normal', ('compact','normal','large')),
     'DigitalSize': ('normal', ('compact','normal','large')),
-    'Layout': ('bottom', ('bottom','top')),
+    'Layout': ('bottom', ('bottom','top','br_round','br_square','br_round_belorus','br_round_podolskii','br_square_belorus','br_square_podolskii')),
 }
 LABELS = {
-    'Layout':'Расположение цифрового времени', 'bottom':'Снизу — компактные дополнения', 'top':'Сверху — свободная компоновка',
+    'adaptive':'Авто — тёплые тёмные / светлые',
+    'br_round_belorus':'Два круга / круглая дата / BelOrus', 'br_round_podolskii':'Два круга / круглая дата / Podolskii',
+    'br_square_belorus':'Два круга / окно даты / BelOrus', 'br_square_podolskii':'Два круга / окно даты / Podolskii',
+    'brown':'Тёплый графит / коричневый', 'amber_dial':'Bell & Ross — янтарная шкала', 'mono_dial':'Bell & Ross — белая шкала',
+    'br_orange':'Bell & Ross — чёрный / яркий оранжевый', 'br_amber':'Bell & Ross — чёрный / янтарный', 'br_mono':'Bell & Ross — чёрный / белый',
+    'br_round':'Два крупных круга и круглая дата', 'br_square':'Два крупных круга и прямоугольная дата',
+    'Layout':'Компоновка и надпись', 'bottom':'Время снизу — три дополнения', 'top':'Время сверху — три дополнения',
     'AodMinute':'Минутная стрелка в AOD', 'Seconds':'Секундная стрелка',
     'DialTone':'Оттенок фона', 'HandColor':'Цвет стрелок',
     'ScaleInset':'Отступ шкалы Instrument Classic', 'MinuteInset':'Отступ минутной дорожки',
@@ -48,6 +54,9 @@ def apply(root):
             'charcoal':'#303128' if base=='#000000' else '#E6E4D9',
             'navy':'#142331' if base=='#000000' else '#E2EBEE',
             'forest':'#182B22' if base=='#000000' else '#E3EADD',
+            'brown':'#35302B' if base=='#000000' else '#E9DFCF',
+            'amber_dial':'#101212' if base=='#000000' else '#ECE8DB',
+            'mono_dial':'#101212' if base=='#000000' else '#F0F0E9',
         }.items())+base
         node(paint,'Transform',target='tintColor',value=expr)
     hands=scene.find('Group[@name="interactive_hands"]')
@@ -81,8 +90,8 @@ def apply(root):
             wrapper.extend(list(child.find('Compare')))
             index=list(parent).index(child);parent.remove(child);parent.insert(index,wrapper)
     payload=list(hands.findall('Condition'))
-    original=group(condition(hands,'[CONFIGURATION.HandColor] == "original"'),'original_hands')
-    flat=group(condition(hands,'[CONFIGURATION.HandColor] != "original"'),'flat_hands')
+    original=group(condition(hands,'[CONFIGURATION.HandColor] == "original" || [CONFIGURATION.HandColor] == "br_orange" || [CONFIGURATION.HandColor] == "br_amber" || [CONFIGURATION.HandColor] == "br_mono"'),'original_hands')
+    flat=group(condition(hands,'[CONFIGURATION.HandColor] != "original" && [CONFIGURATION.HandColor] != "br_orange" && [CONFIGURATION.HandColor] != "br_amber" && [CONFIGURATION.HandColor] != "br_mono"'),'flat_hands')
     for item in payload:
         hands.remove(item);original.append(item)
     # A flat palette has no background-specific source colors. One silhouette
@@ -128,6 +137,8 @@ def apply(root):
     node(clock,'Transform',target='y',value='[CONFIGURATION.Layout] == "top" ? 154 : [CONFIGURATION.style] == "instrument_classic" ? 299 : 326')
     for axis in ('scaleX','scaleY'):
         node(clock,'Transform',target=axis,value='[CONFIGURATION.DigitalSize] == "compact" ? 1.0 : [CONFIGURATION.style] != "instrument_classic" && [CONFIGURATION.DigitalSize] == "large" ? 1.45 : [CONFIGURATION.style] != "instrument_classic" ? 1.2 : [CONFIGURATION.DigitalSize] == "large" ? 1.18 : 1.06')
+    from complication_theme import apply as theme_complications
+    theme_complications(root)
     native_selectors(root)
 
 def flat_palettes(flat):
@@ -156,7 +167,7 @@ def flat_palettes(flat):
             inner=copy.deepcopy(part);inner.find('Image').set('resource',name)
             # Flat color replaces every pixel, so the source RGB never matters.
             node(part,'Transform',target='tintColor',value='[CONFIGURATION.HandColor] == "black" ? #F0F0E7 : #222A29')
-            node(inner,'Transform',target='tintColor',value='[CONFIGURATION.HandColor] == "white" ? #F0F0E7 : [CONFIGURATION.HandColor] == "black" ? #222A29 : [CONFIGURATION.HandColor] == "orange" ? #EE923E : #91DB9B')
+            node(inner,'Transform',target='tintColor',value='[CONFIGURATION.HandColor] == "adaptive" && [CONFIGURATION.background] == "white" ? #514934 : [CONFIGURATION.HandColor] == "adaptive" && [CONFIGURATION.background] == "ivory" ? #403A2C : [CONFIGURATION.HandColor] == "adaptive" ? #EEEBD9 : [CONFIGURATION.HandColor] == "white" ? #F0F0E7 : [CONFIGURATION.HandColor] == "black" ? #222A29 : [CONFIGURATION.HandColor] == "orange" ? #EE923E : #91DB9B')
             wrapper=E.Element('Group',name='flat_blade',x='0',y='0',width='432',height='432')
             index=list(parent).index(part);parent.remove(part)
             wrapper.append(part);wrapper.append(inner);parent.insert(index,wrapper)

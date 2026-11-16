@@ -42,7 +42,7 @@ class HandUpdatesTest(unittest.TestCase):
 
     def test_optional_icons_and_digital_switch(self):
         slot=self.root.find('.//Group[@name="slot1_SHORT_TEXT_shared"]')
-        icon_condition=next(c for c in slot.findall('Condition') if c.find('.//PartImage[@name="provider_icon"]') is not None)
+        icon_condition=next(c for c in slot.findall('.//Condition') if c.find('.//PartImage[@name="provider_icon"]') is not None)
         expression=icon_condition.find('Expressions/Expression').text
         for icon,expected in ((None,False),('',False),('provider_icon',True)):
             self.assertEqual(evaluate(expression,{},10,8,{'MONOCHROMATIC_IMAGE':icon}),expected)

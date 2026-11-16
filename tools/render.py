@@ -41,7 +41,7 @@ def evaluate(expr,config,hour,minute,data=None):
         return '('+yes+' if '+test+' else '+ternary(no)+')'
     expr=ternary(expr)
     expr=re.sub(r'#[0-9A-Fa-f]{6,8}\b',lambda m:repr(m[0]),expr)
-    return eval(expr,{'__builtins__':{},'null':None,'clamp':lambda x,a,b:max(a,min(b,x)),'textLength':lambda x:len(x or '')},{})
+    return eval(expr,{'__builtins__':{},'null':None,'clamp':lambda x,a,b:max(a,min(b,x)),'textLength':lambda x:len(x or ''),'subText':lambda s,a,b:s[int(a):int(b)]},{})
 
 def render(style='classic',background='white',sectors='none',boundaries='quarter',minute=False,ambient=False,hour=10,mins=8,complications=False,output_size=432,dividers='micro',hand_style='auto',minute_track='None',component='full',hand_size='Original',subtree=None,transparent=False,minute_color='neutral',digital_time=True,aod_minute=False,seconds=False,second=0,dial_tone='original',hand_color='original',scale_inset='wide',minute_inset='wide',complication_size='normal',digital_size='normal',layout='bottom'):
     config={'style':style,'background':background,'sectors':sectors,'boundaries':boundaries,'dividers':dividers,'HandStyle':hand_style,'MinuteTrackStyle':minute_track,'HandSize':hand_size,'minute':'TRUE' if minute else 'FALSE'}
@@ -108,6 +108,7 @@ def render(style='classic',background='white',sectors='none',boundaries='quarter
             if ambient or not complications:return
             slot=int(attrs['slotId']);kind={1:'SHORT_TEXT',2:'RANGED_VALUE',3:'SHORT_TEXT'}[slot]
             sample={1:{'TEXT':'12°','TITLE':'ПОГОДА'},2:{'TEXT':'76%','RANGED_VALUE_VALUE':76,'RANGED_VALUE_MIN':0,'RANGED_VALUE_MAX':100,'TITLE':'ЗАРЯД'},3:{'TEXT':'Ср, 4','TITLE':'НОЯБРЬ'}}[slot]
+            if slot==3 and layout.startswith('br_'):sample['TEXT']='16'
             sample['MONOCHROMATIC_IMAGE']={1:'qa_weather',2:'qa_stress',3:'qa_calendar'}[slot]
             walk(el.find(f'Complication[@type="{kind}"]'),ox+float(attrs['x']),oy+float(attrs['y']),rotation,sample);return
         if tag in ('Group','PartDraw','PartText','PartImage','DigitalClock'):
@@ -125,9 +126,18 @@ def render(style='classic',background='white',sectors='none',boundaries='quarter
             if st.get('cap')=='ROUND':
                 for x,y in (a,b):d.ellipse((x-width/2,y-width/2,x+width/2,y+width/2),fill=color)
             return
-        if tag=='Ellipse':
+        if tag in ('Ellipse','Rectangle'):
             x,y=pt(attrs['x'],attrs['y']);w=float(attrs['width'])*S;h=float(attrs['height'])*S
-            d.ellipse((x,y,x+w,y+h),fill=el.find('Fill').get('color'));return
+            fill=el.find('Fill');stroke=el.find('Stroke')
+            stroke_color=stroke.get('color') if stroke is not None else None
+            if stroke is not None:
+                for t in stroke.findall('Transform'):
+                    if t.get('target')=='color':stroke_color=evaluate(t.get('value'),config,hour,mins,data)
+            paint=d.ellipse if tag=='Ellipse' else d.rectangle
+            paint((x,y,x+w,y+h),fill=fill.get('color') if fill is not None else None,
+                  outline=stroke_color,
+                  width=max(1,round(float(stroke.get('thickness'))*S)) if stroke is not None else 1)
+            return
         if tag=='RoundRectangle':
             # One closed contour, transformed as a whole: no separately rasterized end dots.
             x=float(attrs['x']);y=float(attrs['y']);w=float(attrs['width']);h=float(attrs['height']);r=float(attrs['cornerRadiusX'])
@@ -182,6 +192,16 @@ def render(style='classic',background='white',sectors='none',boundaries='quarter
             if rotation:layer=layer.rotate(-rotation,resample=Image.Resampling.BICUBIC,center=(216*S,216*S))
             im.alpha_composite(layer);return
         children=[c for c in el if c.tag not in ('Variant','Transform','UserConfigurations','Metadata')]
+        # Conditional mask operations belong to the surrounding render group.
+        # Keep ordinary condition branches intact to preserve paint order.
+        flattened=[]
+        for child in children:
+            if child.tag=='Condition' and child.find('Default') is None and all(n.get('renderMode')=='MASK' for n in child.findall('Compare/*')):
+                exprs={e.get('name'):e.text for e in child.findall('Expressions/Expression')}
+                for branch in child.findall('Compare'):
+                    if evaluate(exprs[branch.get('expression')],config,hour,mins,data):flattened.extend(list(branch));break
+            else:flattened.append(child)
+        children=flattened
         masks=[c for c in children if c.get('renderMode')=='MASK']
         if masks:
             target=im;im=Image.new('RGBA',target.size)

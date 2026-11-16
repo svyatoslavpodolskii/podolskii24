@@ -251,6 +251,9 @@ def optimize(root):
     usability['global_scene_source']=canonical(root.find('Scene'))
     from scene_compaction import apply as compact_scene
     usability['global_compaction']=compact_scene(root)
+    from bellross_options import apply as bellross_options,scale_palette
+    bellross_options(root)
+    scale_palette(root)
     used={e.get(a) for e in root.iter() for a in ('resource','icon') if e.get(a)}|{'preview'}
     # Only these generated palette insets are disposable; original masters and
     # previously shipped choices remain untouched.

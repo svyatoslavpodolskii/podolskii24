@@ -86,7 +86,7 @@ class PersonalizationTest(unittest.TestCase):
         for blade in blades:
             edge,inside=blade.findall('PartImage')
             for choice in ('white','black'):
-                colors=[evaluate(p.find('Transform[@target="tintColor"]').get('value'),{'HandColor':choice},10,8) for p in (edge,inside)]
+                colors=[evaluate(p.find('Transform[@target="tintColor"]').get('value'),{'HandColor':choice,'background':'black'},10,8) for p in (edge,inside)]
                 self.assertEqual(set(colors),{'#222A29','#F0F0E7'})
         for bg in BACKGROUNDS:
             outputs=[render('sputnik',bg,hand_style='legacy_sputnik',minute=True,hand_color=c,component='hands',output_size=216).tobytes() for c in ('original','white','black','orange','green')]

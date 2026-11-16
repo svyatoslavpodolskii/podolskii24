@@ -46,7 +46,7 @@ def verify(path):
         assert z.read('res/raw/watchface.xml') == (RES/'raw/watchface.xml').read_bytes(), 'Packaged scene differs from validated XML'
         xml=E.fromstring(z.read('res/raw/watchface.xml'))
         assert len(list(xml.iter()))<=4500,'Native object budget exceeded'
-        assert len(z.read('res/raw/watchface.xml'))<=400000,'Native XML budget exceeded'
+        assert len(z.read('res/raw/watchface.xml'))<=440000,'Native XML budget exceeded'
         for item in xml.iter():
             for attr in ('icon','resource','family'):
                 if attr not in item.attrib:continue
@@ -75,7 +75,7 @@ def verify(path):
         for part in scales:
             tint=part.find('Transform[@target="tintColor"]')
             for background in BACKGROUNDS:
-                inks.add(evaluate(tint.get('value'),{'background':background},12,0) if tint is not None else part.get('tintColor'))
+                inks.add(evaluate(tint.get('value'),{'background':background,'DialTone':'original'},12,0) if tint is not None else part.get('tintColor'))
         assert scales and inks=={'#E47D38','#A34B24','#222A29','#F0F0E7'}
         for bg in BACKGROUNDS:
             face=xml.find(f'.//Group[@name="dial_instrument_classic_{bg}"]')

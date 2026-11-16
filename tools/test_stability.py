@@ -32,7 +32,7 @@ class StabilityTest(unittest.TestCase):
             for expr in body.findall('.//Expressions/Expression'):self.assertNotIn('CONFIGURATION.HandSize',expr.text or '')
     def test_readable_complications_and_inner_labels(self):
         for slot in self.root.findall('Scene/ComplicationSlot'):
-            self.assertEqual((slot.get('width'),slot.get('height')),('96','96'))
+            self.assertEqual((slot.get('width'),slot.get('height')),('176','128') if slot.get('slotId')=='3' else ('176','152'))
             self.assertEqual(slot.get('isCustomizable'),'TRUE')
             for group in slot.findall('.//Group'):
                 if group.get('name','').startswith('slot'):

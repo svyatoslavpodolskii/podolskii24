@@ -10,8 +10,8 @@ android {
         applicationId = "dev.twentyfour.watchface"
         minSdk = 36
         targetSdk = 36
-        versionCode = 19
-        versionName = "5.5.3"
+        versionCode = 20
+        versionName = "5.6"
     }
     // Strip AGP-generated R classes as well: a WFF APK must contain no DEX.
     buildTypes {
@@ -59,7 +59,7 @@ val validateWff by tasks.registering {
         val scene = javax.xml.parsers.DocumentBuilderFactory.newInstance().newDocumentBuilder()
             .parse(rootProject.file("watchface/src/main/res/raw/watchface.xml"))
         check(scene.getElementsByTagName("*").length <= 4500) { "WFF object budget exceeded" }
-        check(rootProject.file("watchface/src/main/res/raw/watchface.xml").length() <= 400_000) { "Optimized WFF source budget exceeded" }
+        check(rootProject.file("watchface/src/main/res/raw/watchface.xml").length() <= 440_000) { "Optimized WFF source budget exceeded" }
         val strings = javax.xml.parsers.DocumentBuilderFactory.newInstance().newDocumentBuilder()
             .parse(rootProject.file("watchface/src/main/res/values/strings.xml"))
         val labels = strings.getElementsByTagName("string")

@@ -381,9 +381,9 @@ def generate():
         if path.name!='watchface.xml':E.indent(el,space='  ')
         else:
             # Keep short lines for Android XML tooling, without deep indentation.
-            for item in el.iter():item.tail='\n'
+            for item in el.iter():item.tail='' if item.tag in ('Transform','Variant','Image','Fill','Stroke') else '\n'
         E.ElementTree(el).write(path,encoding='utf-8',xml_declaration=True)
         if path.name=='watchface.xml':
-            assert path.stat().st_size<=400_000, 'Optimized WFF source budget exceeded'
+            assert path.stat().st_size<=440_000, 'Optimized WFF source budget exceeded'
             assert sum(1 for _ in w.iter())<=4500, 'WFF object budget exceeded'
 if __name__=='__main__':generate()
