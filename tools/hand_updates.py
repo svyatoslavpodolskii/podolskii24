@@ -80,4 +80,4 @@ def apply(root):
         icon='editor_updated_'+kind
         option=root.find(f'UserConfigurations/ListConfiguration[@id="HandStyle"]/ListOption[@id="{kind}"]')
         option.set('icon',icon)
-        render(background='black',hand_style=kind,minute=True,component='hands',output_size=144,subtree=root,digital_time=False).save(RES/'drawable-nodpi'/f'{icon}.png',optimize=True)
+        render(background='black',hand_style=kind,minute=True,component='hands',output_size=80,subtree=root,digital_time=False).save(RES/'drawable-nodpi'/f'{icon}.png',optimize=True)

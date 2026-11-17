@@ -12,10 +12,14 @@ class WidgetOptionsTest(unittest.TestCase):
         references=self.root.findall('.//Reference[@name="themeSurface"]')
         self.assertEqual(len(references),1)
         source=self.root.find('.//Group[@name="shared_backgrounds"]')
-        self.assertIs(source.find('Reference'),references[0])
-        expression=source.find('Transform[@target="tintColor"]').get('value')
+        drawing=source.find('PartDraw')
+        self.assertIs(drawing.find('Reference'),references[0])
+        self.assertIsNone(source.find('Transform[@target="tintColor"]'))
+        expression=drawing.find('Transform[@target="tintColor"]').get('value')
         self.assertNotIn('REFERENCE',expression)
         self.assertEqual(evaluate(expression,dict(background='ivory',DialTone='original'),10,8),'#E9E2CE')
+        self.assertEqual(evaluate(expression,dict(background='black',DialTone='charcoal'),10,8),'#303128')
+        self.assertEqual(evaluate(expression,dict(background='black',DialTone='brown'),10,8),'#35302B')
 
     def test_largest_spread_subdials_fit_native_slot(self):
         for sid,center in (('1',106),('2',326)):

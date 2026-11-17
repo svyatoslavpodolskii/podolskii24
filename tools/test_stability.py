@@ -14,10 +14,10 @@ class StabilityTest(unittest.TestCase):
     def test_parse_and_editor_budgets(self):
         self.assertLessEqual(len(list(self.root.iter())),20000)
         self.assertLessEqual((RES/'raw/watchface.xml').stat().st_size,1_500_000)
-        self.assertLessEqual(self.manifest['runtime_png_rgba_bytes'],28_000_000)
+        self.assertLessEqual(self.manifest['runtime_png_rgba_bytes'],18_150_000)
         for option in self.root.find('UserConfigurations').iter():
             if not option.get('icon'):continue
-            with Image.open(RES/'drawable-nodpi'/(option.get('icon')+'.png')) as image:self.assertLessEqual(max(image.size),144)
+            with Image.open(RES/'drawable-nodpi'/(option.get('icon')+'.png')) as image:self.assertLessEqual(max(image.size),80)
         self.assertGreaterEqual(len(self.manifest['asset_aliases']),10)
     def test_universal_size_and_hour_layer(self):
         hands=self.root.find('.//Group[@name="interactive_hands"]')

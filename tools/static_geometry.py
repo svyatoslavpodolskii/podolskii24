@@ -63,7 +63,7 @@ def optimize(root):
         if not name:continue
         source=RES/'drawable-nodpi'/f'{name}.png'
         target='editor_'+name
-        with Image.open(source) as im:im.resize((144,144),Image.Resampling.LANCZOS).save(source.with_name(target+'.png'),optimize=True)
+        with Image.open(source) as im:im.resize((80,80),Image.Resampling.LANCZOS).save(source.with_name(target+'.png'),optimize=True)
         option.set('icon',target)
     def bake_bundle(parent):
         selected=[c for c in parent if c.get('renderMode')!='MASK']

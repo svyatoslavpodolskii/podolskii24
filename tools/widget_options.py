@@ -66,8 +66,10 @@ def theme_reference(root):
     for child in list(source):
         if child.tag=='Condition':source.remove(child)
     source.insert(0,shape)
-    binding=node(source,'Transform',target='tintColor',value=expression)
-    node(source,'Reference',name='themeSurface',source='tintColor',defaultValue='#000000')
+    # Bind the actual drawing, rather than filtering its parent group. Keep
+    # the reusable surface reference on that same concrete drawing object.
+    binding=node(shape,'Transform',target='tintColor',value=expression)
+    node(shape,'Reference',name='themeSurface',source='tintColor',defaultValue='#FAFAF7')
     for t in root.iter('Transform'):
         if t is not binding and expression in t.get('value',''):
             t.set('value',t.get('value').replace(expression,'[REFERENCE.themeSurface]'))

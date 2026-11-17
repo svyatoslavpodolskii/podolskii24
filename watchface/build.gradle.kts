@@ -10,8 +10,8 @@ android {
         applicationId = "dev.twentyfour.watchface"
         minSdk = 36
         targetSdk = 36
-        versionCode = 27
-        versionName = "5.7.3"
+        versionCode = 28
+        versionName = "5.7.4"
     }
     // Strip AGP-generated R classes as well: a WFF APK must contain no DEX.
     buildTypes {
